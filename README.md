@@ -1,4 +1,5 @@
 # Proyecto-Revista-Digital
+
 Proyecto de 2º DAM en el cuál creamos una aplicación de escritorio con WPF de gestión de una revista online. La aplicación se puede gestionar desde tres puntos de vista
 los cuáles son:
   - Editor de la revista: Puede crear, editar y eliminar autores además de publicar los artículos creados por los autores en caso de que no contengan palabras que estén
