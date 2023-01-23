@@ -8,5 +8,6 @@ namespace Proyecto_Revista_Digital.VistasModelo
 {
     class GestorAutoresVM
     {
+
     }
 }
