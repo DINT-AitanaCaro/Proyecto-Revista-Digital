@@ -105,6 +105,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Modelo\Autor.cs" />
     <Compile Include="Servicios\ServicioSQLite.cs" />
     <Compile Include="VistasModelo\GestorAutoresVM.cs" />
     <Page Include="MainWindow.xaml">
