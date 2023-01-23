@@ -148,6 +148,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="CarpetPrueba\" />
     <Folder Include="Mensajes\" />
   </ItemGroup>
   <ItemGroup>
