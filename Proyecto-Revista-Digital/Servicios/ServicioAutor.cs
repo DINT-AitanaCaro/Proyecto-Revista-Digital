@@ -2,6 +2,7 @@
 using Proyecto_Revista_Digital.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -64,6 +65,25 @@ namespace Proyecto_Revista_Digital.Servicios
 
             comando.ExecuteNonQuery();
             conexion.Close();
+        }
+
+        public ObservableCollection<Autor> GetAutores(int autorId)
+        {
+            conexion.Open();
+            SqliteCommand comando = conexion.CreateCommand();
+            comando.CommandText = "SELECT * FROM autores";
+            ObservableCollection<Autor> autores = new ObservableCollection<Autor>();
+            SqliteDataReader lector = comando.ExecuteReader();
+            if(lector.HasRows)
+            {
+                while(lector.Read())
+                {
+                    //autores.Add(new Autor((int)lector["id"],(string)lector["nombre"]), (string)lector["imagen"]), (string)lector["nickname"]), (string)lector["social"]));
+                }
+            }
+            lector.Close();
+            conexion.Close();
+            return autores;
         }
     }
 }
