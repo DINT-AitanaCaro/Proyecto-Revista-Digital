@@ -67,7 +67,7 @@ namespace Proyecto_Revista_Digital.Servicios
             conexion.Close();
         }
 
-        public ObservableCollection<Autor> GetAutores(int autorId)
+        public ObservableCollection<Autor> GetAutores()
         {
             conexion.Open();
             SqliteCommand comando = conexion.CreateCommand();
