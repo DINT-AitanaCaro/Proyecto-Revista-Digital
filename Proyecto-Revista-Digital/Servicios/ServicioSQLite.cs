@@ -30,6 +30,7 @@ namespace Proyecto_Revista_Digital.Servicios
                   imagen varchar(100),                      
                   contenido varchar(50),  
                                     )";
+            conexion.Close();
         }
     }
 }

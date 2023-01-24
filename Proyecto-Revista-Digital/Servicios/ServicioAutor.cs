@@ -16,7 +16,7 @@ namespace Proyecto_Revista_Digital.Servicios
         {
             conexion.Open();
             SqliteCommand comando = conexion.CreateCommand();
-            comando.CommandText = "INSERT INTO autores VALUES(@nombre,@imagen,@nickname,@social)";
+            comando.CommandText = "INSERT INTO autores VALUES(null,@nombre,@imagen,@nickname,@social)";
             comando.Parameters.Add("@nombre", SqliteType.Text);
             comando.Parameters.Add("@imagen", SqliteType.Text);
             comando.Parameters.Add("@nickname", SqliteType.Text);
@@ -76,9 +76,9 @@ namespace Proyecto_Revista_Digital.Servicios
             SqliteDataReader lector = comando.ExecuteReader();
             if(lector.HasRows)
             {
-                while(lector.Read())
+                while (lector.Read())
                 {
-                    //autores.Add(new Autor((int)lector["id"],(string)lector["nombre"]), (string)lector["imagen"]), (string)lector["nickname"]), (string)lector["social"]));
+                    autores.Add(new Autor(Convert.ToInt32(lector["id"]), (string)lector["nombre"], (string)lector["imagen"], (string)lector["nickname"], (string)lector["social"]));
                 }
             }
             lector.Close();
