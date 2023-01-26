@@ -1,6 +1,8 @@
 ﻿using Microsoft.Data.Sqlite;
+using Proyecto_Revista_Digital.Modelos;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,7 +20,7 @@ namespace Proyecto_Revista_Digital.Servicios
             comando.CommandText = "INSERT INTO secciones VALUES(null,@nombre)";
             comando.Parameters.Add("@nombre", SqliteType.Text);
 
-            comando.Parameters["@nombre"].Value = seccion.Nombre;
+            comando.Parameters["@nombre"].Value = seccion.NombreSeccion;
 
             comando.ExecuteNonQuery();
             conexion.Close();

@@ -74,7 +74,7 @@ namespace Proyecto_Revista_Digital.Servicios
             comando.CommandText = "SELECT * FROM autores";
             ObservableCollection<Autor> autores = new ObservableCollection<Autor>();
             SqliteDataReader lector = comando.ExecuteReader();
-            if(lector.HasRows)
+            if (lector.HasRows)
             {
                 while (lector.Read())
                 {
@@ -84,6 +84,24 @@ namespace Proyecto_Revista_Digital.Servicios
             lector.Close();
             conexion.Close();
             return autores;
+        }
+
+        public Autor GetAutor(int id)
+        {
+            conexion.Open();
+            SqliteCommand comando = conexion.CreateCommand();
+            comando.CommandText = "SELECT * FROM autores WHERE id = @id";
+            comando.Parameters.Add("@id", SqliteType.Integer);
+            comando.Parameters["@id"].Value = id;
+            Autor autor = null;
+            SqliteDataReader lector = comando.ExecuteReader();
+            if (lector.HasRows)
+            {
+                autor = new Autor(Convert.ToInt32(lector["id"]), (string)lector["nombre"], (string)lector["imagen"], (string)lector["nickname"], (string)lector["social"]);
+            }
+            lector.Close();
+            conexion.Close();
+            return autor;
         }
     }
 }

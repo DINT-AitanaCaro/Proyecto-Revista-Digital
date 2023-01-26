@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Revista_Digital.Modelos
 {
-    class Seccion:ObservableObject
+    class Seccion : ObservableObject
     {
         private int idSeccion;
 
@@ -29,15 +29,14 @@ namespace Proyecto_Revista_Digital.Modelos
         {
         }
 
-        public Seccion(int idSeccion, string nombreSeccion)
-        {
-            this.idSeccion = idSeccion;
-            this.nombreSeccion = nombreSeccion;
-        }
-
         public Seccion(string nombreSeccion)
         {
             this.nombreSeccion = nombreSeccion;
+        }
+
+        public Seccion(int idSeccion, string nombreSeccion) : this(nombreSeccion)
+        {
+            this.idSeccion = idSeccion;
         }
     }
 }

@@ -17,11 +17,11 @@ namespace Proyecto_Revista_Digital.Modelos
             set { SetProperty(ref id, value); }
         }
 
-        private int idAutor;
-        public int IdAutor
+        private Autor autor;
+        public Autor AutorArticulo
         {
-            get { return idAutor; }
-            set { SetProperty(ref idAutor, value); }
+            get { return autor; }
+            set { SetProperty(ref autor, value); }
         }
 
         private int idSeccion;
@@ -59,9 +59,9 @@ namespace Proyecto_Revista_Digital.Modelos
             set { SetProperty(ref publicado, value); }
         }
 
-        public Articulo(int idAutor, int idSeccion, string titulo, string imagen, string contenido, bool publicado)
+        public Articulo(Autor autor, int idSeccion, string titulo, string imagen, string contenido, bool publicado)
         {
-            IdAutor = idAutor;
+            AutorArticulo = autor;
             IdSeccion = idSeccion;
             Titulo = titulo;
             Imagen = imagen;
@@ -69,7 +69,7 @@ namespace Proyecto_Revista_Digital.Modelos
             Publicado = publicado;
         }
 
-        public Articulo(int id, int idAutor, int idSeccion, string titulo, string imagen, string contenido, bool publicado) : this( idAutor,  idSeccion,  titulo,  imagen,  contenido,  publicado)
+        public Articulo(int id, Autor autor, int idSeccion, string titulo, string imagen, string contenido, bool publicado) : this( autor,  idSeccion,  titulo,  imagen,  contenido,  publicado)
         {
             Id = id;
         }

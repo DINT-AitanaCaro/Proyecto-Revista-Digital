@@ -25,7 +25,7 @@ namespace Proyecto_Revista_Digital.Servicios
             comando.Parameters.Add("@contenido", SqliteType.Text);
             comando.Parameters.Add("@publicado", SqliteType.Integer);
 
-            comando.Parameters["@idAutor"].Value = articulo.IdAutor;
+            comando.Parameters["@idAutor"].Value = articulo.Autor;
             comando.Parameters["@idSeccion"].Value = articulo.IdSeccion;// o Autor.Id al pasar a Articulo hay q consultar al autor de ese id para parsearlo
             comando.Parameters["@titulo"].Value = articulo.Titulo;
             comando.Parameters["@imagen"].Value = articulo.Imagen;
@@ -35,33 +35,6 @@ namespace Proyecto_Revista_Digital.Servicios
             comando.ExecuteNonQuery();
             conexion.Close();
         }
-
-        /*
-        public void EditArticulo(Articulo articulo)
-        {
-            conexion.Open();
-            SqliteCommand comando = conexion.CreateCommand();
-            comando.CommandText = "UPDATE articulos SET  idAutor = @idAutor, idSeccion = @idSeccion, titulo = @titulo, contenido  = @contenido, publicado = @publicado WHERE id = @id";
-            
-            comando.Parameters.Add("@id", SqliteType.Integer);
-            comando.Parameters.Add("@idAutor", SqliteType.Integer);
-            comando.Parameters.Add("@idSeccion", SqliteType.Integer);
-            comando.Parameters.Add("@titulo", SqliteType.Text);
-            comando.Parameters.Add("@imagen", SqliteType.Text);
-            comando.Parameters.Add("@contenido", SqliteType.Text);
-            comando.Parameters.Add("@publicado", SqliteType.Integer);
-
-            comando.Parameters["@id"].Value = articulo.Id;
-            comando.Parameters["@idAutor"].Value = articulo.IdAutor;
-            comando.Parameters["@idSeccion"].Value = articulo.IdSeccion;
-            comando.Parameters["@titulo"].Value = articulo.Titulo;
-            comando.Parameters["@imagen"].Value = articulo.Imagen;
-            comando.Parameters["@contenido"].Value = articulo.Contenido;
-            comando.Parameters["@publicado"].Value = articulo.Publicado;
-            
-            comando.ExecuteNonQuery();
-            conexion.Close();
-        }*/
 
         public void DeleteArticulo(int Idarticulo)
         {
@@ -84,11 +57,12 @@ namespace Proyecto_Revista_Digital.Servicios
             comando.CommandText = "SELECT * FROM articulos";
             ObservableCollection<Articulo> articulos = new ObservableCollection<Articulo>();
             SqliteDataReader lector = comando.ExecuteReader();
+            ServicioAutor sa = new ServicioAutor();
             if(lector.HasRows)
             {
                 while (lector.Read())
                 {
-                    articulos.Add(new Articulo(Convert.ToInt32(lector["id"]), Convert.ToInt32(lector["idAutor"]), Convert.ToInt32(lector["idSeccion"]), (string)lector["titulo"], (string)lector["imagen"], (string)lector["contenido"], Convert.ToInt32(lector["publicado"])==1));
+                    articulos.Add(new Articulo(Convert.ToInt32(lector["id"]), sa.GetAutor(Convert.ToInt32(lector["idAutor"])), Convert.ToInt32(lector["idSeccion"]), (string)lector["titulo"], (string)lector["imagen"], (string)lector["contenido"], Convert.ToInt32(lector["publicado"])==1));
                 }
             }
             lector.Close();
