@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Revista_Digital.Servicios
 {
-    /*class ServicioAutor
+    class ServicioAutor
     {
         private SqliteConnection conexion = new SqliteConnection("Data Source=revista.db");
         public void AddAutor(Autor autor)
@@ -85,5 +85,5 @@ namespace Proyecto_Revista_Digital.Servicios
             conexion.Close();
             return autores;
         }
-    }*/
+    }
 }

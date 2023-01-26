@@ -111,6 +111,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Modelos\Articulo.cs" />
     <Compile Include="Modelos\Autor.cs" />
     <Compile Include="Servicios\ServicioArticulo.cs" />
     <Compile Include="Servicios\ServicioAutor.cs" />
