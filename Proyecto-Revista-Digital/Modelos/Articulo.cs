@@ -69,7 +69,7 @@ namespace Proyecto_Revista_Digital.Modelos
             Publicado = publicado;
         }
 
-        public Articulo(int id, Autor autor, int idSeccion, string titulo, string imagen, string contenido, bool publicado) : this( autor,  idSeccion,  titulo,  imagen,  contenido,  publicado)
+        public Articulo(int id, Autor autor, int idSeccion, string titulo, string imagen, string contenido, bool publicado) : this(autor, idSeccion, titulo, imagen, contenido, publicado)
         {
             Id = id;
         }
