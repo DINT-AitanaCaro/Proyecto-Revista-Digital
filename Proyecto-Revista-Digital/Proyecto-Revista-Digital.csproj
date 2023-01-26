@@ -118,6 +118,7 @@
     <Compile Include="Modelos\Autor.cs" />
     <Compile Include="Servicios\ServicioArticulo.cs" />
     <Compile Include="Servicios\ServicioAutor.cs" />
+    <Compile Include="Servicios\ServicioSeccion.cs" />
     <Compile Include="Servicios\ServicioSQLite.cs" />
     <Compile Include="VistasModelo\GestorAutoresVM.cs" />
     <Compile Include="VistasModelo\MainWindowVM.cs" />
