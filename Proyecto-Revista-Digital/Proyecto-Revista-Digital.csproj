@@ -163,6 +163,15 @@
   <ItemGroup>
     <Resource Include="Assets\logoRevista.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\EditorDeTexto.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\writer.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\nuevoArticulo.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
