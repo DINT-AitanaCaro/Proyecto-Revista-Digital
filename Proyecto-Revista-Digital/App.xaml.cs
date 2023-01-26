@@ -13,5 +13,9 @@ namespace Proyecto_Revista_Digital
     /// </summary>
     public partial class App : Application
     {
+        public App()
+        {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense(Proyecto_Revista_Digital.Properties.Settings.Default.ClaveSyncfusion);
+        }
     }
 }

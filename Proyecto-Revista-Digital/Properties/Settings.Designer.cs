@@ -22,5 +22,15 @@ namespace Proyecto_Revista_Digital.Properties {
                 return defaultInstance;
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("OTE4NTAxQDMyMzAyZTM0MmUzMEZPU0Q5VEtWQzB3WXlDZGFvNVM2dEw0cFNPVlVpUTgyWVFMdkFQNzAwc" +
+            "kk9")]
+        public string ClaveSyncfusion {
+            get {
+                return ((string)(this["ClaveSyncfusion"]));
+            }
+        }
     }
 }

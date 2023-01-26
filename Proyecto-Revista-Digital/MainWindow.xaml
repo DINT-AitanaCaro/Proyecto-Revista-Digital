@@ -4,9 +4,81 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_Revista_Digital"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+    <DockPanel>
+        <syncfusion:SfNavigationDrawer
+        x:Name="navigationDrawer"
+        DisplayMode="Expanded">
+            <syncfusion:NavigationItem
+                Header="Inbox"
+                IsExpanded="True"
+                IsSelected="True">
+                <!--<syncfusion:NavigationItem.Icon>
+                    <Path Data="M32.032381, 16.445429 L25.410999, ... "/>
+            </syncfusion:NavigationItem.Icon>-->
+            <syncfusion:NavigationItem Header="Primary">
+                <!--<syncfusion:NavigationItem.Icon>
+                    <Path Data="M9.5189972,7.3780194C8.3389893,... "/>
+                </syncfusion:NavigationItem.Icon>-->
+            </syncfusion:NavigationItem>
+            <syncfusion:NavigationItem Header="Social">
+                <!--<syncfusion:NavigationItem.Icon>
+                    <Path Data="M22.133972,14.194015C17.582977,... "/>
+                </syncfusion:NavigationItem.Icon>-->
+            </syncfusion:NavigationItem>
+            <syncfusion:NavigationItem Header="Promotions">
+                <!--<syncfusion:NavigationItem.Icon>
+                    <Path Data="M9.4614787,7.2521966C8.897512,... "/>
+                </syncfusion:NavigationItem.Icon>-->
+            </syncfusion:NavigationItem>
+            </syncfusion:NavigationItem>
+            <syncfusion:NavigationItem Header="Sent mail">
+                <!--<syncfusion:NavigationItem.Icon>
+                    <Path Data="M42.128046,6.7269681 L18.53705,.... "/>
+            </syncfusion:NavigationItem.Icon>-->
+        </syncfusion:NavigationItem>
+        <syncfusion:NavigationItem Header="Important">
+            <!--<syncfusion:NavigationItem.Icon>
+                <Path Data="M25.085007,5.9780004 L20.577011,..... "/>
+                </syncfusion:NavigationItem.Icon>-->
+            </syncfusion:NavigationItem>
+            <syncfusion:NavigationItem Header="Drafts">
+                <!--<syncfusion:NavigationItem.Icon>
+                    <Path Data="M6.9999996,48.353 L19,48.353 19,...."/>
+            </syncfusion:NavigationItem.Icon>-->
+        </syncfusion:NavigationItem>
+        <syncfusion:NavigationItem ItemType="Separator" />
+        <syncfusion:NavigationItem Header="All Labels" ItemType="Header" />
+        <syncfusion:NavigationItem Header="Starred">
+            <!--<syncfusion:NavigationItem.Icon>
+                <Path Data="M25.085007,5.9780004 L20.577011,..."/>
+                </syncfusion:NavigationItem.Icon>-->
+            </syncfusion:NavigationItem>
+            <syncfusion:NavigationItem Header="All mail">
+                <!--<syncfusion:NavigationItem.Icon>
+                    <Path Data="M12,32.999999 L26,32.999999 26,..."/>
+            </syncfusion:NavigationItem.Icon>-->
+        </syncfusion:NavigationItem>
+        <syncfusion:NavigationItem Header="Trash">
+            <!--<syncfusion:NavigationItem.Icon>
+                <Path Data="M17,12 L19,12 19,42 17,42z M10.998"/>
+                </syncfusion:NavigationItem.Icon>-->
+            </syncfusion:NavigationItem>
+            <syncfusion:NavigationItem Header="Spam">
+                <!--<syncfusion:NavigationItem.Icon>
+                    <Path Data="M33.671003,29.293001 L39.214003,..."/>
+            </syncfusion:NavigationItem.Icon>-->
+        </syncfusion:NavigationItem>
+        <syncfusion:SfNavigationDrawer.ContentView>
+            <Label
+                Width="150"
+                Height="30"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Center"
+                Content="Content View" />
+        </syncfusion:SfNavigationDrawer.ContentView>
+    </syncfusion:SfNavigationDrawer>
+    </DockPanel>
 </Window>

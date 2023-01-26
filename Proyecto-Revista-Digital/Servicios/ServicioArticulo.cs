@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Revista_Digital.Servicios
 {
-    class ServicioArticulo
+    /*class ServicioArticulo
     {
         private SqliteConnection conexion = new SqliteConnection("Data Source=revista.db");
         public void AddArticulo(Articulo articulo)
@@ -40,7 +40,7 @@ namespace Proyecto_Revista_Digital.Servicios
             conexion.Open();
             SqliteCommand comando = conexion.CreateCommand();
             comando.CommandText = "UPDATE articulos SET titulo = @titulo, idAutor = @idAutor, seccion = @seccion, contenido  = @contenido, publicado = @publicado WHERE id = @id";
-            /*
+            
             comando.Parameters.Add("@titulo", SqliteType.Text);
             comando.Parameters.Add("@idAutor", SqliteType.Integer);
             comando.Parameters.Add("@seccion", SqliteType.Integer);
@@ -54,7 +54,7 @@ namespace Proyecto_Revista_Digital.Servicios
             comando.Parameters["@imagen"].Value = articulo.Imagen;
             comando.Parameters["@contenido"].Value = articulo.Contenido;
             comando.Parameters["@publicado"].Value = articulo.Publicado;
-            */
+            
             comando.ExecuteNonQuery();
             conexion.Close();
         }
@@ -72,7 +72,7 @@ namespace Proyecto_Revista_Digital.Servicios
             comando.ExecuteNonQuery();
             conexion.Close();
         }
-        /*
+        
         public ObservableCollection<Articulo> GetArticulos()
         {
             conexion.Open();
@@ -90,6 +90,6 @@ namespace Proyecto_Revista_Digital.Servicios
             lector.Close();
             conexion.Close();
             return autores;
-        }*/
-    }
+        }
+    }*/
 }
