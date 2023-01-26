@@ -12,44 +12,60 @@
         x:Name="navigationDrawer"
         DisplayMode="Expanded">
             <syncfusion:NavigationItem
-                Header="Inbox"
+                Header="Editor de texto"
                 IsExpanded="True"
                 IsSelected="True">
-                <!--<syncfusion:NavigationItem.Icon>
-                    <Path Data="M32.032381, 16.445429 L25.410999, ... "/>
-            </syncfusion:NavigationItem.Icon>-->
-            <syncfusion:NavigationItem Header="Primary">
+                <syncfusion:NavigationItem.Icon>
+                    <Image Source="./Assets/EditorDeTexto.png"/>
+                </syncfusion:NavigationItem.Icon>
+                <syncfusion:NavigationItem Header="Gestionar autores">
                 <!--<syncfusion:NavigationItem.Icon>
                     <Path Data="M9.5189972,7.3780194C8.3389893,... "/>
                 </syncfusion:NavigationItem.Icon>-->
             </syncfusion:NavigationItem>
-            <syncfusion:NavigationItem Header="Social">
+            <syncfusion:NavigationItem Header="Gestionar artículos">
                 <!--<syncfusion:NavigationItem.Icon>
                     <Path Data="M22.133972,14.194015C17.582977,... "/>
                 </syncfusion:NavigationItem.Icon>-->
             </syncfusion:NavigationItem>
-            <syncfusion:NavigationItem Header="Promotions">
+            <syncfusion:NavigationItem Header="Publicar artículos">
                 <!--<syncfusion:NavigationItem.Icon>
                     <Path Data="M9.4614787,7.2521966C8.897512,... "/>
                 </syncfusion:NavigationItem.Icon>-->
             </syncfusion:NavigationItem>
-            </syncfusion:NavigationItem>
-            <syncfusion:NavigationItem Header="Sent mail">
-                <!--<syncfusion:NavigationItem.Icon>
-                    <Path Data="M42.128046,6.7269681 L18.53705,.... "/>
-            </syncfusion:NavigationItem.Icon>-->
-        </syncfusion:NavigationItem>
-        <syncfusion:NavigationItem Header="Important">
-            <!--<syncfusion:NavigationItem.Icon>
-                <Path Data="M25.085007,5.9780004 L20.577011,..... "/>
+            <syncfusion:NavigationItem Header="Generar revista">
+                    <!--<syncfusion:NavigationItem.Icon>
+                    <Path Data="M9.4614787,7.2521966C8.897512,... "/>
                 </syncfusion:NavigationItem.Icon>-->
             </syncfusion:NavigationItem>
-            <syncfusion:NavigationItem Header="Drafts">
+            </syncfusion:NavigationItem>
+            <syncfusion:NavigationItem ItemType="Separator" />
+            <syncfusion:NavigationItem Header="Autor de artículos"
+                                       IsExpanded="True"
+                                       IsSelected="True">
+                <syncfusion:NavigationItem.Icon>
+                    <Image Source="./Assets/writer.ico"></Image>
+                </syncfusion:NavigationItem.Icon>
+                <syncfusion:NavigationItem Header="Crear artículo">
+                    <syncfusion:NavigationItem.Icon>
+                        <Image Source="./Assets/nuevoArticulo.ico"></Image>
+                    </syncfusion:NavigationItem.Icon>
+                </syncfusion:NavigationItem>
+            </syncfusion:NavigationItem>
+            <syncfusion:NavigationItem ItemType="Separator" />
+            <syncfusion:NavigationItem Header="Censor de la revista"
+                                       IsExpanded="True"
+                                       IsSelected="True">
                 <!--<syncfusion:NavigationItem.Icon>
-                    <Path Data="M6.9999996,48.353 L19,48.353 19,...."/>
-            </syncfusion:NavigationItem.Icon>-->
-        </syncfusion:NavigationItem>
-        <syncfusion:NavigationItem ItemType="Separator" />
+                <Path Data="M25.085007,5.9780004 L20.577011,..... "/>
+                </syncfusion:NavigationItem.Icon>-->
+                <syncfusion:NavigationItem Header="Gestionar lista de palabras">
+                    <!--<syncfusion:NavigationItem.Icon>
+                    <Path Data="M9.5189972,7.3780194C8.3389893,... "/>
+                </syncfusion:NavigationItem.Icon>-->
+                </syncfusion:NavigationItem>
+            </syncfusion:NavigationItem>
+            <syncfusion:NavigationItem ItemType="Separator" />
         <syncfusion:NavigationItem Header="All Labels" ItemType="Header" />
         <syncfusion:NavigationItem Header="Starred">
             <!--<syncfusion:NavigationItem.Icon>
@@ -72,12 +88,9 @@
             </syncfusion:NavigationItem.Icon>-->
         </syncfusion:NavigationItem>
         <syncfusion:SfNavigationDrawer.ContentView>
-            <Label
-                Width="150"
-                Height="30"
-                HorizontalAlignment="Center"
-                VerticalAlignment="Center"
-                Content="Content View" />
+                <Border>
+                    <ContentControl Content="{Binding Path=ContenidoVentana}"></ContentControl>
+                </Border>
         </syncfusion:SfNavigationDrawer.ContentView>
     </syncfusion:SfNavigationDrawer>
     </DockPanel>
