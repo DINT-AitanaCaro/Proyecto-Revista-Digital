@@ -48,9 +48,7 @@ namespace Proyecto_Revista_Digital.Modelos
             get { return social; }
             set { SetProperty(ref social, value); }
         }
-        public Autor()
-        {
-        }
+        public Autor() { }
 
         public Autor(string nombre, string imagen, string nickname, string social)
         {
