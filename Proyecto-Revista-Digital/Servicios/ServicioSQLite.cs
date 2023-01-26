@@ -26,20 +26,21 @@ namespace Proyecto_Revista_Digital.Servicios
             comando.ExecuteNonQuery();
 
             comando.CommandText = @"CREATE TABLE IF NOT EXISTS articulos (
-                    id INTEGER,
-                    titulo varchar(100) primary key,
+                    id INTEGER primary key,
                     idAutor INTEGER,
-                    seccion varchar(50),
+                    idSeccion varchar(50),
+                    titulo varchar(100) UNIQUE,
                     imagen varchar(100),                      
                     contenido varchar(50), 
                     publicado INTEGER,
-                    FOREIGN KEY (idAutor) REFERENCES autores(id),
-                    PRIMARY KEY(id, titulo)
+                    FOREIGN KEY (idAutor) REFERENCES autores(id)
+                    FOREIGN KEY (idSeccion) REFERENCES secciones(id)
                                     )";
-            /*
+
             comando.CommandText = @"CREATE TABLE IF NOT EXISTS secciones (
-                    titulo varchar(100) primary key,
-                                    )";*/
+                    id INTEGER primary key,
+                    nombre varchar(100) NOT NULL UNIQUE
+                                    )";
             conexion.Close();
         }
     }
