@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:Proyecto_Revista_Digital"
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Icon="./Assets/dIcon.ico"
+        Title="DAM's Space" Height="450" Width="800">
     <DockPanel>
         <syncfusion:SfNavigationDrawer
         x:Name="navigationDrawer"
@@ -18,22 +19,17 @@
                 <syncfusion:NavigationItem.Icon>
                     <Image Source="./Assets/EditorDeTexto.png"/>
                 </syncfusion:NavigationItem.Icon>
-                <syncfusion:NavigationItem Header="Gestionar autores">
+                <syncfusion:NavigationItem Header="Gestionar autores" Command="{Binding Path=GestionarAutoresCommand}">
                 <!--<syncfusion:NavigationItem.Icon>
                     <Path Data="M9.5189972,7.3780194C8.3389893,... "/>
                 </syncfusion:NavigationItem.Icon>-->
             </syncfusion:NavigationItem>
-            <syncfusion:NavigationItem Header="Gestionar artículos">
-                <!--<syncfusion:NavigationItem.Icon>
+                <syncfusion:NavigationItem Header="Gestionar artículos" Command="{Binding Path=GestionarArticulosCommand}">
+                    <!--<syncfusion:NavigationItem.Icon>
                     <Path Data="M22.133972,14.194015C17.582977,... "/>
                 </syncfusion:NavigationItem.Icon>-->
-            </syncfusion:NavigationItem>
-            <syncfusion:NavigationItem Header="Publicar artículos">
-                <!--<syncfusion:NavigationItem.Icon>
-                    <Path Data="M9.4614787,7.2521966C8.897512,... "/>
-                </syncfusion:NavigationItem.Icon>-->
-            </syncfusion:NavigationItem>
-            <syncfusion:NavigationItem Header="Generar revista">
+                </syncfusion:NavigationItem>
+                <syncfusion:NavigationItem Header="Generar revista">
                     <!--<syncfusion:NavigationItem.Icon>
                     <Path Data="M9.4614787,7.2521966C8.897512,... "/>
                 </syncfusion:NavigationItem.Icon>-->

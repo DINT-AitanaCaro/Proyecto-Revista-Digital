@@ -1,5 +1,4 @@
-﻿using Proyecto_Revista_Digital.VistasModelo;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,19 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Proyecto_Revista_Digital
+namespace Proyecto_Revista_Digital.Vistas
 {
     /// <summary>
-    /// Lógica de interacción para MainWindow.xaml
+    /// Lógica de interacción para GestionAutores.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class GestionAutores : UserControl
     {
-        private MainWindowVM vm;
-        public MainWindow()
+        public GestionAutores()
         {
             InitializeComponent();
-            vm = new MainWindowVM();
-            this.DataContext = vm;
         }
     }
 }
