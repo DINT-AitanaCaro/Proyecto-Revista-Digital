@@ -112,9 +112,11 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Modelos\Autor.cs" />
+    <Compile Include="Modelos\Seccion.cs" />
     <Compile Include="Servicios\ServicioArticulo.cs" />
     <Compile Include="Servicios\ServicioAutor.cs" />
     <Compile Include="Servicios\ServicioSQLite.cs" />
+    <Compile Include="VistasModelo\GestarArticulosVM.cs" />
     <Compile Include="VistasModelo\GestorAutoresVM.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -158,6 +160,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Mensajes\" />
+    <Folder Include="Vistas\" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\logoRevista.png" />
