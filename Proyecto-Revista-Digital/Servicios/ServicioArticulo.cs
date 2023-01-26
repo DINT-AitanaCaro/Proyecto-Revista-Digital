@@ -25,8 +25,8 @@ namespace Proyecto_Revista_Digital.Servicios
             comando.Parameters.Add("@contenido", SqliteType.Text);
             comando.Parameters.Add("@publicado", SqliteType.Integer);
 
-            comando.Parameters["@idAutor"].Value = articulo.Autor;
-            comando.Parameters["@idSeccion"].Value = articulo.IdSeccion;// o Autor.Id al pasar a Articulo hay q consultar al autor de ese id para parsearlo
+            comando.Parameters["@idAutor"].Value = articulo.AutorArticulo.Id;
+            comando.Parameters["@idSeccion"].Value = articulo.IdSeccion;
             comando.Parameters["@titulo"].Value = articulo.Titulo;
             comando.Parameters["@imagen"].Value = articulo.Imagen;
             comando.Parameters["@contenido"].Value = articulo.Contenido;
