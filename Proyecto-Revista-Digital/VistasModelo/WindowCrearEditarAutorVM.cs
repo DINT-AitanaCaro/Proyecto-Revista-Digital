@@ -33,6 +33,8 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         private ObservableCollection<string> _redesSociales;
         private ServicioDialogo servicioDialogo = new ServicioDialogo();
+        private ServicioAzure servicioAzure = new ServicioAzure();
+        private ServicioAutor servicioAutor = new ServicioAutor();
 
         public ObservableCollection<string> RedesSociales
         {
@@ -49,16 +51,18 @@ namespace Proyecto_Revista_Digital.VistasModelo
             RedesSociales = new ObservableCollection<string>() { "Instagram", "Twitter", "Facebook" };
             Modo = string.IsNullOrEmpty(AutorActual.Nombre) ? "Crear Autor" : "Editar Autor";
             CommandSeleccionImagen = new RelayCommand(SeleccionImagen);
+            CommandGuardarAutor = new RelayCommand(GuardarAutor);
         }
 
         public void GuardarAutor()
         {
-           
+            servicioAutor.AddAutor(AutorActual);
         }
 
         public void SeleccionImagen()
         {
-            AutorActual.Imagen = servicioDialogo.DialogoAbrirFichero(); // llamar servicio azure
+            string file = servicioDialogo.DialogoAbrirFichero();
+            AutorActual.Imagen = file != null ? servicioAzure.AlmacenarImagenEnLaNube(file) : string.Empty;
         }
     }
 }

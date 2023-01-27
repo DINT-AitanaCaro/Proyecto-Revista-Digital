@@ -67,20 +67,20 @@
             </inputLayout:SfTextInputLayout.LeadingView>
         </inputLayout:SfTextInputLayout>
         <DockPanel>
-            <Button DockPanel.Dock="Right" VerticalAlignment="Top" Width="50" Height="47" Background="#a4e4d9" Template="{DynamicResource ButtonControlTemplate}">
+            <Button DockPanel.Dock="Right" VerticalAlignment="Top" Width="50" Height="47" Background="#a4e4d9" Command="{Binding Path=CommandSeleccionImagen}" Template="{DynamicResource ButtonControlTemplate}">
                 <Button.Content>
                     <Image Source="../assets/file-explorer.png" Width="24"/>
                 </Button.Content>
             </Button>
             <inputLayout:SfTextInputLayout Hint="Imagen" HelperText="Imagen del autor">
-                <TextBox Text="{Binding Path=NuevaPersona.Imagen, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"></TextBox>
+                <TextBox Text="{Binding Path=AutorActual.Imagen, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"></TextBox>
                 <inputLayout:SfTextInputLayout.LeadingView>
                     <Image Source="../assets/fotoAutor.png"/>
                 </inputLayout:SfTextInputLayout.LeadingView>
             </inputLayout:SfTextInputLayout>
         </DockPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="{Binding Path=Modo}" Foreground="White" Background="#a4e4d9" IsDefault="True"/>
+            <Button Content="{Binding Path=Modo}" Foreground="White" Background="#a4e4d9" Command="{Binding Path=CommandGuardarAutor}" IsDefault="True"/>
             <Button Content="Cancelar" Background="Transparent" IsCancel="True"/>
         </StackPanel>
     </StackPanel>
