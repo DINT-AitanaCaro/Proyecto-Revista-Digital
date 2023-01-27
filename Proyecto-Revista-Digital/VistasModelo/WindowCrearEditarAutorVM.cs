@@ -33,6 +33,8 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         private ObservableCollection<string> _redesSociales;
         private ServicioDialogo servicioDialogo = new ServicioDialogo();
+        private ServicioAzure servicioAzure = new ServicioAzure();
+        private ServicioAutor servicioAutor = new ServicioAutor();
 
         public ObservableCollection<string> RedesSociales
         {
@@ -41,8 +43,6 @@ namespace Proyecto_Revista_Digital.VistasModelo
         }
 
         public RelayCommand CommandSeleccionImagen { get; }
-        public RelayCommand CommandGuardarAutor { get; }
-
         public WindowCrearEditarAutorVM()
         {
             AutorActual = WeakReferenceMessenger.Default.Send<EnviarAutorMessage>();
@@ -53,12 +53,13 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void GuardarAutor()
         {
-           
+            servicioAutor.AddAutor(AutorActual);
         }
 
         public void SeleccionImagen()
         {
-            AutorActual.Imagen = servicioDialogo.DialogoAbrirFichero(); // llamar servicio azure
+            string file = servicioDialogo.DialogoAbrirFichero();
+            AutorActual.Imagen = file != null ? servicioAzure.AlmacenarImagenEnLaNube(file) : string.Empty;
         }
     }
 }
