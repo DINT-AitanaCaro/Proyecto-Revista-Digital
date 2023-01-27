@@ -10,13 +10,16 @@
         ShowInTaskbar="False"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="{Binding Path=Modo}" Height="379.881" Width="477.194">
+        Title="{Binding Path=Modo}" Height="460" Width="480">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Margin" Value="7"/>
             <Setter Property="Padding" Value="4"/>
             <Setter Property="BorderBrush" Value="#a4e4d9"/>
             <Setter Property="BorderThickness" Value="2"/>
+        </Style>
+        <Style TargetType="{x:Type inputLayout:SfTextInputLayout}" x:Key="textInputLayout">
+            <Setter Property="Margin" Value="8"/>
         </Style>
         <ControlTemplate x:Key="ButtonControlTemplate" TargetType="{x:Type Button}">
             <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="5">
@@ -48,25 +51,25 @@
     </Window.Resources>
     <StackPanel Margin="15">
         <!--int id, string nombre, string imagen, string nickname, string social-->
-        <inputLayout:SfTextInputLayout Hint="Nombre" HelperText="Nombre del autor">
-            <TextBox Text="{Binding Path=NuevaPersona.Nombre, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+        <inputLayout:SfTextInputLayout Hint="Nombre" HelperText="Nombre del autor" Style="{StaticResource textInputLayout}">
+            <TextBox Text="{Binding Path=AutorActual.Nombre, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <inputLayout:SfTextInputLayout.LeadingView>
                 <Image Source="../assets/nombre.png"/>
             </inputLayout:SfTextInputLayout.LeadingView>
         </inputLayout:SfTextInputLayout>
-        <inputLayout:SfTextInputLayout Hint="Nickname" HelperText="Nickname del autor">
+        <inputLayout:SfTextInputLayout Hint="Nickname" HelperText="Nickname del autor" Style="{StaticResource textInputLayout}">
             <TextBox Text="{Binding Path=AutorActual.Nickname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <inputLayout:SfTextInputLayout.LeadingView>
                 <Image Source="../assets/nickname.png"/>
             </inputLayout:SfTextInputLayout.LeadingView>
         </inputLayout:SfTextInputLayout>
-        <inputLayout:SfTextInputLayout Hint="Red Social" HelperText="Red social del autor">
+        <inputLayout:SfTextInputLayout Hint="Red Social" HelperText="Red social del autor" Style="{StaticResource textInputLayout}">
             <ComboBox ItemsSource="{Binding Path=RedesSociales, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=AutorActual.Social, UpdateSourceTrigger=PropertyChanged}"/>
             <inputLayout:SfTextInputLayout.LeadingView>
                 <Image Source="../assets/redsocial.png"/>
             </inputLayout:SfTextInputLayout.LeadingView>
         </inputLayout:SfTextInputLayout>
-        <DockPanel>
+        <DockPanel Margin="10">
             <Button DockPanel.Dock="Right" VerticalAlignment="Top" Width="50" Height="47" Background="#a4e4d9" Command="{Binding Path=CommandSeleccionImagen}" Template="{DynamicResource ButtonControlTemplate}">
                 <Button.Content>
                     <Image Source="../assets/file-explorer.png" Width="24"/>
@@ -80,7 +83,7 @@
             </inputLayout:SfTextInputLayout>
         </DockPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="{Binding Path=Modo}" Foreground="White" Background="#a4e4d9" Command="{Binding Path=CommandGuardarAutor}" IsDefault="True"/>
+            <Button Content="{Binding Path=Modo}" Background="#a4e4d9" Command="{Binding Path=CommandGuardarAutor}" IsDefault="True"/>
             <Button Content="Cancelar" Background="Transparent" IsCancel="True"/>
         </StackPanel>
     </StackPanel>
