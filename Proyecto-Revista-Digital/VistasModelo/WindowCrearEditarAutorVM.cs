@@ -47,13 +47,21 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             AutorActual = WeakReferenceMessenger.Default.Send<EnviarAutorMessage>();
             RedesSociales = new ObservableCollection<string>() { "Instagram", "Twitter", "Facebook" };
-            Modo = string.IsNullOrEmpty(AutorActual.Nombre) ? "Crear Autor" : "Editar Autor";
+
+            Modo = AutorActual.Id == 0 ? "Crear Autor" : "Editar Autor";
             CommandSeleccionImagen = new RelayCommand(SeleccionImagen);
         }
 
         public void GuardarAutor()
         {
-            servicioAutor.AddAutor(AutorActual);
+            if (AutorActual.Id == 0)
+            {
+                servicioAutor.AddAutor(AutorActual);
+            }
+            else
+            {
+                servicioAutor.EditAutor(AutorActual);
+            }
         }
 
         public void SeleccionImagen()

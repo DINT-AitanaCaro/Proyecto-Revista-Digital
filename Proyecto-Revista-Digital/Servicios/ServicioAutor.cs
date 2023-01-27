@@ -11,7 +11,7 @@ namespace Proyecto_Revista_Digital.Servicios
 {
     class ServicioAutor
     {
-        private SqliteConnection conexion = new SqliteConnection("Data Source=revista.db");
+        private SqliteConnection conexion = new SqliteConnection(Properties.Settings.Default.SQLiteLocation);
         public void AddAutor(Autor autor)
         {
             conexion.Open();

@@ -14,5 +14,8 @@
     <Setting Name="NombreContenedorArticulosAzure" Type="System.String" Scope="Application">
       <Value Profile="(Default)">articulos</Value>
     </Setting>
+    <Setting Name="SQLiteLocation" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Data Source=../../DataBase/revista.db</Value>
+    </Setting>
   </Settings>
 </SettingsFile>
