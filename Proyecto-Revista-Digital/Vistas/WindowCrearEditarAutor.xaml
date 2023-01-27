@@ -4,11 +4,41 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_Revista_Digital.Vistas"
+        xmlns:inputLayout="clr-namespace:Syncfusion.UI.Xaml.TextInputLayout;assembly=Syncfusion.SfTextInputLayout.WPF"
+        xmlns:syncfusionskin ="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+        syncfusionskin:SfSkinManager.Theme="{syncfusionskin:SkinManagerExtension ThemeName=MaterialLight}"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
         mc:Ignorable="d"
         Title="Autor" Height="318.75" Width="545">
-    <StackPanel>
+    <StackPanel Margin="10">
+        <!--int id, string nombre, string imagen, string nickname, string social-->
+        <inputLayout:SfTextInputLayout Hint="Nombre" HelperText="Nombre de la persona">
+            <TextBox Text="{Binding Path=NuevaPersona.Nombre, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <!--<inputLayout:SfTextInputLayout.LeadingView>
+                <Image Source="../../assets/person.png"/>
+            </inputLayout:SfTextInputLayout.LeadingView>-->
+        </inputLayout:SfTextInputLayout>
 
+        <inputLayout:SfTextInputLayout Hint="Imagen" HelperText="Nombre de la persona">
+            <TextBox Text="{Binding Path=NuevaPersona.Nombre, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <!--<inputLayout:SfTextInputLayout.LeadingView>
+                <Image Source="../../assets/person.png"/>
+            </inputLayout:SfTextInputLayout.LeadingView>-->
+        </inputLayout:SfTextInputLayout>
+
+        <inputLayout:SfTextInputLayout Hint="Nickname" HelperText="Nickname de la persona">
+            <TextBox Text="{Binding Path=AutorActual.Nickname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <!--<inputLayout:SfTextInputLayout.LeadingView>
+                <Image Source="../../assets/person.png"/>
+            </inputLayout:SfTextInputLayout.LeadingView>-->
+        </inputLayout:SfTextInputLayout>
+        
+        <inputLayout:SfTextInputLayout Hint="Red Social" HelperText="Red social de la persona">
+            <ComboBox ItemsSource="{Binding Path=RedesSociales, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=AutorActual.Social, UpdateSourceTrigger=PropertyChanged}"/>
+            <!--<inputLayout:SfTextInputLayout.LeadingView>
+                <Image Source="../../assets/person.png"/>
+            </inputLayout:SfTextInputLayout.LeadingView>-->
+        </inputLayout:SfTextInputLayout>
     </StackPanel>
 </Window>
