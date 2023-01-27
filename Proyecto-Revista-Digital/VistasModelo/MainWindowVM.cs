@@ -3,6 +3,7 @@ using CommunityToolkit.Mvvm.Input;
 using Proyecto_Revista_Digital.Servicios;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,7 +52,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void PublicarPagina()
         {
-
+            Process.Start("\"..\\..\\RevistaOnline\\index.html\"");
         }
     }
 }
