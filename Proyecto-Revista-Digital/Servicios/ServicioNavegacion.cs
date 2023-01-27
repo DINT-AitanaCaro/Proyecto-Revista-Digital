@@ -16,5 +16,7 @@ namespace Proyecto_Revista_Digital.Servicios
         {
             return new GestionAutores();
         }
+
+
     }
 }

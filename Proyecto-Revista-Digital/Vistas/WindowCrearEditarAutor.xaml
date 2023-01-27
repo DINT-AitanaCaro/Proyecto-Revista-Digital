@@ -38,6 +38,6 @@
                 <Image Source="../../assets/person.png"/>
             </inputLayout:SfTextInputLayout.LeadingView>-->
         </inputLayout:SfTextInputLayout>
-        <
+        
     </StackPanel>
 </Window>
