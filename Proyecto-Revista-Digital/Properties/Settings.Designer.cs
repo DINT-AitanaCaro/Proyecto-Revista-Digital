@@ -61,5 +61,14 @@ namespace Proyecto_Revista_Digital.Properties {
                 return ((string)(this["NombreContenedorArticulosAzure"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=../../DataBase/revista.db")]
+        public string SQLiteLocation {
+            get {
+                return ((string)(this["SQLiteLocation"]));
+            }
+        }
     }
 }
