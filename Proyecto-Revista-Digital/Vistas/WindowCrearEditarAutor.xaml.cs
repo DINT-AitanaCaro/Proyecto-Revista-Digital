@@ -26,5 +26,11 @@ namespace Proyecto_Revista_Digital.Vistas
             InitializeComponent();
             DataContext = vm;
         }
+
+        private void AceptarButton_Click(object sender, RoutedEventArgs e)
+        {
+            vm.GuardarAutor();
+            DialogResult = true;
+        }
     }
 }

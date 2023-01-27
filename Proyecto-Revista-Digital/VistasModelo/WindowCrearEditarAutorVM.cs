@@ -43,15 +43,12 @@ namespace Proyecto_Revista_Digital.VistasModelo
         }
 
         public RelayCommand CommandSeleccionImagen { get; }
-        public RelayCommand CommandGuardarAutor { get; }
-
         public WindowCrearEditarAutorVM()
         {
             AutorActual = WeakReferenceMessenger.Default.Send<EnviarAutorMessage>();
             RedesSociales = new ObservableCollection<string>() { "Instagram", "Twitter", "Facebook" };
             Modo = string.IsNullOrEmpty(AutorActual.Nombre) ? "Crear Autor" : "Editar Autor";
             CommandSeleccionImagen = new RelayCommand(SeleccionImagen);
-            CommandGuardarAutor = new RelayCommand(GuardarAutor);
         }
 
         public void GuardarAutor()
