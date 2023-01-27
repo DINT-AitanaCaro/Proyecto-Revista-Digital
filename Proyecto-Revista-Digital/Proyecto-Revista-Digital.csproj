@@ -206,6 +206,7 @@
     <Compile Include="Servicios\ServicioArticulo.cs" />
     <Compile Include="Servicios\ServicioAutor.cs" />
     <Compile Include="Servicios\ServicioAzure.cs" />
+    <Compile Include="Servicios\ServicioDialogo.cs" />
     <Compile Include="Servicios\ServicioNavegacion.cs" />
     <Compile Include="Servicios\ServicioSeccion.cs" />
     <Compile Include="Servicios\ServicioSQLite.cs" />
