@@ -29,7 +29,7 @@
                     <Path Data="M22.133972,14.194015C17.582977,... "/>
                 </syncfusion:NavigationItem.Icon>-->
                 </syncfusion:NavigationItem>
-                <syncfusion:NavigationItem Header="Generar revista">
+                <syncfusion:NavigationItem Header="Generar revista" Command="{Binding Path=PublicarPaginaCommand}">
                     <!--<syncfusion:NavigationItem.Icon>
                     <Path Data="M9.4614787,7.2521966C8.897512,... "/>
                 </syncfusion:NavigationItem.Icon>-->

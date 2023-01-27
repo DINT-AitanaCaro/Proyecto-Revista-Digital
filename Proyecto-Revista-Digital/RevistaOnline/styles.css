@@ -1,0 +1,141 @@
+body{
+    margin: 0%;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+header
+{
+    min-height: 20vh;
+    background-color: #aae7d8;
+    display: flex;
+    align-items: flex-start;
+    color: black;
+}
+
+ul li a
+{
+    list-style: none;
+    text-decoration: none;
+    color: black;
+}
+
+nav li
+{
+    margin-top: 40px;
+    display: inline-block;
+    flex-direction: column;
+    font-size: 25px;
+    padding: 20px;
+}
+
+li
+{
+    padding: 5px;
+    transition: 0.5s;
+}
+li:hover 
+{
+    background-color: rgb(36, 36, 36);
+    color: white;
+}
+
+li:hover a
+{
+    color: white;
+}
+
+.derecha
+{
+    padding: 10px;
+    min-width: 50vw;
+    text-decoration: none;
+}
+
+header>img
+{
+    
+    height: 220px;
+}
+
+.box{
+    margin-top: 100px;
+    margin-left: 200px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+}
+.input {
+    padding: 10px;
+    width: 80px;
+    height: 80px;
+    background: none;
+    border: 4px solid rgb(36, 36, 36);
+    border-radius: 50px;
+    box-sizing: border-box;
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 26px;
+    color: white;
+    outline: none;
+    transition: 0.5s;
+}
+.box:hover input{
+    width: 350px;
+    background: #ffffff;
+    border-radius: 10px;
+    color: rgb(36, 36, 36);
+}
+i{
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translate(-50%,-50%);
+    font-size: 26px;
+    color: rgb(36, 36, 36);
+    transition: 0.2s;
+}
+.box:hover i{
+    opacity: 0;
+}
+
+section{
+    height: 70vh;
+    border-bottom: 1px solid black;
+}
+
+footer
+{
+    width: 90vw;
+    padding: 20px;
+}
+
+footer>h1{
+    text-align: center;
+}
+
+.pie
+{
+    float: left;
+    text-align: left;
+    border-left: 1px solid #ffffff3d;
+    border-right: 1px solid #ffffff3d;
+    padding: 5px;
+}
+
+.pie>div
+{
+    padding: 15px;
+}
+.pie>div>span
+{
+    padding: 15px;
+}
+
+.pie>h3
+{
+    text-align: center;
+}
+
+summary
+{
+    text-align: center;
+}

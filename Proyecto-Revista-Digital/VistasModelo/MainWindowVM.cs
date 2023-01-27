@@ -25,6 +25,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public RelayCommand GestionarAutoresCommand { get; }
         public RelayCommand GestionarArticulosCommand { get; }
+        public RelayCommand PublicarPaginaCommand { get; }
 
         public MainWindowVM()
         {
@@ -33,6 +34,8 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
             GestionarAutoresCommand = new RelayCommand(GestionarAutores);
             GestionarArticulosCommand = new RelayCommand(GestionarArticulos);
+            PublicarPaginaCommand = new RelayCommand(PublicarPagina);
+
             this.serviciosVentanas = new ServicioNavegacion();
         }
 
@@ -42,6 +45,11 @@ namespace Proyecto_Revista_Digital.VistasModelo
         }
 
         public void GestionarArticulos()
+        {
+
+        }
+
+        public void PublicarPagina()
         {
 
         }
