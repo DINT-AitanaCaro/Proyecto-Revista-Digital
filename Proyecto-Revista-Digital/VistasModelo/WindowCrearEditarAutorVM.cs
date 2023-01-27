@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Proyecto_Revista_Digital.Mensajes;
 using Proyecto_Revista_Digital.Modelos;
+using Proyecto_Revista_Digital.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,8 +31,8 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref _modo, value); }
         }
 
-
         private ObservableCollection<string> _redesSociales;
+        private ServicioDialogo servicioDialogo = new ServicioDialogo();
 
         public ObservableCollection<string> RedesSociales
         {
@@ -38,12 +40,25 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref _redesSociales, value); }
         }
 
+        public RelayCommand CommandSeleccionImagen { get; }
+        public RelayCommand CommandGuardarAutor { get; }
+
         public WindowCrearEditarAutorVM()
         {
             AutorActual = WeakReferenceMessenger.Default.Send<EnviarAutorMessage>();
             RedesSociales = new ObservableCollection<string>() { "Instagram", "Twitter", "Facebook" };
-            if (string.IsNullOrEmpty(AutorActual.Nombre)) Modo = "Crear Autor";
-            else Modo = "Editar Autor";
+            Modo = string.IsNullOrEmpty(AutorActual.Nombre) ? "Crear Autor" : "Editar Autor";
+            CommandSeleccionImagen = new RelayCommand(SeleccionImagen);
+        }
+
+        public void GuardarAutor()
+        {
+           
+        }
+
+        public void SeleccionImagen()
+        {
+            AutorActual.Imagen = servicioDialogo.DialogoAbrirFichero(); // llamar servicio azure
         }
     }
 }

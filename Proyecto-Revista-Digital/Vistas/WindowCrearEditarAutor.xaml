@@ -10,42 +10,42 @@
         ShowInTaskbar="False"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="{Binding Path=Modo}" Height="372.188" Width="563.75">
+        Title="{Binding Path=Modo}" Height="373.149" Width="477.194">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Margin" Value="7"/>
             <Setter Property="Padding" Value="4"/>
         </Style>
     </Window.Resources>
-    <StackPanel Margin="10">
+    <StackPanel Margin="15">
         <!--int id, string nombre, string imagen, string nickname, string social-->
         <inputLayout:SfTextInputLayout Hint="Nombre" HelperText="Nombre del autor">
             <TextBox Text="{Binding Path=NuevaPersona.Nombre, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <!--<inputLayout:SfTextInputLayout.LeadingView>
-                <Image Source="../../assets/person.png"/>
-            </inputLayout:SfTextInputLayout.LeadingView>-->
+            <inputLayout:SfTextInputLayout.LeadingView>
+                <Image Source="../assets/nombre.png"/>
+            </inputLayout:SfTextInputLayout.LeadingView>
         </inputLayout:SfTextInputLayout>
-
-        <inputLayout:SfTextInputLayout Hint="Imagen" HelperText="Imagen del autor">
-            <TextBox Text="{Binding Path=NuevaPersona.Nombre, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"></TextBox>
-            <!--<inputLayout:SfTextInputLayout.LeadingView>
-                <Image Source="../../assets/person.png"/>
-            </inputLayout:SfTextInputLayout.LeadingView>-->
-        </inputLayout:SfTextInputLayout>
-
         <inputLayout:SfTextInputLayout Hint="Nickname" HelperText="Nickname del autor">
             <TextBox Text="{Binding Path=AutorActual.Nickname, UpdateSourceTrigger=PropertyChanged}"></TextBox>
-            <!--<inputLayout:SfTextInputLayout.LeadingView>
-                <Image Source="../../assets/person.png"/>
-            </inputLayout:SfTextInputLayout.LeadingView>-->
+            <inputLayout:SfTextInputLayout.LeadingView>
+                <Image Source="../assets/nickname.png"/>
+            </inputLayout:SfTextInputLayout.LeadingView>
         </inputLayout:SfTextInputLayout>
-
         <inputLayout:SfTextInputLayout Hint="Red Social" HelperText="Red social del autor">
             <ComboBox ItemsSource="{Binding Path=RedesSociales, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=AutorActual.Social, UpdateSourceTrigger=PropertyChanged}"/>
-            <!--<inputLayout:SfTextInputLayout.LeadingView>
+            <inputLayout:SfTextInputLayout.LeadingView>
+                <Image Source="../assets/redsocial.png"/>
+            </inputLayout:SfTextInputLayout.LeadingView>
+        </inputLayout:SfTextInputLayout>
+        <DockPanel >
+            <Button DockPanel.Dock="Right" Content="Seleccionar Imagen" Height="40"/>
+            <inputLayout:SfTextInputLayout Hint="Imagen" HelperText="Imagen del autor">
+                <TextBox Text="{Binding Path=NuevaPersona.Imagen, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"></TextBox>
+                <!--<inputLayout:SfTextInputLayout.LeadingView>
                 <Image Source="../../assets/person.png"/>
             </inputLayout:SfTextInputLayout.LeadingView>-->
-        </inputLayout:SfTextInputLayout>
+            </inputLayout:SfTextInputLayout>
+        </DockPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button Content="{Binding Path=Modo}" IsDefault="True"/>
             <Button Content="Cancelar" IsCancel="True"/>
