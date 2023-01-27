@@ -5,10 +5,18 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Proyecto_Revista_Digital.Vistas"
         xmlns:inputLayout="clr-namespace:Syncfusion.UI.Xaml.TextInputLayout;assembly=Syncfusion.SfTextInputLayout.WPF"
+        xmlns:syncfusionskin ="clr-namespace:Syncfusion.SfSkinManager;assembly=Syncfusion.SfSkinManager.WPF"
+        xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         ShowInTaskbar="False"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="Autor" Height="372.188" Width="563.75">
+        Title="{Binding Path=Modo}" Height="372.188" Width="563.75">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Margin" Value="7"/>
+            <Setter Property="Padding" Value="4"/>
+        </Style>
+    </Window.Resources>
     <StackPanel Margin="10">
         <!--int id, string nombre, string imagen, string nickname, string social-->
         <inputLayout:SfTextInputLayout Hint="Nombre" HelperText="Nombre del autor">
@@ -38,5 +46,9 @@
                 <Image Source="../../assets/person.png"/>
             </inputLayout:SfTextInputLayout.LeadingView>-->
         </inputLayout:SfTextInputLayout>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Content="{Binding Path=Modo}" IsDefault="True"/>
+            <Button Content="Cancelar" IsCancel="True"/>
+        </StackPanel>
     </StackPanel>
 </Window>

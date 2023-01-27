@@ -20,7 +20,16 @@ namespace Proyecto_Revista_Digital.VistasModelo
             get { return _autor; }
             set { SetProperty(ref _autor, value); }
         }
-        
+
+        private string _modo;
+
+        public string Modo
+        {
+            get { return _modo; }
+            set { SetProperty(ref _modo, value); }
+        }
+
+
         private ObservableCollection<string> _redesSociales;
 
         public ObservableCollection<string> RedesSociales
@@ -33,6 +42,8 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             AutorActual = WeakReferenceMessenger.Default.Send<EnviarAutorMessage>();
             RedesSociales = new ObservableCollection<string>() { "Instagram", "Twitter", "Facebook" };
+            if (string.IsNullOrEmpty(AutorActual.Nombre)) Modo = "Crear Autor";
+            else Modo = "Editar Autor";
         }
     }
 }
