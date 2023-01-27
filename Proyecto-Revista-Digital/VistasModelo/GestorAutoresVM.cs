@@ -12,11 +12,13 @@ using CommunityToolkit.Mvvm.Input;
 using System.Windows;
 using CommunityToolkit.Mvvm.Messaging;
 using Proyecto_Revista_Digital.Mensajes;
+using Proyecto_Revista_Digital.Vistas;
 
 namespace Proyecto_Revista_Digital.VistasModelo
 {
     class GestorAutoresVM : ObservableObject
     {
+        private ServicioNavegacion servicioNavegacion;
         private ServicioAutor servicioAutor;
 
         private ObservableCollection<Autor> autores;
@@ -48,6 +50,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public GestorAutoresVM()
         {
+            this.servicioNavegacion = new ServicioNavegacion();
             this.servicioAutor = new ServicioAutor();
 
             EditarAutorCommand = new RelayCommand(EditarAutor);
@@ -73,12 +76,16 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void AñadirAutor()
         {
-            
+            bool? resultado = this.servicioNavegacion.CargarNuevoEditarAutor();
+            if ((bool)resultado)
+            {
+                new GestionAutores();
+            }
         }
 
         public void EditarAutor()
         {
-            
+            this.servicioNavegacion.CargarNuevoEditarAutor();
         }
 
         public void EliminarAutor()

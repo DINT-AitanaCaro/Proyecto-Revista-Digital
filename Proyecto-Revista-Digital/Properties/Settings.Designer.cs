@@ -12,7 +12,7 @@ namespace Proyecto_Revista_Digital.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -30,6 +30,35 @@ namespace Proyecto_Revista_Digital.Properties {
         public string ClaveSyncfusion {
             get {
                 return ((string)(this["ClaveSyncfusion"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("DefaultEndpointsProtocol=https;AccountName=revistaonline;AccountKey=r3fyCy6JobZ4G" +
+            "HD1lYFPQ9+OY7LhRRaiTjWA9YUwgIG1Djk9XEB0GIpyuPUmYcqgCN8HEIx/8ONP+AStGOIh5g==;Endp" +
+            "ointSuffix=core.windows.net")]
+        public string ClaveAzure {
+            get {
+                return ((string)(this["ClaveAzure"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("imagenes-revista")]
+        public string NombreContenedorImagenesAzure {
+            get {
+                return ((string)(this["NombreContenedorImagenesAzure"]));
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("articulos")]
+        public string NombreContenedorArticulosAzure {
+            get {
+                return ((string)(this["NombreContenedorArticulosAzure"]));
             }
         }
     }
