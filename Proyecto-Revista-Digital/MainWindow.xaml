@@ -8,43 +8,52 @@
         mc:Ignorable="d"
         Icon="./Assets/dIcon.ico"
         Title="DAM's Space" Height="450" Width="800">
+    <Window.Resources>
+        <Style TargetType="{x:Type syncfusion:NavigationItem}">
+            
+        </Style>
+        
+    </Window.Resources>
     <DockPanel>
         <syncfusion:SfNavigationDrawer
         x:Name="navigationDrawer"
-        DisplayMode="Expanded">
+        DisplayMode="Expanded"
+            >
             <syncfusion:NavigationItem
-                Header="Editor de texto"
-                IsExpanded="True"
-                IsSelected="True">
+                Header="Editor de la revista"
+                IsExpanded="False"
+                IsSelected="True"
+                Margin="0,5,0,0">
                 <syncfusion:NavigationItem.Icon>
-                    <Image Source="./Assets/EditorDeTexto.png"/>
+                    <Image Source="./Assets/editor.png" />
                 </syncfusion:NavigationItem.Icon>
                 <syncfusion:NavigationItem Header="Gestionar autores" Command="{Binding Path=GestionarAutoresCommand}">
-                <!--<syncfusion:NavigationItem.Icon>
-                    <Path Data="M9.5189972,7.3780194C8.3389893,... "/>
-                </syncfusion:NavigationItem.Icon>-->
+                <syncfusion:NavigationItem.Icon>
+                    <Image Source="./Assets/gestion-autores.png" />
+                </syncfusion:NavigationItem.Icon>
             </syncfusion:NavigationItem>
                 <syncfusion:NavigationItem Header="Gestionar artículos" Command="{Binding Path=GestionarArticulosCommand}">
-                    <!--<syncfusion:NavigationItem.Icon>
-                    <Path Data="M22.133972,14.194015C17.582977,... "/>
-                </syncfusion:NavigationItem.Icon>-->
+                    <syncfusion:NavigationItem.Icon>
+                        <Image Source="./Assets/gestion-articulos.png" />
+                    </syncfusion:NavigationItem.Icon>
                 </syncfusion:NavigationItem>
                 <syncfusion:NavigationItem Header="Generar revista" Command="{Binding Path=PublicarPaginaCommand}">
-                    <!--<syncfusion:NavigationItem.Icon>
-                    <Path Data="M9.4614787,7.2521966C8.897512,... "/>
-                </syncfusion:NavigationItem.Icon>-->
+                    <syncfusion:NavigationItem.Icon>
+                        <Image Source="./Assets/generar-revista.png" />
+                    </syncfusion:NavigationItem.Icon>
             </syncfusion:NavigationItem>
             </syncfusion:NavigationItem>
             <syncfusion:NavigationItem ItemType="Separator" />
             <syncfusion:NavigationItem Header="Autor de artículos"
                                        IsExpanded="True"
-                                       IsSelected="True">
+                                       IsSelected="True"
+                                       >
                 <syncfusion:NavigationItem.Icon>
-                    <Image Source="./Assets/writer.ico"></Image>
+                    <Image Source="./Assets/escritor.png" ></Image>
                 </syncfusion:NavigationItem.Icon>
                 <syncfusion:NavigationItem Header="Crear artículo">
                     <syncfusion:NavigationItem.Icon>
-                        <Image Source="./Assets/nuevoArticulo.ico"></Image>
+                        <Image Source="./Assets/nuevo-articulo.png"></Image>
                     </syncfusion:NavigationItem.Icon>
                 </syncfusion:NavigationItem>
             </syncfusion:NavigationItem>
@@ -52,9 +61,9 @@
             <syncfusion:NavigationItem Header="Censor de la revista"
                                        IsExpanded="True"
                                        IsSelected="True">
-                <!--<syncfusion:NavigationItem.Icon>
-                <Path Data="M25.085007,5.9780004 L20.577011,..... "/>
-                </syncfusion:NavigationItem.Icon>-->
+                <syncfusion:NavigationItem.Icon>
+                    <Image Source="./Assets/censor.png" Width="32" Height="32"></Image>
+                </syncfusion:NavigationItem.Icon>
                 <syncfusion:NavigationItem Header="Gestionar lista de palabras">
                     <!--<syncfusion:NavigationItem.Icon>
                     <Path Data="M9.5189972,7.3780194C8.3389893,... "/>

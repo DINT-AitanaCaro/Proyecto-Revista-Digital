@@ -319,6 +319,13 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="RevistaOnline\img\logoRevista.png" />
+    <Resource Include="Assets\nuevo-articulo.png" />
+    <Resource Include="Assets\escritor.png" />
+    <Resource Include="Assets\censor.png" />
+    <Resource Include="Assets\editor.png" />
+    <Resource Include="Assets\gestion-autores.png" />
+    <Resource Include="Assets\gestion-articulos.png" />
+    <Resource Include="Assets\generar-revista.png" />
     <Content Include="RevistaOnline\index.html" />
     <Content Include="RevistaOnline\styles.css" />
   </ItemGroup>
