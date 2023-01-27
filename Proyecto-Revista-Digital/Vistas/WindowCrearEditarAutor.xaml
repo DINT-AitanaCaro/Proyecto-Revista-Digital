@@ -38,6 +38,7 @@
                 <Image Source="../../assets/person.png"/>
             </inputLayout:SfTextInputLayout.LeadingView>-->
         </inputLayout:SfTextInputLayout>
-        <
+        <Button Content="Añadir Autor" IsDefault="True"/>
+        <Button Content="Cancelar" IsCancel="True"/>
     </StackPanel>
 </Window>
