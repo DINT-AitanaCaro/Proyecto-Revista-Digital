@@ -59,6 +59,10 @@ namespace Proyecto_Revista_Digital.Modelos
             set { SetProperty(ref publicado, value); }
         }
 
+        public Articulo()
+        {
+        }
+
         public Articulo(Autor autor, int idSeccion, string titulo, string imagen, string contenido, bool publicado)
         {
             AutorArticulo = autor;

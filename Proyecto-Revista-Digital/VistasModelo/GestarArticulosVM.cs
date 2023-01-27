@@ -11,29 +11,14 @@ namespace Proyecto_Revista_Digital.VistasModelo
 {
     class GestarArticulosVM : ObservableObject
     {
-        private string tituloArticulo;
+        private Articulo articuloNuevo;
 
-        public string TituloArticulo
+        public Articulo ArticuloNuevo
         {
-            get { return tituloArticulo; }
-            set { SetProperty(ref tituloArticulo, value); }
+            get { return articuloNuevo; }
+            set { SetProperty(ref articuloNuevo, value); }
         }
 
-        private string imagenArticulo;
-
-        public string ImagenArticulo
-        {
-            get { return imagenArticulo; }
-            set { SetProperty(ref imagenArticulo, value); }
-        }
-
-        private string textoArticulo;
-
-        public string TextoArticulo
-        {
-            get { return textoArticulo; }
-            set { SetProperty(ref textoArticulo, value); }
-        }
 
         private ObservableCollection<Seccion> listaSecciones;
 
@@ -69,6 +54,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public GestarArticulosVM()
         {
+            ArticuloNuevo = new Articulo();
             ListaSecciones = new ObservableCollection<Seccion>();
             ListaAutores = new ObservableCollection<Autor>();
             SeccionArticulo = new Seccion();
