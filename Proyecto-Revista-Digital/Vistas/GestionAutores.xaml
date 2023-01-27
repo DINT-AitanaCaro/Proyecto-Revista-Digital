@@ -15,8 +15,8 @@
                                                   ColumnSizer="Star" DockPanel.Dock="Top"/>
 
         <StackPanel Orientation="Horizontal" Margin="10" HorizontalAlignment="Right" Height="60" DockPanel.Dock="Bottom">
-            <Button Width="100" Margin="10" Command="{Binding Path=GuardarCambiosCommand}">Nuevo Autor</Button>
-            <Button Width="100" Margin="10" Command="{Binding Path=GuardarCambiosCommand}">Editar Autor</Button>
+            <Button Width="100" Margin="10" Command="{Binding Path=NuevoAutorCommand}">Nuevo Autor</Button>
+            <Button Width="100" Margin="10" Command="{Binding Path=EditarAutorCommand}">Editar Autor</Button>
             <Button Width="100" Margin="10" Command="{Binding Path=EliminarAutorCommand}">Eliminar Autor</Button>
         </StackPanel>
     </DockPanel>
