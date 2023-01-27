@@ -85,7 +85,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void EditarAutor()
         {
-            this.servicioNavegacion.CargarNuevoEditarAutor();
+            bool? resultado = this.servicioNavegacion.CargarNuevoEditarAutor();
             new GestionAutores();
         }
 
