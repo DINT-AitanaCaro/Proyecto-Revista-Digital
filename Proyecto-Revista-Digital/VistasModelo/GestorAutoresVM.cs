@@ -24,12 +24,25 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref autores, value); }
         }
 
-        public RelayCommand GuardarCambiosCommand { get; }
+        private Autor autorSeleccionado;
+
+        public Autor AutorSeleccionado
+        {
+            get { return autorSeleccionado; }
+            set { autorSeleccionado = value; }
+        }
+
+
+        public RelayCommand EditarAutorCommand { get; }
+        public RelayCommand NuevoAutorCommand { get; }
+        public RelayCommand EliminarAutorCommand { get; }
 
         public GestorAutoresVM()
         {
             this.servicioAutor = new ServicioAutor();
-            GuardarCambiosCommand = new RelayCommand(GuardarCambios);
+            EditarAutorCommand = new RelayCommand(EditarAutor);
+            NuevoAutorCommand = new RelayCommand(AñadirAutor);
+            EliminarAutorCommand = new RelayCommand(EliminarAutor);
             Autores = new ObservableCollection<Autor>();
             GenerarAutores();
         }
@@ -46,7 +59,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         }
 
-        public void GuardarCambios()
+        public void EditarAutor()
         {
 
             
@@ -63,8 +76,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void EliminarAutor()
         {
-
+            servicioAutor.DeleteAutor(AutorSeleccionado.Id);
         }
-
     }
 }
