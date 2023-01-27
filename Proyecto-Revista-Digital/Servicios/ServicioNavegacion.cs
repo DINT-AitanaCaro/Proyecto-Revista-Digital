@@ -17,6 +17,10 @@ namespace Proyecto_Revista_Digital.Servicios
             return new GestionAutores();
         }
 
-
+        public bool? CargarNuevoEditarAutor()
+        {
+            WindowCrearEditarAutor windowCrearEditarAutor = new WindowCrearEditarAutor();
+            return windowCrearEditarAutor.ShowDialog();
+        }
     }
 }
