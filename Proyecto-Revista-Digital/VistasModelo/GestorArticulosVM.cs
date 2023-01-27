@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Revista_Digital.VistasModelo
 {
-    class GestarArticulosVM : ObservableObject
+    class GestorArticulosVM : ObservableObject
     {
         private Articulo articuloNuevo;
 
@@ -52,7 +52,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref autorArticulo, value); }
         }
 
-        public GestarArticulosVM()
+        public GestorArticulosVM()
         {
             ArticuloNuevo = new Articulo();
             ListaSecciones = new ObservableCollection<Seccion>();

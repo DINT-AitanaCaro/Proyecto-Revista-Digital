@@ -210,10 +210,13 @@
     <Compile Include="Servicios\ServicioNavegacion.cs" />
     <Compile Include="Servicios\ServicioSeccion.cs" />
     <Compile Include="Servicios\ServicioSQLite.cs" />
-    <Compile Include="VistasModelo\GestarArticulosVM.cs" />
+    <Compile Include="VistasModelo\GestorArticulosVM.cs" />
     <Compile Include="VistasModelo\GestorAutoresVM.cs" />
     <Compile Include="VistasModelo\MainWindowVM.cs" />
     <Compile Include="VistasModelo\WindowCrearEditarAutorVM.cs" />
+    <Compile Include="Vistas\CrearArticulo.xaml.cs">
+      <DependentUpon>CrearArticulo.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\GestionAutores.xaml.cs">
       <DependentUpon>GestionAutores.xaml</DependentUpon>
     </Compile>
