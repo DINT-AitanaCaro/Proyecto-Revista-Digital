@@ -305,6 +305,11 @@
   <ItemGroup>
     <Resource Include="Assets\file-explorer.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="RevistaOnline\img\logoRevista.png" />
+    <Content Include="RevistaOnline\index.html" />
+    <Content Include="RevistaOnline\styles.css" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets" Condition="Exists('..\packages\SQLitePCLRaw.lib.e_sqlite3.2.0.4\build\net461\SQLitePCLRaw.lib.e_sqlite3.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
