@@ -8,36 +8,14 @@ using Proyecto_Revista_Digital.Servicios;
 using System.Collections.ObjectModel;
 using Proyecto_Revista_Digital.Modelos;
 using System.Windows.Controls;
+using CommunityToolkit.Mvvm.Input;
+using System.Windows;
 
 namespace Proyecto_Revista_Digital.VistasModelo
 {
     class GestorAutoresVM : ObservableObject
     {
-        //private ServicioAutor servicio;
-
-        private string nombreAutor;
-
-        public string NombreAutor
-        {
-            get { return nombreAutor; }
-            set { SetProperty(ref nombreAutor, value); }
-        }
-
-        private string imagenAutor;
-
-        public string ImagenAutor
-        {
-            get { return imagenAutor; }
-            set { SetProperty(ref imagenAutor, value); }
-        }
-
-        private string nicknameAutor;
-
-        public string NicknameAutor
-        {
-            get { return nicknameAutor; }
-            set { SetProperty(ref nicknameAutor, value); }
-        }
+        private ServicioAutor servicioAutor;
 
         private ObservableCollection<Autor> autores;
         public ObservableCollection<Autor> Autores
@@ -46,9 +24,12 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref autores, value); }
         }
 
+        public RelayCommand GuardarCambiosCommand { get; }
+
         public GestorAutoresVM()
         {
-            //servicio = new ServiciosAutor();
+            this.servicioAutor = new ServicioAutor();
+            GuardarCambiosCommand = new RelayCommand(GuardarCambios);
             Autores = new ObservableCollection<Autor>();
             GenerarAutores();
         }
@@ -65,9 +46,19 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         }
 
-        public void EditarAutor()
+        public void GuardarCambios()
         {
 
+            
+            MessageBoxResult result = MessageBox.Show("¿Deseas guardar los cambios?", "Advertencia", MessageBoxButton.OKCancel);
+            switch (result)
+            {
+                case MessageBoxResult.OK:
+                    MessageBox.Show("Se supone que ahora los guardas", "Info");
+                    break;
+                case MessageBoxResult.Cancel:
+                    break;
+            }
         }
 
         public void EliminarAutor()
