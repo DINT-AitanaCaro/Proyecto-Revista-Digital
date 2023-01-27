@@ -212,6 +212,7 @@
     <Compile Include="VistasModelo\GestarArticulosVM.cs" />
     <Compile Include="VistasModelo\GestorAutoresVM.cs" />
     <Compile Include="VistasModelo\MainWindowVM.cs" />
+    <Compile Include="VistasModelo\WindowCrearEditarAutorVM.cs" />
     <Compile Include="Vistas\GestionAutores.xaml.cs">
       <DependentUpon>GestionAutores.xaml</DependentUpon>
     </Compile>
