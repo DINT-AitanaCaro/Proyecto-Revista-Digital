@@ -10,12 +10,41 @@
         ShowInTaskbar="False"
         ResizeMode="NoResize"
         mc:Ignorable="d"
-        Title="{Binding Path=Modo}" Height="373.149" Width="477.194">
+        Title="{Binding Path=Modo}" Height="379.881" Width="477.194">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Margin" Value="7"/>
             <Setter Property="Padding" Value="4"/>
+            <Setter Property="BorderBrush" Value="#a4e4d9"/>
+            <Setter Property="BorderThickness" Value="2"/>
         </Style>
+        <ControlTemplate x:Key="ButtonControlTemplate" TargetType="{x:Type Button}">
+            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="5">
+                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsDefaulted" Value="True">
+                    <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFBEE6FD"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF3C7FB1"/>
+                </Trigger>
+                <Trigger Property="IsPressed" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFC4E5F6"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF2C628B"/>
+                </Trigger>
+                <Trigger Property="ToggleButton.IsChecked" Value="True">
+                    <Setter Property="Background" TargetName="border" Value="#FFBCDDEE"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF245A83"/>
+                </Trigger>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" TargetName="border" Value="#FFF4F4F4"/>
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FFADB2B5"/>
+                    <Setter Property="Foreground" Value="#FF838383"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
     </Window.Resources>
     <StackPanel Margin="15">
         <!--int id, string nombre, string imagen, string nickname, string social-->
@@ -37,18 +66,22 @@
                 <Image Source="../assets/redsocial.png"/>
             </inputLayout:SfTextInputLayout.LeadingView>
         </inputLayout:SfTextInputLayout>
-        <DockPanel >
-            <Button DockPanel.Dock="Right" Content="Seleccionar Imagen" Height="40"/>
+        <DockPanel>
+            <Button DockPanel.Dock="Right" VerticalAlignment="Top" Width="50" Height="47" Background="#a4e4d9" Template="{DynamicResource ButtonControlTemplate}">
+                <Button.Content>
+                    <Image Source="../assets/file-explorer.png" Width="24"/>
+                </Button.Content>
+            </Button>
             <inputLayout:SfTextInputLayout Hint="Imagen" HelperText="Imagen del autor">
                 <TextBox Text="{Binding Path=NuevaPersona.Imagen, UpdateSourceTrigger=PropertyChanged}" IsReadOnly="True"></TextBox>
-                <!--<inputLayout:SfTextInputLayout.LeadingView>
-                <Image Source="../../assets/person.png"/>
-            </inputLayout:SfTextInputLayout.LeadingView>-->
+                <inputLayout:SfTextInputLayout.LeadingView>
+                    <Image Source="../assets/fotoAutor.png"/>
+                </inputLayout:SfTextInputLayout.LeadingView>
             </inputLayout:SfTextInputLayout>
         </DockPanel>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button Content="{Binding Path=Modo}" IsDefault="True"/>
-            <Button Content="Cancelar" IsCancel="True"/>
+            <Button Content="{Binding Path=Modo}" Foreground="White" Background="#a4e4d9" IsDefault="True"/>
+            <Button Content="Cancelar" Background="Transparent" IsCancel="True"/>
         </StackPanel>
     </StackPanel>
 </Window>
