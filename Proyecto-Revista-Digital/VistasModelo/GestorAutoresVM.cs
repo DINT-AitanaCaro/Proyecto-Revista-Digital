@@ -10,6 +10,8 @@ using Proyecto_Revista_Digital.Modelos;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.Input;
 using System.Windows;
+using CommunityToolkit.Mvvm.Messaging;
+using Proyecto_Revista_Digital.Mensajes;
 
 namespace Proyecto_Revista_Digital.VistasModelo
 {
@@ -29,9 +31,16 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public Autor AutorSeleccionado
         {
             get { return autorSeleccionado; }
-            set { autorSeleccionado = value; }
+            set { SetProperty(ref autorSeleccionado, value); }
         }
 
+        private Autor autorNuevo;
+
+        public Autor AutorNuevo
+        {
+            get { return autorNuevo; }
+            set { SetProperty(ref autorNuevo, value); }
+        }
 
         public RelayCommand EditarAutorCommand { get; }
         public RelayCommand NuevoAutorCommand { get; }
@@ -40,38 +49,36 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public GestorAutoresVM()
         {
             this.servicioAutor = new ServicioAutor();
+
             EditarAutorCommand = new RelayCommand(EditarAutor);
             NuevoAutorCommand = new RelayCommand(AñadirAutor);
             EliminarAutorCommand = new RelayCommand(EliminarAutor);
+            AutorSeleccionado = new Autor();
+
+            AutorNuevo = new Autor();
             Autores = new ObservableCollection<Autor>();
-            GenerarAutores();
+
+            CargarAutores();
+
+            WeakReferenceMessenger.Default.Register<GestorAutoresVM, EnviarAutorMessage>(this, (r, m) =>
+            {
+                m.Reply(r.AutorSeleccionado);
+            });
         }
 
-        public void GenerarAutores()
+        public void CargarAutores()
         {
-            Autores.Add(new Autor(1001, "Jose Alfredo", "./fotoJose.jpg", "Jusep", "Instagram"));
-            Autores.Add(new Autor(2002, "Ian Tauzy", "./fotoIan.jpg", "Naiian", "Twitter"));
-            Autores.Add(new Autor(3003, "Aitana Caro", "./fotoAitana.jpg", "Padna", "Facebook"));
+            Autores = servicioAutor.GetAutores();
         }
 
         public void AñadirAutor()
         {
-
+            
         }
 
         public void EditarAutor()
         {
-
             
-            MessageBoxResult result = MessageBox.Show("¿Deseas guardar los cambios?", "Advertencia", MessageBoxButton.OKCancel);
-            switch (result)
-            {
-                case MessageBoxResult.OK:
-                    MessageBox.Show("Se supone que ahora los guardas", "Info");
-                    break;
-                case MessageBoxResult.Cancel:
-                    break;
-            }
         }
 
         public void EliminarAutor()
