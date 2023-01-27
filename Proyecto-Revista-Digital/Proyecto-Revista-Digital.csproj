@@ -132,6 +132,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Mensajes\EnviarAutorMessage.cs" />
     <Compile Include="Modelos\Articulo.cs" />
     <Compile Include="Modelos\Autor.cs" />
     <Compile Include="Modelos\Seccion.cs" />
@@ -190,9 +191,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Mensajes\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Assets\logoRevista.png" />
   </ItemGroup>

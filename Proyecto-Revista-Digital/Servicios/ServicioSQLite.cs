@@ -17,7 +17,7 @@ namespace Proyecto_Revista_Digital.Servicios
             conexion.Open();
             SqliteCommand comando = conexion.CreateCommand();
             comando.CommandText = @"CREATE TABLE IF NOT EXISTS autores (
-                    id INTEGER primary key
+                    id INTEGER primary key,
                     nombre varchar(100) NOT NULL,                      
                     imagen varchar(100),                      
                     nickname varchar(50),  

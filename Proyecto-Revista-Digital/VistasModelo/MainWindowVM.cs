@@ -12,6 +12,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 {
     class MainWindowVM : ObservableObject
     {
+        private ServicioSQLite servicioSQLite;
         private ServicioNavegacion serviciosVentanas;
 
         private UserControl contenidoVentana;
@@ -27,6 +28,9 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public MainWindowVM()
         {
+            servicioSQLite = new ServicioSQLite();
+            servicioSQLite.CrearBD();
+
             GestionarAutoresCommand = new RelayCommand(GestionarAutores);
             GestionarArticulosCommand = new RelayCommand(GestionarArticulos);
             this.serviciosVentanas = new ServicioNavegacion();
