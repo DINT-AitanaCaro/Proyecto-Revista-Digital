@@ -86,12 +86,14 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public void EditarAutor()
         {
             this.servicioNavegacion.CargarNuevoEditarAutor();
+            new GestionAutores();
         }
 
         public void EliminarAutor()
         {
 
             servicioAutor.DeleteAutor(AutorSeleccionado.Id);
+            new GestionAutores();
         }
     }
 }
