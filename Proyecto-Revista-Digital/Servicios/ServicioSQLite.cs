@@ -37,10 +37,14 @@ namespace Proyecto_Revista_Digital.Servicios
                     FOREIGN KEY (idSeccion) REFERENCES secciones(id)
                                     )";
 
+            comando.ExecuteNonQuery();
+
             comando.CommandText = @"CREATE TABLE IF NOT EXISTS secciones (
                     id INTEGER primary key,
                     nombre varchar(100) NOT NULL UNIQUE
                                     )";
+
+            comando.ExecuteNonQuery();
             conexion.Close();
         }
     }

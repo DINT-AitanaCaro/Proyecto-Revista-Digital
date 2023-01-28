@@ -11,7 +11,7 @@ namespace Proyecto_Revista_Digital.Servicios
 {
     class ServicioSeccion
     {
-        private SqliteConnection conexion = new SqliteConnection("Data Source=revista.db");
+        private SqliteConnection conexion = new SqliteConnection(Properties.Settings.Default.SQLiteLocation);
 
         public void AddSeccion(Seccion seccion)
         {

@@ -56,7 +56,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         private ServicioDialogo servicioDialogo;
         private ServicioAzure servicioAzure;
 
-        /*private Seccion seccionArticulo;
+        private Seccion seccionArticulo;
 
         public Seccion SeccionArticulo
         {
@@ -70,7 +70,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             get { return autorArticulo; }
             set { SetProperty(ref autorArticulo, value); }
-        }*/
+        }
 
         public CrearArticuloVM()
         {
@@ -85,9 +85,9 @@ namespace Proyecto_Revista_Digital.VistasModelo
             servicoArticulo = new ServicioArticulo();
             NuevaImagenArticuloCommand = new RelayCommand(SeleccionImagen);
             CargarAutores();
-            //CargarSecciones();
-            //SeccionArticulo = new Seccion();
-            //AutorArticulo = new Autor();
+            CargarSecciones();
+            SeccionArticulo = new Seccion();
+            AutorArticulo = new Autor();
         }
 
         private void CargarAutores()
