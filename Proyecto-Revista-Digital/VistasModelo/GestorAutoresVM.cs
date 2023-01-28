@@ -44,6 +44,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref autorNuevo, value); }
         }
 
+
         public RelayCommand EditarAutorCommand { get; }
         public RelayCommand NuevoAutorCommand { get; }
         public RelayCommand EliminarAutorCommand { get; }
@@ -79,6 +80,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void AñadirAutor()
         {
+            AutorSeleccionado = new Autor();
             bool? resultado = this.servicioNavegacion.CargarNuevoEditarAutor();
             if ((bool)resultado)
             {
