@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
+using CommunityToolkit.Mvvm.Input;
 using Proyecto_Revista_Digital.Modelos;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Revista_Digital.VistasModelo
 {
-    class GestorArticulosVM : ObservableObject
+    class CrearArticuloVM : ObservableObject
     {
         private Articulo articuloNuevo;
 
@@ -36,7 +37,11 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref listaAutores, value); }
         }
 
-        private Seccion seccionArticulo;
+        public RelayCommand NuevaSeccionCommand { get; }
+        public RelayCommand NuevoArticuloCommand { get; }
+        public RelayCommand NuevaImagenArticuloCommand { get; }
+
+        /*private Seccion seccionArticulo;
 
         public Seccion SeccionArticulo
         {
@@ -50,15 +55,15 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             get { return autorArticulo; }
             set { SetProperty(ref autorArticulo, value); }
-        }
+        }*/
 
-        public GestorArticulosVM()
+        public CrearArticuloVM()
         {
             ArticuloNuevo = new Articulo();
             ListaSecciones = new ObservableCollection<Seccion>();
             ListaAutores = new ObservableCollection<Autor>();
-            SeccionArticulo = new Seccion();
-            AutorArticulo = new Autor();
+            //SeccionArticulo = new Seccion();
+            //AutorArticulo = new Autor();
         }
     }
 }

@@ -21,11 +21,11 @@ namespace Proyecto_Revista_Digital.Vistas
     /// </summary>
     public partial class CrearArticulo : UserControl
     {
-        private GestorArticulosVM vm;
+        private CrearArticuloVM vm;
         public CrearArticulo()
         {
             InitializeComponent();
-            vm = new GestorArticulosVM();
+            vm = new CrearArticuloVM();
             this.DataContext = vm;
         }
     }

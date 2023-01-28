@@ -45,31 +45,42 @@
                 <Image Source="/Assets/TituloArticulo.ico"/>
             </inputLayout:SfTextInputLayout.LeadingView>
         </inputLayout:SfTextInputLayout>
-        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="10">
-            <Button Content="Crear Articulo" Width="100" DockPanel.Dock="Right" HorizontalAlignment="Right" Padding="5"/>
-            <inputLayout:SfTextInputLayout Hint="Seccion" Margin="5">
-                <ComboBox Width="150" Margin="5" ></ComboBox>
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="10,0">
+            
+            <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
+                <inputLayout:SfTextInputLayout Hint="Seccion" Margin="5,0" Width="150" VerticalAlignment="Center">
+                    <ComboBox Width="50"  ItemsSource="{Binding Path=ListaSecciones, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=ArticuloNuevo.IdSeccion, UpdateSourceTrigger=PropertyChanged}"/>
+                </inputLayout:SfTextInputLayout>
+                <Button x:Name="añadirSeccionButton" Content="+" Height="32" Width="32" Margin="5,0" VerticalAlignment="Center" Command="{Binding Path=NuevaSeccionCommand}"/>
+            </StackPanel>
+            <inputLayout:SfTextInputLayout Hint="Autor" Margin="15,5" Width="150" VerticalAlignment="Center" DockPanel.Dock="Left">
+                <ComboBox Width="50" ItemsSource="{Binding Path=ListaAutores}" SelectedItem="{Binding Path=ArticuloNuevo.AutorArticulo}"/>
             </inputLayout:SfTextInputLayout>
+
+            <Button Content="Crear Articulo" Width="100" Height="30" DockPanel.Dock="Right" Padding="5"/>
+            
         </DockPanel>
         
-        <DockPanel DockPanel.Dock="Bottom" Margin="10">
-            <Button DockPanel.Dock="Right" Width="50" Height="50" Background="#a4e4d9" Margin="5" Command="{Binding Path=CommandSeleccionImagen}" Template="{DynamicResource ButtonControlTemplate}" VerticalAlignment="Top">
+        <DockPanel DockPanel.Dock="Bottom" Margin="10,0">
+            <Button DockPanel.Dock="Right" Width="50" Height="50" Background="#a4e4d9" Margin="5" Command="{Binding Path=NuevaImagenArticuloCommand}" Template="{DynamicResource ButtonControlTemplate}" VerticalAlignment="Top">
                 <Button.Content>
                     <Image Source="../assets/file-explorer.png" Width="24"/>
                 </Button.Content>
             </Button>
             <inputLayout:SfTextInputLayout Hint="Imagen" HintFloatMode="Float" DockPanel.Dock="Left" >
-                <TextBox Text="{Binding Path=PersonaNueva.Nombre}"/>
+                <TextBox Text="{Binding Path=ArticuloNuevo.Imagen}"/>
             </inputLayout:SfTextInputLayout>
             
         </DockPanel>
 
-
-        <syncfusion:EditControl x:Name="editControl1" BorderBrush="Black" BorderThickness="1" Background="White" Foreground="Black" HorizontalAlignment="Center"  Margin="10" Width="500" ShowDefaultContextMenu="True" ShowLineNumber="False" IsReadOnly="False" >
-            <syncfusion:EditControl.StatusBarSettings >
-                <syncfusion:StatusBarSettings Visibility="Visible" ShowFilePath="Visible" ShowLineNumber="Visible" ShowColumnNumber="Visible" ShowEncoding="Collapsed"/>
+        <syncfusion:EditControl x:Name="editControl1" BorderBrush="Black" BorderThickness="1" Background="White" Foreground="Black" HorizontalAlignment="Center"  Margin="10,5" ShowDefaultContextMenu="True" ShowLineNumber="False" IsReadOnly="False" Text="{Binding Path=ArticuloNuevo.Contenido}"  MinWidth="700" >
+            <syncfusion:EditControl.StatusBarSettings>
+                <syncfusion:StatusBarSettings Visibility="Visible" ShowFilePath="Visible" ShowLineNumber="Visible" ShowColumnNumber="Visible" ShowEncoding="Collapsed"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
+                
             </syncfusion:EditControl.StatusBarSettings>
+            
         </syncfusion:EditControl>
-       
+
+
     </DockPanel>
 </UserControl>
