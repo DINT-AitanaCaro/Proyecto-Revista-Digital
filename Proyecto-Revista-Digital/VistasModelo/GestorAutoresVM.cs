@@ -82,16 +82,11 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             AutorSeleccionado = new Autor();
             bool? resultado = this.servicioNavegacion.CargarNuevoEditarAutor();
-            if ((bool)resultado)
-            {
-                new GestionAutores();
-            }
         }
 
         public void EditarAutor()
         {
             bool? resultado = this.servicioNavegacion.CargarNuevoEditarAutor();
-            new GestionAutores();
         }
 
         public void EliminarAutor()
