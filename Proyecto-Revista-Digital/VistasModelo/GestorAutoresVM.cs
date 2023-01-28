@@ -65,7 +65,10 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
             WeakReferenceMessenger.Default.Register<GestorAutoresVM, EnviarAutorMessage>(this, (r, m) =>
             {
-                m.Reply(r.AutorSeleccionado);
+                if (!m.HasReceivedResponse)
+                {
+                    m.Reply(r.AutorSeleccionado);
+                }
             });
         }
 
