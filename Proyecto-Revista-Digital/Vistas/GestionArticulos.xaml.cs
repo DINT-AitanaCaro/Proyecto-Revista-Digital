@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyecto_Revista_Digital.VistasModelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,12 @@ namespace Proyecto_Revista_Digital.Vistas
     /// </summary>
     public partial class GestionArticulos : UserControl
     {
+        private GestorArticulosVM vm;
         public GestionArticulos()
         {
             InitializeComponent();
+            vm = new GestorArticulosVM();
+            this.DataContext = vm;
         }
     }
 }

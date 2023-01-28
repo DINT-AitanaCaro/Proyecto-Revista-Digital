@@ -221,6 +221,7 @@
     <Compile Include="Servicios\ServicioSeccion.cs" />
     <Compile Include="Servicios\ServicioSQLite.cs" />
     <Compile Include="VistasModelo\CrearArticuloVM.cs" />
+    <Compile Include="VistasModelo\GestorArticulosVM.cs" />
     <Compile Include="VistasModelo\GestorAutoresVM.cs" />
     <Compile Include="VistasModelo\MainWindowVM.cs" />
     <Compile Include="VistasModelo\WindowCrearEditarAutorVM.cs" />
