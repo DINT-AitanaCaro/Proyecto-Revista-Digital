@@ -51,7 +51,7 @@
                 <syncfusion:NavigationItem.Icon>
                     <Image Source="./Assets/escritor.png" ></Image>
                 </syncfusion:NavigationItem.Icon>
-                <syncfusion:NavigationItem Header="Crear artículo">
+                <syncfusion:NavigationItem Header="Crear artículo" Command="{Binding Path=NuevoArticuloCommand}">
                     <syncfusion:NavigationItem.Icon>
                         <Image Source="./Assets/nuevo-articulo.png"></Image>
                     </syncfusion:NavigationItem.Icon>

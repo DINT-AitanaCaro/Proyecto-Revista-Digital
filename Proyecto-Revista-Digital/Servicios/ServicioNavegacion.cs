@@ -22,5 +22,10 @@ namespace Proyecto_Revista_Digital.Servicios
             WindowCrearEditarAutor windowCrearEditarAutor = new WindowCrearEditarAutor();
             return windowCrearEditarAutor.ShowDialog();
         }
+
+        public UserControl CargarNuevoArticulo()
+        {
+            return new CrearArticulo();
+        }
     }
 }
