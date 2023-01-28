@@ -73,10 +73,10 @@
             
         </DockPanel>
 
-        <syncfusion:EditControl x:Name="editControl1" BorderBrush="Black" BorderThickness="1" Background="White" Foreground="Black" HorizontalAlignment="Center"  Margin="10,5" ShowDefaultContextMenu="True" ShowLineNumber="False" IsReadOnly="False" Text="{Binding Path=ArticuloNuevo.Contenido}"  MinWidth="700" >
-            <syncfusion:EditControl.StatusBarSettings>
-                <syncfusion:StatusBarSettings Visibility="Visible" ShowFilePath="Visible" ShowLineNumber="Visible" ShowColumnNumber="Visible" ShowEncoding="Collapsed"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
-                
+
+        <syncfusion:EditControl x:Name="editControl1" BorderBrush="Black" BorderThickness="1" Background="White" Foreground="Black" HorizontalAlignment="Center"  Margin="10" Width="500" ShowDefaultContextMenu="True" ShowLineNumber="False" IsReadOnly="False" Cursor="IBeam" >
+            <syncfusion:EditControl.StatusBarSettings >
+                <syncfusion:StatusBarSettings Visibility="Visible" ShowFilePath="Visible" ShowLineNumber="Visible" ShowColumnNumber="Visible" ShowEncoding="Collapsed"/>
             </syncfusion:EditControl.StatusBarSettings>
             
         </syncfusion:EditControl>
