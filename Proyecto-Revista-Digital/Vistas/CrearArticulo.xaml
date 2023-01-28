@@ -54,7 +54,7 @@
                 <Button x:Name="añadirSeccionButton" Content="+" Height="32" Width="32" Margin="5,0" VerticalAlignment="Center" Command="{Binding Path=NuevaSeccionCommand}"/>
             </StackPanel>
             <inputLayout:SfTextInputLayout Hint="Autor" Margin="15,5" Width="150" VerticalAlignment="Center" DockPanel.Dock="Left">
-                <ComboBox Width="50" ItemsSource="{Binding Path=ListaAutores}" SelectedItem="{Binding Path=ArticuloNuevo.AutorArticulo}"/>
+                <ComboBox Width="50" ItemsSource="{Binding Path=NombreAutores}" SelectedItem="{Binding Path=ArticuloNuevo.AutorArticulo}"/>
             </inputLayout:SfTextInputLayout>
 
             <Button Content="Crear Articulo" Width="100" Height="30" DockPanel.Dock="Right" Padding="5"/>
