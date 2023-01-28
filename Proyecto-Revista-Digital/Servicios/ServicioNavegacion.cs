@@ -23,6 +23,11 @@ namespace Proyecto_Revista_Digital.Servicios
             return windowCrearEditarAutor.ShowDialog();
         }
 
+        public UserControl CargarGestionArticulos()
+        {
+            return new GestionArticulos();
+        }
+
         public UserControl CargarNuevoArticulo()
         {
             return new CrearArticulo();

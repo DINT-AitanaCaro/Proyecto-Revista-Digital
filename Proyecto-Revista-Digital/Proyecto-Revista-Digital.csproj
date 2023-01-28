@@ -226,6 +226,9 @@
     <Compile Include="Vistas\CrearArticulo.xaml.cs">
       <DependentUpon>CrearArticulo.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Vistas\GestionArticulos.xaml.cs">
+      <DependentUpon>GestionArticulos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\GestionAutores.xaml.cs">
       <DependentUpon>GestionAutores.xaml</DependentUpon>
     </Compile>
@@ -245,6 +248,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Vistas\CrearArticulo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\GestionArticulos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

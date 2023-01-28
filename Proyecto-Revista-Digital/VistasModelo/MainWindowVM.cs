@@ -49,7 +49,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void GestionarArticulos()
         {
-
+            ContenidoVentana = this.serviciosVentanas.CargarGestionArticulos();
         }
 
         public void PublicarPagina()
