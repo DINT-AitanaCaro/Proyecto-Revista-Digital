@@ -82,18 +82,25 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             AutorSeleccionado = new Autor();
             bool? resultado = this.servicioNavegacion.CargarNuevoEditarAutor();
+            Refrescar((bool)resultado);
         }
 
         public void EditarAutor()
         {
             bool? resultado = this.servicioNavegacion.CargarNuevoEditarAutor();
+            Refrescar((bool)resultado);
         }
 
         public void EliminarAutor()
         {
 
             servicioAutor.DeleteAutor(AutorSeleccionado.Id);
-            new GestionAutores();
+            Refrescar(true);
+        }
+
+        public void Refrescar(bool refrescar)
+        {
+            WeakReferenceMessenger.Default.Send(new RefrescarVentanaMessage(refrescar));
         }
     }
 }

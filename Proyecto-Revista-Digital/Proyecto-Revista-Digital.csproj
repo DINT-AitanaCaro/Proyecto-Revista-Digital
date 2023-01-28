@@ -209,6 +209,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Mensajes\EnviarAutorMessage.cs" />
+    <Compile Include="Mensajes\RefrescarVentanaMessage.cs" />
     <Compile Include="Modelos\Articulo.cs" />
     <Compile Include="Modelos\Autor.cs" />
     <Compile Include="Modelos\Seccion.cs" />

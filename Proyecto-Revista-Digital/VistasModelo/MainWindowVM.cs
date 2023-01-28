@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Proyecto_Revista_Digital.Mensajes;
 using Proyecto_Revista_Digital.Servicios;
 using System;
 using System.Collections.Generic;
@@ -29,6 +31,15 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public RelayCommand PublicarPaginaCommand { get; }
         public RelayCommand NuevoArticuloCommand { get; }
 
+        private bool refrescar;
+
+        public bool Refrescar
+        {
+            get { return refrescar; }
+            set { SetProperty(ref refrescar, value); }
+        }
+
+
         public MainWindowVM()
         {
             servicioSQLite = new ServicioSQLite();
@@ -40,6 +51,16 @@ namespace Proyecto_Revista_Digital.VistasModelo
             NuevoArticuloCommand = new RelayCommand(NuevoArticulo);
 
             this.serviciosVentanas = new ServicioNavegacion();
+
+            WeakReferenceMessenger.Default.Register<RefrescarVentanaMessage>(this, (r, m) => 
+            {
+                Refrescar = m.Value;
+
+                if (Refrescar)
+                {
+                    ContenidoVentana = this.serviciosVentanas.CargarGestionAutores();
+                }
+            }); 
         }
 
         public void GestionarAutores()
