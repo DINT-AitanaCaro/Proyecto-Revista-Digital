@@ -39,33 +39,37 @@
         
     </UserControl.Resources>
     <DockPanel >
-        <inputLayout:SfTextInputLayout Margin="10" Hint="Titulo" HelperText="Titulo del articulo" HintFloatMode="Float" DockPanel.Dock="Top">
+        <inputLayout:SfTextInputLayout Margin="10,5" Hint="Titulo"  HintFloatMode="Float" DockPanel.Dock="Top">
             <TextBox Text="{Binding Path=ArticuloNuevo.Titulo}"/>
             <inputLayout:SfTextInputLayout.LeadingView>
                 <Image Source="/Assets/TituloArticulo.ico"/>
             </inputLayout:SfTextInputLayout.LeadingView>
         </inputLayout:SfTextInputLayout>
-        <Button Content="Crear Articulo" Width="100" Margin="10" DockPanel.Dock="Bottom" HorizontalAlignment="Right" Padding="5"/>
+        <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="10">
+            <Button Content="Crear Articulo" Width="100" DockPanel.Dock="Right" HorizontalAlignment="Right" Padding="5"/>
+            <inputLayout:SfTextInputLayout Hint="Seccion" Margin="5">
+                <ComboBox Width="150" Margin="5" ></ComboBox>
+            </inputLayout:SfTextInputLayout>
+        </DockPanel>
+        
         <DockPanel DockPanel.Dock="Bottom" Margin="10">
-            <Button DockPanel.Dock="Right" Width="50" Height="50" Background="#a4e4d9" Margin="5" Command="{Binding Path=CommandSeleccionImagen}" Template="{DynamicResource ButtonControlTemplate}" >
+            <Button DockPanel.Dock="Right" Width="50" Height="50" Background="#a4e4d9" Margin="5" Command="{Binding Path=CommandSeleccionImagen}" Template="{DynamicResource ButtonControlTemplate}" VerticalAlignment="Top">
                 <Button.Content>
                     <Image Source="../assets/file-explorer.png" Width="24"/>
                 </Button.Content>
             </Button>
-            <inputLayout:SfTextInputLayout Margin="10" Hint="Imagen" HelperText="Imagen del articulo" HintFloatMode="Float" DockPanel.Dock="Left">
+            <inputLayout:SfTextInputLayout Hint="Imagen" HintFloatMode="Float" DockPanel.Dock="Left" >
                 <TextBox Text="{Binding Path=PersonaNueva.Nombre}"/>
             </inputLayout:SfTextInputLayout>
             
         </DockPanel>
 
 
-        <syncfusion:EditControl x:Name="editControl1" BorderBrush="Black" BorderThickness="1" Background="White" Foreground="Black" HorizontalAlignment="Center"  Margin="10" Width="500">
+        <syncfusion:EditControl x:Name="editControl1" BorderBrush="Black" BorderThickness="1" Background="White" Foreground="Black" HorizontalAlignment="Center"  Margin="10" Width="500" ShowDefaultContextMenu="True" ShowLineNumber="False" IsReadOnly="False" >
             <syncfusion:EditControl.StatusBarSettings >
                 <syncfusion:StatusBarSettings Visibility="Visible" ShowFilePath="Visible" ShowLineNumber="Visible" ShowColumnNumber="Visible" ShowEncoding="Collapsed"/>
             </syncfusion:EditControl.StatusBarSettings>
         </syncfusion:EditControl>
-        
-
-
+       
     </DockPanel>
 </UserControl>
