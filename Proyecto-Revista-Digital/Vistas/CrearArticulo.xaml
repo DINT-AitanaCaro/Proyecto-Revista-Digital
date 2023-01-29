@@ -62,7 +62,7 @@
                 <ComboBox Width="50" Foreground="Black" ItemsSource="{Binding Path=NombreAutores}" SelectedItem="{Binding Path=AutorArticulo.Nombre}"/>
             </inputLayout:SfTextInputLayout>
 
-            <Button Content="Crear Articulo" Width="100" Height="30" DockPanel.Dock="Right" Padding="5"/>
+            <Button Content="Crear Articulo" Width="100" Height="30" DockPanel.Dock="Right" Padding="5" Command="{Binding Path=NuevoArticuloCommand}"/>
             
         </DockPanel>
         
@@ -79,7 +79,7 @@
         </DockPanel>
 
 
-        <syncfusion:EditControl x:Name="editControl1" BorderBrush="Black" BorderThickness="1" Background="White" Foreground="Black" HorizontalAlignment="Center"  Margin="10" Width="500" ShowDefaultContextMenu="True" ShowLineNumber="False" IsReadOnly="False" Cursor="IBeam" Text="{Binding Path=ArticuloNuevo.Contenido}">
+        <syncfusion:EditControl x:Name="editControl1" BorderBrush="Black" BorderThickness="1" Background="White" Foreground="Black" HorizontalAlignment="Center"  Margin="10" Width="500" ShowDefaultContextMenu="True" ShowLineNumber="False" IsReadOnly="False" Cursor="IBeam" Text="{Binding Path=ArticuloNuevo.Contenido, UpdateSourceTrigger=PropertyChanged}"> 
             <syncfusion:EditControl.StatusBarSettings >
                 <syncfusion:StatusBarSettings Visibility="Visible" ShowFilePath="Visible" ShowLineNumber="Visible" ShowColumnNumber="Visible" ShowEncoding="Collapsed"/>
             </syncfusion:EditControl.StatusBarSettings>

@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Proyecto_Revista_Digital.VistasModelo
 {
@@ -105,6 +106,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             servicioNavegacion = new ServicioNavegacion();
             NuevaImagenArticuloCommand = new RelayCommand(SeleccionImagen);
             NuevaSeccionCommand = new RelayCommand(AñadirNuevaSeccion);
+            NuevoArticuloCommand = new RelayCommand(AñadirArticulo);
 
             CargarAutores();
             CargarSecciones();
@@ -170,9 +172,11 @@ namespace Proyecto_Revista_Digital.VistasModelo
                 ArticuloNuevo.AutorArticulo = AutorArticulo;
                 ArticuloNuevo.IdSeccion = SeccionArticulo.IdSeccion;
                 ArticuloNuevo.Publicado = false;
-                if (ControlarArticulosTitulo())
+                
+                if (!ControlarArticulosTitulo())
                 {
                     servicoArticulo.AddArticulo(ArticuloNuevo);
+                    MessageBox.Show("Agregado");
                 }
                 
             }
@@ -185,7 +189,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
                 AutorArticulo = item;
             }
 
-            AutorArticulo = null;
+            //AutorArticulo = null;
         }
 
         private void BuscarSeccion()
@@ -195,7 +199,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
                 SeccionArticulo = item;
             }
 
-            SeccionArticulo = null;
+            //SeccionArticulo = null;
         }
 
         private bool ControlarArticulosTitulo()
