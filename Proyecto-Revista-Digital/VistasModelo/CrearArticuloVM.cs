@@ -48,16 +48,23 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref nombreAutores, value); }
         }
 
+        private ObservableCollection<string> nombreSecciones;
+
+        public ObservableCollection<string> NombreSecciones
+        {
+            get { return nombreSecciones; }
+            set { SetProperty(ref nombreSecciones, value); }
+        }
 
         public RelayCommand NuevaSeccionCommand { get; }
         public RelayCommand NuevoArticuloCommand { get; }
         public RelayCommand NuevaImagenArticuloCommand { get; }
         private ServicioArticulo servicoArticulo;
-        private ServicioAutor servicioAutor;
-        private ServicioSeccion servicioSeccion;
-        private ServicioDialogo servicioDialogo;
-        private ServicioAzure servicioAzure;
-        private ServicioNavegacion servicioNavegacion;
+        private readonly ServicioAutor servicioAutor;
+        private readonly ServicioSeccion servicioSeccion;
+        private readonly ServicioDialogo servicioDialogo;
+        private readonly ServicioAzure servicioAzure;
+        private readonly ServicioNavegacion servicioNavegacion;
 
         private Seccion seccionArticulo;
 
@@ -86,10 +93,10 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public CrearArticuloVM()
         {
-            NombreAutores = new ObservableCollection<string>();
+            
             ArticuloNuevo = new Articulo();
-            ListaSecciones = new ObservableCollection<Seccion>();
-            ListaAutores = new ObservableCollection<Autor>();
+            //ListaSecciones = new ObservableCollection<Seccion>();
+            //ListaAutores = new ObservableCollection<Autor>();
             servicioAutor = new ServicioAutor();
             servicioAzure = new ServicioAzure();
             servicioDialogo = new ServicioDialogo();
@@ -97,6 +104,8 @@ namespace Proyecto_Revista_Digital.VistasModelo
             servicoArticulo = new ServicioArticulo();
             servicioNavegacion = new ServicioNavegacion();
             NuevaImagenArticuloCommand = new RelayCommand(SeleccionImagen);
+            NuevaSeccionCommand = new RelayCommand(AñadirNuevaSeccion);
+
             CargarAutores();
             CargarSecciones();
             SeccionArticulo = new Seccion();
@@ -114,8 +123,9 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         private void CargarAutores()
         {
+            ListaAutores = new ObservableCollection<Autor>();
+            NombreAutores = new ObservableCollection<string>();
             ListaAutores = servicioAutor.GetAutores();
-
             foreach (Autor item in ListaAutores)
             {
                 NombreAutores.Add(item.Nombre);
@@ -124,24 +134,86 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         private void CargarSecciones()
         {
+            ListaSecciones = new ObservableCollection<Seccion>();
+            NombreSecciones = new ObservableCollection<string>();
             ListaSecciones = servicioSeccion.GetSecciones();
+            foreach (Seccion item in ListaSecciones)
+            {
+                NombreSecciones.Add(item.NombreSeccion);
+            }
         }
 
         public void SeleccionImagen()
         {
             string file = servicioDialogo.DialogoAbrirFichero();
             ArticuloNuevo.Imagen = file != null ? servicioAzure.AlmacenarImagenEnLaNube(file) : string.Empty;
+            
         }
 
         public void AñadirNuevaSeccion()
         {
             NuevaSeccion = new Seccion();
-
+            bool? resultado = servicioNavegacion.CargarCrearSeccion();
+            CargarSecciones();
+            //RefrescarLista((bool)resultado);
         }
 
-        public void RefrescarLista(bool refrescar)
+        public void AñadirArticulo()
+        {
+            //Autor autor = BuscarAutor();
+            //Seccion seccion = BuscarSeccion();
+            BuscarAutor();
+            BuscarSeccion();
+
+            if (AutorArticulo != null && SeccionArticulo != null)
+            {
+                ArticuloNuevo.AutorArticulo = AutorArticulo;
+                ArticuloNuevo.IdSeccion = SeccionArticulo.IdSeccion;
+                ArticuloNuevo.Publicado = false;
+                if (ControlarArticulosTitulo())
+                {
+                    servicoArticulo.AddArticulo(ArticuloNuevo);
+                }
+                
+            }
+        }
+
+        private void BuscarAutor()
+        {
+            foreach (var item in ListaAutores.Where(item => item.Nombre.Equals(AutorArticulo.Nombre)))
+            {
+                AutorArticulo = item;
+            }
+
+            AutorArticulo = null;
+        }
+
+        private void BuscarSeccion()
+        {
+            foreach (var item in ListaSecciones.Where(item => item.NombreSeccion.Equals(SeccionArticulo.NombreSeccion)))
+            {
+                SeccionArticulo = item;
+            }
+
+            SeccionArticulo = null;
+        }
+
+        private bool ControlarArticulosTitulo()
+        {
+            bool iguales = false;
+            ObservableCollection<Articulo> articulos = new ObservableCollection<Articulo>();
+            articulos = servicoArticulo.GetArticulos();
+            foreach (var _ in articulos.Where(item => item.Titulo.Equals(ArticuloNuevo.Titulo)).Select(item => new { }))
+            {
+                iguales = true;
+            }
+
+            return iguales;
+        }
+
+        /*public void RefrescarLista(bool refrescar)
         {
             WeakReferenceMessenger.Default.Send(new RefrescarVentanaMessage(refrescar));
-        }
+        }*/
     }
 }

@@ -49,7 +49,7 @@
             
             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                 <inputLayout:SfTextInputLayout Hint="Seccion" Margin="5,0" Width="150" VerticalAlignment="Center">
-                    <ComboBox Width="50"  ItemsSource="{Binding Path=ListaSecciones, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=ArticuloNuevo.IdSeccion, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
+                    <ComboBox Width="50"  ItemsSource="{Binding Path=NombreSecciones, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=ArticuloNuevo.IdSeccion, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
                 </inputLayout:SfTextInputLayout>
                 <!-- <Button x:Name="añadirSeccionButton" Content="+" Height="32" Width="32" Margin="5,0" VerticalAlignment="Center" Command="{Binding Path=NuevaSeccionCommand}"/>-->
                 <Button DockPanel.Dock="Left" Width="35" Height="35" Margin="5" Command="{Binding Path=NuevaSeccionCommand}" Template="{DynamicResource ButtonControlTemplate}" VerticalAlignment="Center">
@@ -59,7 +59,7 @@
                 </Button>
             </StackPanel>
             <inputLayout:SfTextInputLayout Hint="Autor" Margin="15,5" Width="150" VerticalAlignment="Center" DockPanel.Dock="Left">
-                <ComboBox Width="50" Foreground="Black" ItemsSource="{Binding Path=NombreAutores}" SelectedItem="{Binding Path=ArticuloNuevo.AutorArticulo}"/>
+                <ComboBox Width="50" Foreground="Black" ItemsSource="{Binding Path=NombreAutores}" SelectedItem="{Binding Path=AutorArticulo.Nombre}"/>
             </inputLayout:SfTextInputLayout>
 
             <Button Content="Crear Articulo" Width="100" Height="30" DockPanel.Dock="Right" Padding="5"/>
@@ -73,13 +73,13 @@
                 </Button.Content>
             </Button>
             <inputLayout:SfTextInputLayout Hint="Imagen" HintFloatMode="Float" DockPanel.Dock="Left" >
-                <TextBox Text="{Binding Path=ArticuloNuevo.Imagen}"/>
+                <TextBox Text="{Binding Path=ArticuloNuevo.Imagen}" IsReadOnly="True"/>
             </inputLayout:SfTextInputLayout>
             
         </DockPanel>
 
 
-        <syncfusion:EditControl x:Name="editControl1" BorderBrush="Black" BorderThickness="1" Background="White" Foreground="Black" HorizontalAlignment="Center"  Margin="10" Width="500" ShowDefaultContextMenu="True" ShowLineNumber="False" IsReadOnly="False" Cursor="IBeam" >
+        <syncfusion:EditControl x:Name="editControl1" BorderBrush="Black" BorderThickness="1" Background="White" Foreground="Black" HorizontalAlignment="Center"  Margin="10" Width="500" ShowDefaultContextMenu="True" ShowLineNumber="False" IsReadOnly="False" Cursor="IBeam" Text="{Binding Path=ArticuloNuevo.Contenido}">
             <syncfusion:EditControl.StatusBarSettings >
                 <syncfusion:StatusBarSettings Visibility="Visible" ShowFilePath="Visible" ShowLineNumber="Visible" ShowColumnNumber="Visible" ShowEncoding="Collapsed"/>
             </syncfusion:EditControl.StatusBarSettings>

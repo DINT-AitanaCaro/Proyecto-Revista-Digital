@@ -29,6 +29,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             NuevaSeccion = new Seccion();
             NuevaSeccion = WeakReferenceMessenger.Default.Send<EnviarSeccionMessage>();
+            servicioSeccion = new ServicioSeccion();
             //AñadirSeccionCommand = new RelayCommand(AddSeccion);
             
         }
