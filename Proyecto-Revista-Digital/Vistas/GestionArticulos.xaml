@@ -8,7 +8,7 @@
              xmlns:local="clr-namespace:Proyecto_Revista_Digital.Vistas"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <DockPanel>
+    <DockPanel Background="White">
         <syncfusion:SfDataGrid  x:Name="dataGrid" ItemsSource="{Binding Articulos}" SelectedItem="{Binding Path=ArticuloSeleccionado}" 
                                                   AllowFiltering="True"
                                                   ColumnSizer="Star" DockPanel.Dock="Top"/>
