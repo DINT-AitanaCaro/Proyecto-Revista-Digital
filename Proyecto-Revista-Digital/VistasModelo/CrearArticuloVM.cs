@@ -172,6 +172,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
                 ArticuloNuevo.AutorArticulo = AutorArticulo;
                 ArticuloNuevo.IdSeccion = SeccionArticulo.IdSeccion;
                 ArticuloNuevo.Publicado = false;
+                ArticuloNuevo.Contenido = "";
                 
                 if (!ControlarArticulosTitulo())
                 {
