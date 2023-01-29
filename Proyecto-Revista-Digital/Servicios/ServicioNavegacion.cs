@@ -32,5 +32,11 @@ namespace Proyecto_Revista_Digital.Servicios
         {
             return new CrearArticulo();
         }
+
+        public bool? CargarCrearSeccion()
+        {
+            CrearSeccion windowCrearSeccion = new CrearSeccion();
+            return windowCrearSeccion.ShowDialog();
+        }
     }
 }
