@@ -1,5 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Proyecto_Revista_Digital.Mensajes;
 using Proyecto_Revista_Digital.Modelos;
 using Proyecto_Revista_Digital.Servicios;
 using System;
@@ -11,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Revista_Digital.VistasModelo
 {
-    class CrearArticuloVM : ObservableObject
+    class CrearArticuloVM : ObservableRecipient
     {
         private Articulo articuloNuevo;
 
@@ -55,6 +57,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         private ServicioSeccion servicioSeccion;
         private ServicioDialogo servicioDialogo;
         private ServicioAzure servicioAzure;
+        private ServicioNavegacion servicioNavegacion;
 
         private Seccion seccionArticulo;
 
@@ -72,6 +75,15 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref autorArticulo, value); }
         }
 
+        private Seccion nuevaSeccion;
+
+        public Seccion NuevaSeccion
+        {
+            get { return nuevaSeccion; }
+            set { SetProperty(ref nuevaSeccion, value); }
+        }
+
+
         public CrearArticuloVM()
         {
             NombreAutores = new ObservableCollection<string>();
@@ -83,11 +95,21 @@ namespace Proyecto_Revista_Digital.VistasModelo
             servicioDialogo = new ServicioDialogo();
             servicioSeccion = new ServicioSeccion();
             servicoArticulo = new ServicioArticulo();
+            servicioNavegacion = new ServicioNavegacion();
             NuevaImagenArticuloCommand = new RelayCommand(SeleccionImagen);
             CargarAutores();
             CargarSecciones();
             SeccionArticulo = new Seccion();
             AutorArticulo = new Autor();
+            
+
+            WeakReferenceMessenger.Default.Register<CrearArticuloVM, EnviarSeccionMessage>(this, (r, m) =>
+            {
+                if (!m.HasReceivedResponse)
+                {
+                    m.Reply(r.NuevaSeccion);
+                }
+            });
         }
 
         private void CargarAutores()
@@ -109,6 +131,17 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             string file = servicioDialogo.DialogoAbrirFichero();
             ArticuloNuevo.Imagen = file != null ? servicioAzure.AlmacenarImagenEnLaNube(file) : string.Empty;
+        }
+
+        public void AñadirNuevaSeccion()
+        {
+            NuevaSeccion = new Seccion();
+
+        }
+
+        public void RefrescarLista(bool refrescar)
+        {
+            WeakReferenceMessenger.Default.Send(new RefrescarVentanaMessage(refrescar));
         }
     }
 }

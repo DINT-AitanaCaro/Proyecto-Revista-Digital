@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyecto_Revista_Digital.VistasModelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,18 @@ namespace Proyecto_Revista_Digital.Vistas
     /// </summary>
     public partial class CrearSeccion : Window
     {
+        private CrearSeccionVM vm;
         public CrearSeccion()
         {
             InitializeComponent();
+            vm = new CrearSeccionVM();
+            this.DataContext = vm;
+        }
+
+        private void ButtonAceptar_Click(object sender, RoutedEventArgs e)
+        {
+            vm.GuardarSeccion();
+            DialogResult = true;
         }
     }
 }

@@ -6,7 +6,24 @@
         xmlns:local="clr-namespace:Proyecto_Revista_Digital.Vistas"
         mc:Ignorable="d"
         Title="Añadir Seccion" Height="150" Width="400" ShowInTaskbar="False" ResizeMode="NoResize">
-    <Grid>
-        
-    </Grid>
+    <Window.Resources>
+        <Style TargetType="{x:Type StackPanel}">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="100"/>
+            <Setter Property="Margin" Value="5"/>
+        </Style>
+
+    </Window.Resources>
+    <DockPanel LastChildFill="False">
+        <StackPanel DockPanel.Dock="Top">
+            <TextBlock Text="Seccion"/>
+            <TextBox Text="{Binding Path=NuevaSeccion.NombreSeccion,UpdateSourceTrigger=PropertyChanged}"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right">
+            <Button Content="Aceptar" Click="ButtonAceptar_Click" IsDefault="True" Command="{Binding Path=AñadirSeccionCommand}"/>
+            <Button Content="Cancelar" IsCancel="False"/>
+        </StackPanel>
+    </DockPanel>
 </Window>
