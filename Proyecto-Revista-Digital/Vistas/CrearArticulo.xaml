@@ -49,12 +49,17 @@
             
             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                 <inputLayout:SfTextInputLayout Hint="Seccion" Margin="5,0" Width="150" VerticalAlignment="Center">
-                    <ComboBox Width="50"  ItemsSource="{Binding Path=ListaSecciones, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=ArticuloNuevo.IdSeccion, UpdateSourceTrigger=PropertyChanged}"/>
+                    <ComboBox Width="50"  ItemsSource="{Binding Path=ListaSecciones, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=ArticuloNuevo.IdSeccion, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
                 </inputLayout:SfTextInputLayout>
-                <Button x:Name="añadirSeccionButton" Content="+" Height="32" Width="32" Margin="5,0" VerticalAlignment="Center" Command="{Binding Path=NuevaSeccionCommand}"/>
+                <!-- <Button x:Name="añadirSeccionButton" Content="+" Height="32" Width="32" Margin="5,0" VerticalAlignment="Center" Command="{Binding Path=NuevaSeccionCommand}"/>-->
+                <Button DockPanel.Dock="Left" Width="35" Height="35" Margin="5" Command="{Binding Path=NuevaSeccionCommand}" Template="{DynamicResource ButtonControlTemplate}" VerticalAlignment="Center">
+                    <Button.Content>
+                        <Image Source="../assets/AddSeccion.ico" Width="18"/>
+                    </Button.Content>
+                </Button>
             </StackPanel>
             <inputLayout:SfTextInputLayout Hint="Autor" Margin="15,5" Width="150" VerticalAlignment="Center" DockPanel.Dock="Left">
-                <ComboBox Width="50" ItemsSource="{Binding Path=NombreAutores}" SelectedItem="{Binding Path=ArticuloNuevo.AutorArticulo}"/>
+                <ComboBox Width="50" Foreground="Black" ItemsSource="{Binding Path=NombreAutores}" SelectedItem="{Binding Path=ArticuloNuevo.AutorArticulo}"/>
             </inputLayout:SfTextInputLayout>
 
             <Button Content="Crear Articulo" Width="100" Height="30" DockPanel.Dock="Right" Padding="5"/>

@@ -209,6 +209,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Mensajes\EnviarAutorMessage.cs" />
+    <Compile Include="Mensajes\EnviarSeccionMessage.cs" />
     <Compile Include="Mensajes\RefrescarVentanaMessage.cs" />
     <Compile Include="Modelos\Articulo.cs" />
     <Compile Include="Modelos\Autor.cs" />
@@ -221,12 +222,16 @@
     <Compile Include="Servicios\ServicioSeccion.cs" />
     <Compile Include="Servicios\ServicioSQLite.cs" />
     <Compile Include="VistasModelo\CrearArticuloVM.cs" />
+    <Compile Include="VistasModelo\CrearSeccionVM.cs" />
     <Compile Include="VistasModelo\GestorArticulosVM.cs" />
     <Compile Include="VistasModelo\GestorAutoresVM.cs" />
     <Compile Include="VistasModelo\MainWindowVM.cs" />
     <Compile Include="VistasModelo\WindowCrearEditarAutorVM.cs" />
     <Compile Include="Vistas\CrearArticulo.xaml.cs">
       <DependentUpon>CrearArticulo.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Vistas\CrearSeccion.xaml.cs">
+      <DependentUpon>CrearSeccion.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\GestionArticulos.xaml.cs">
       <DependentUpon>GestionArticulos.xaml</DependentUpon>
@@ -250,6 +255,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Vistas\CrearArticulo.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Vistas\CrearSeccion.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -335,6 +344,7 @@
     <Resource Include="Assets\gestion-autores.png" />
     <Resource Include="Assets\gestion-articulos.png" />
     <Resource Include="Assets\generar-revista.png" />
+    <Resource Include="Assets\AddSeccion.ico" />
     <Content Include="RevistaOnline\index.html" />
     <Content Include="RevistaOnline\styles.css" />
   </ItemGroup>
