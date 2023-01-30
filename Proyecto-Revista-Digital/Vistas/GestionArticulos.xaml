@@ -51,7 +51,6 @@
                                                   DockPanel.Dock="Top"/>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom" HorizontalAlignment="Right" Height="60">
             <Button Template="{StaticResource ButtonTemplate}" Command="{Binding Path=PublicarCommand}">Publicar artículo</Button>
-            <Button Template="{StaticResource ButtonTemplate}" Command="{Binding Path=ComprobarArticuloCommand}">Comprobar artículo</Button>
             <Button Template="{StaticResource ButtonTemplate}" Command="{Binding Path=EliminarCommand}">Eliminar artículo</Button>
         </StackPanel>
     </DockPanel>

@@ -33,7 +33,6 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public RelayCommand CargarArticulosCommand { get; }
         public RelayCommand PublicarCommand { get; }
-        public RelayCommand ComprobarArticuloCommand { get; }
         public RelayCommand EliminarCommand { get; }
 
         public GestorArticulosVM()
@@ -63,7 +62,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void PublicarArticulo()
         {
-            ArticuloSeleccionado.Publicado = true;
+            servicioArticulo.PublicarArticulo(ArticuloSeleccionado.Id);
             CargarArticulos();
         }
 

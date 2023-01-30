@@ -70,6 +70,31 @@ namespace Proyecto_Revista_Digital.Servicios
             return articulos;
         }
 
+        public ObservableCollection<Articulo> GetArticulosPorSeccion(int IdSeccion)
+        {
+            conexion.Open();
+            SqliteCommand comando = conexion.CreateCommand();
+            comando.CommandText = "SELECT * FROM articulos WHERE idSeccion = @id AND publicado = 1";
+
+            comando.Parameters.Add("@id", SqliteType.Integer);
+
+            comando.Parameters["@id"].Value = IdSeccion;
+
+            ObservableCollection<Articulo> articulos = new ObservableCollection<Articulo>();
+            SqliteDataReader lector = comando.ExecuteReader();
+            ServicioAutor sa = new ServicioAutor();
+            if (lector.HasRows)
+            {
+                while (lector.Read())
+                {
+                    articulos.Add(new Articulo(Convert.ToInt32(lector["id"]), sa.GetAutor(Convert.ToInt32(lector["idAutor"])), Convert.ToInt32(lector["idSeccion"]), (string)lector["titulo"], (string)lector["imagen"], (string)lector["contenido"], Convert.ToInt32(lector["publicado"]) == 1));
+                }
+            }
+            lector.Close();
+            conexion.Close();
+            return articulos;
+        }
+
         public void PublicarArticulo(int idArticulo)
         {
             conexion.Open();

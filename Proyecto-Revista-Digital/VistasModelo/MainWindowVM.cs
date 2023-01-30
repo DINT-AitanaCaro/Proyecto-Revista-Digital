@@ -17,6 +17,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 {
     class MainWindowVM : ObservableObject
     {
+        private ServicioArticulo servicioArticulo;
         private ServicioSeccion servicioSeccion;
         private ServicioSQLite servicioSQLite;
         private ServicioNavegacion serviciosVentanas;
@@ -48,6 +49,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             servicioSQLite = new ServicioSQLite();
             servicioSQLite.CrearBD();
             servicioSeccion = new ServicioSeccion();
+            servicioArticulo = new ServicioArticulo();
 
             GestionarAutoresCommand = new RelayCommand(GestionarAutores);
             GestionarArticulosCommand = new RelayCommand(GestionarArticulos);
@@ -74,9 +76,16 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
             foreach (Seccion s in servicioSeccion.GetSecciones())
             {
-                sectionHTML += "<article color=red>";
-                sectionHTML += "<h1>" + s.NombreSeccion + "</h1>";
-                sectionHTML += "</article>";
+                sectionHTML += "<details class=\"desplegable\">";
+                sectionHTML += "<summary>~ " + s.NombreSeccion + " ~</summary>";
+                foreach (Articulo a in servicioArticulo.GetArticulosPorSeccion(s.IdSeccion))
+                {
+                    sectionHTML += "<div class=\"articulo\">";
+                    sectionHTML += "<h1>" + a.Titulo + "</h1>";
+                    sectionHTML += "<img src=\"" + a.Imagen + "\">";
+                    sectionHTML += "</div>";
+                }
+                sectionHTML += "</details>";
             }
             sectionHTML += "</section>";
 
@@ -199,7 +208,6 @@ namespace Proyecto_Revista_Digital.VistasModelo
             {
                 Console.WriteLine(ex.ToString());
             }
-
 
             Process.Start("index.html");
         }
