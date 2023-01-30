@@ -345,7 +345,9 @@
     <Resource Include="Assets\generar-revista.png" />
     <Resource Include="Assets\AddSeccion.ico" />
     <Content Include="RevistaOnline\index.html" />
-    <Content Include="RevistaOnline\styles.css" />
+    <Content Include="RevistaOnline\styles.css">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="DataBase\" />
