@@ -30,7 +30,7 @@ namespace Proyecto_Revista_Digital.Vistas
 
         private void ButtonAceptar_Click(object sender, RoutedEventArgs e)
         {
-            vm.GuardarSeccion();
+            //vm.GuardarSeccion();
             DialogResult = true;
         }
     }

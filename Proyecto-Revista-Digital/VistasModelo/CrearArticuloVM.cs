@@ -114,13 +114,13 @@ namespace Proyecto_Revista_Digital.VistasModelo
             AutorArticulo = new Autor();
             
 
-            WeakReferenceMessenger.Default.Register<CrearArticuloVM, EnviarSeccionMessage>(this, (r, m) =>
+            /*WeakReferenceMessenger.Default.Register<CrearArticuloVM, EnviarSeccionMessage>(this, (r, m) =>
             {
                 if (!m.HasReceivedResponse)
                 {
                     m.Reply(r.NuevaSeccion);
                 }
-            });
+            });*/
         }
 
         private void CargarAutores()

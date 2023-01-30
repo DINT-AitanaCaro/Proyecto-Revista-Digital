@@ -22,7 +22,7 @@
             <TextBox Text="{Binding Path=NuevaSeccion.NombreSeccion,UpdateSourceTrigger=PropertyChanged}"/>
         </StackPanel>
         <StackPanel Orientation="Horizontal" DockPanel.Dock="Top" HorizontalAlignment="Right">
-            <Button Content="Aceptar" Click="ButtonAceptar_Click" IsDefault="True"/>
+            <Button Content="Aceptar" Click="ButtonAceptar_Click" IsDefault="True" Command="{Binding Path=AñadirSeccionCommand}"/>
             <Button Content="Cancelar" IsCancel="False"/>
         </StackPanel>
     </DockPanel>

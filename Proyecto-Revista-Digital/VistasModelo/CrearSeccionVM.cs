@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Revista_Digital.VistasModelo
 {
-    class CrearSeccionVM : ObservableObject
+    class CrearSeccionVM : ObservableRecipient
     {
         private Seccion nuevaSeccion;
 
@@ -22,21 +22,26 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref nuevaSeccion, value); }
         }
 
-        //public RelayCommand AñadirSeccionCommand { get; }
+        public RelayCommand AñadirSeccionCommand { get; }
         private ServicioSeccion servicioSeccion;
 
         public CrearSeccionVM()
         {
             NuevaSeccion = new Seccion();
-            NuevaSeccion = WeakReferenceMessenger.Default.Send<EnviarSeccionMessage>();
+            //NuevaSeccion = WeakReferenceMessenger.Default.Send<EnviarSeccionMessage>();
             servicioSeccion = new ServicioSeccion();
-            //AñadirSeccionCommand = new RelayCommand(AddSeccion);
+            AñadirSeccionCommand = new RelayCommand(AñadirSeccion);
             
         }
 
-        public void GuardarSeccion()
+        public void AñadirSeccion()
         {
-            servicioSeccion.AddSeccion(NuevaSeccion);
+            if (NuevaSeccion.NombreSeccion != "")
+            {
+                servicioSeccion.AddSeccion(NuevaSeccion);
+                WeakReferenceMessenger.Default.Send(new EnviarSeccionMessage(NuevaSeccion));
+            }
+            
         }
     }
 }

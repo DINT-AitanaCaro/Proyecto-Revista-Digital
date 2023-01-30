@@ -8,5 +8,8 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Revista_Digital.Mensajes
 {
-    class EnviarSeccionMessage : RequestMessage<Seccion> { }
+    class EnviarSeccionMessage : ValueChangedMessage<Seccion>
+    {
+        public EnviarSeccionMessage(Seccion seccion) : base(seccion) { }
+    }
 }
