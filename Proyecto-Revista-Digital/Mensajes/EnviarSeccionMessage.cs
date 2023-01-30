@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Messaging.Messages;
+using Proyecto_Revista_Digital.Modelos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,8 +8,8 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Revista_Digital.Mensajes
 {
-    class RefrescarVentanaMessage : ValueChangedMessage<bool>
+    class EnviarSeccionMessage : ValueChangedMessage<Seccion>
     {
-        public RefrescarVentanaMessage(bool value) : base(value) { }
+        public EnviarSeccionMessage(Seccion seccion) : base(seccion) { }
     }
 }

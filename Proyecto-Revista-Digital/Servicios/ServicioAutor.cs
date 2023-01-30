@@ -97,6 +97,7 @@ namespace Proyecto_Revista_Digital.Servicios
             SqliteDataReader lector = comando.ExecuteReader();
             if (lector.HasRows)
             {
+                lector.Read();
                 autor = new Autor(Convert.ToInt32(lector["id"]), (string)lector["nombre"], (string)lector["imagen"], (string)lector["nickname"], (string)lector["social"]);
             }
             lector.Close();

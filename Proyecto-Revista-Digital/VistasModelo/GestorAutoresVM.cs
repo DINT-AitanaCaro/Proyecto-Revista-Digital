@@ -100,7 +100,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void Refrescar(bool refrescar)
         {
-            WeakReferenceMessenger.Default.Send(new RefrescarVentanaMessage(refrescar));
+            CargarAutores();
         }
     }
 }
