@@ -70,9 +70,17 @@ namespace Proyecto_Revista_Digital.Servicios
             return articulos;
         }
 
-        public void UpdateArticulo()
+        public void PublicarArticulo(int idArticulo)
         {
+            conexion.Open();
+            SqliteCommand comando = conexion.CreateCommand();
+            comando.CommandText = "UPDATE articulos SET publicado = 1 WHERE id = @id";
 
+            comando.Parameters.Add("@id", SqliteType.Integer);
+            comando.Parameters["@id"].Value = idArticulo;
+
+            comando.ExecuteNonQuery();
+            conexion.Close();
         }
     }
 }
