@@ -335,7 +335,9 @@
     <Resource Include="Assets\file-explorer.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="RevistaOnline\img\logoRevista.png" />
+    <Content Include="RevistaOnline\img\logoRevista.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <Resource Include="Assets\nuevo-articulo.png" />
     <Resource Include="Assets\escritor.png" />
     <Resource Include="Assets\censor.png" />

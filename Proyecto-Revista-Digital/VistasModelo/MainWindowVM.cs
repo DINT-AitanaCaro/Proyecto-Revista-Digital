@@ -2,6 +2,7 @@
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
 using Proyecto_Revista_Digital.Mensajes;
+using Proyecto_Revista_Digital.Modelos;
 using Proyecto_Revista_Digital.Servicios;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 {
     class MainWindowVM : ObservableObject
     {
+        private ServicioSeccion servicioSeccion;
         private ServicioSQLite servicioSQLite;
         private ServicioNavegacion serviciosVentanas;
 
@@ -45,6 +47,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             servicioSQLite = new ServicioSQLite();
             servicioSQLite.CrearBD();
+            servicioSeccion = new ServicioSeccion();
 
             GestionarAutoresCommand = new RelayCommand(GestionarAutores);
             GestionarArticulosCommand = new RelayCommand(GestionarArticulos);
@@ -69,53 +72,57 @@ namespace Proyecto_Revista_Digital.VistasModelo
             String indexHTML = "";
             String sectionHTML = "<section>";
 
-            for (int i = 0; i < 5; i++)
+            foreach (Seccion s in servicioSeccion.GetSecciones())
             {
-                sectionHTML += "<h1>Encabezado Prueba " + i+1 + "</h1>";
+                sectionHTML += "<article color=red>";
+                sectionHTML += "<h1>" + s.NombreSeccion + "</h1>";
+                sectionHTML += "</article>";
             }
             sectionHTML += "</section>";
 
+            
+
             indexHTML = "<!DOCTYPE html>" +
-                            "< html lang = \"en\" >"+
-                                "< head >"+
-                                    "< meta charset = \"UTF-8\" >" +
-                                    "< meta http - equiv = \"X-UA-Compatible\" content = \"IE=edge\" >" +
-                                    "< meta name = \"viewport\" content = \"width=device-width, initial-scale=1.0\" >" +
-                                    "< title >DAM's Mondogo</title>" +
-                                    "< link rel = \"stylesheet\" href = \"./RevistaOnline/styles.css\" >" +
-                                    "< script src = \"https://kit.fontawesome.com/afd6aa68df.js\" crossorigin = \"anonymous\"></ script >" +
-                                "</ head >" +
-                                "< body >" +
-                                    "< header >" +
-                                        "< img src = \"./img/logoRevista.png\" >" +
-                                        "< div class=\"derecha\">" +
+                            "<html lang=\"en\">"+
+                                "<head>"+
+                                    "<meta charset = \"UTF-8\">" +
+                                    "<meta http - equiv = \"X-UA-Compatible\" content = \"IE=edge\">" +
+                                    "<meta name = \"viewport\" content = \"width=device-width, initial-scale=1.0\">" +
+                                    "<title>DAM's Space</title>" +
+                                    "<link rel = \"stylesheet\" href = \"./RevistaOnline/styles.css\">" +
+                                    "<script src = \"https://kit.fontawesome.com/afd6aa68df.js\" crossorigin = \"anonymous\"></script>" +
+                                "</head>" +
+                                "<body>" +
+                                    "<header>" +
+                                        "<img src =\"./RevistaOnline/img/logoRevista.png\">" +
+                                        "<div class=\"derecha\">" +
                                         "<nav>" +
                                             "<ul>" +
                                                 "<li>" +
-                                                    "<a href = \"#\" > Secciones </ a >" +
-                                                "</ li >" +
-                                                "< li >" +
-                                                    "< a href=\"#\">Contáctanos</a>" +
+                                                    "<a href =\"#\"> Secciones </a>" +
                                                 "</li>" +
                                                 "<li>" +
-                                                    "<a href = \"#\" > Suscríbete </ a >" +
-                                                "</ li >" +
-                                                "< li >" +
-                                                    "< a href=\"#\">Sobre nosotros</a>" +
+                                                    "<a href=\"#\">Contáctanos</a>" +
+                                                "</li>" +
+                                                "<li>" +
+                                                    "<a href = \"#\" > Suscríbete </a>" +
+                                                "</li>" +
+                                                "<li>" +
+                                                    "<a href=\"#\">Sobre nosotros</a>" +
                                                 "</li>" +
                                             "</ul>" +
                                         "</nav>" +
                                         "</div>" +
                                         "<div class=\"box\">" +
                                             "<form name = \"search\" >" +
-                                                "< input type=\"text\" class=\"input\" name=\"buscador\">" +
+                                                "<input type=\"text\" class=\"input\" name=\"buscador\">" +
                                             "</form>" +
                                                 "<i class=\"fas fa-search\"></i>" +
                                         "</div>" +
                                     "</header>" +
                                     sectionHTML +
                                     "<footer>" +
-                                        "< div class=\"pie\">" +
+                                        "<div class=\"pie\">" +
                                         "<h3>Quiénes Somos</h3>" +
                                             "<div>" +
                                                 "<span>Quiénes Somos</span>" +
