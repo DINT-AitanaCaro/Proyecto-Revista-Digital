@@ -149,7 +149,6 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             string file = servicioDialogo.DialogoAbrirFichero();
             ArticuloNuevo.Imagen = file != null ? servicioAzure.AlmacenarImagenEnLaNube(file) : string.Empty;
-            
         }
 
         public void AñadirNuevaSeccion()
