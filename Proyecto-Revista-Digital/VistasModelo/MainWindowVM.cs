@@ -51,16 +51,6 @@ namespace Proyecto_Revista_Digital.VistasModelo
             NuevoArticuloCommand = new RelayCommand(NuevoArticulo);
 
             this.serviciosVentanas = new ServicioNavegacion();
-
-            WeakReferenceMessenger.Default.Register<RefrescarVentanaMessage>(this, (r, m) => 
-            {
-                Refrescar = m.Value;
-
-                if (Refrescar)
-                {
-                    ContenidoVentana = this.serviciosVentanas.CargarGestionAutores();
-                }
-            }); 
         }
 
         public void GestionarAutores()
