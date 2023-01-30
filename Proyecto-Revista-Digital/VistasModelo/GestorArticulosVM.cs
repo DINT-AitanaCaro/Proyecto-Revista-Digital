@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Proyecto_Revista_Digital.VistasModelo
 {
@@ -31,12 +32,18 @@ namespace Proyecto_Revista_Digital.VistasModelo
         }
 
         public RelayCommand CargarArticulosCommand { get; }
+        public RelayCommand PublicarCommand { get; }
+        public RelayCommand ComprobarArticuloCommand { get; }
+        public RelayCommand EliminarCommand { get; }
 
         public GestorArticulosVM()
 		{
 			Articulos = new ObservableCollection<Articulo>();
             ArticuloSeleccionado = new Articulo();
+
             CargarArticulosCommand = new RelayCommand(CargarArticulos);
+            PublicarCommand = new RelayCommand(PublicarArticulo);
+            EliminarCommand = new RelayCommand(EliminarArticulo);
 
             servicioArticulo = new ServicioArticulo();
             CargarArticulos();
@@ -44,12 +51,30 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void CargarArticulos()
         {
+            Articulos = new ObservableCollection<Articulo>();
             foreach (Articulo a in servicioArticulo.GetArticulos())
             {
                 if (!a.Publicado)
                 {
                     Articulos.Add(a);
                 }
+            }
+        }
+
+        public void PublicarArticulo()
+        {
+            ArticuloSeleccionado.Publicado = true;
+            CargarArticulos();
+        }
+
+        public void EliminarArticulo()
+        {
+            MessageBoxResult result = MessageBox.Show("¿Estás seguro de eliminar este artículo?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+
+            if (result == MessageBoxResult.Yes)
+            {
+                servicioArticulo.DeleteArticulo(ArticuloSeleccionado.Id);
+                CargarArticulos();
             }
         }
 	}

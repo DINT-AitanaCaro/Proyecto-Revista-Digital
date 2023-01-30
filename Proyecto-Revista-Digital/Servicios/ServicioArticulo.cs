@@ -69,5 +69,10 @@ namespace Proyecto_Revista_Digital.Servicios
             conexion.Close();
             return articulos;
         }
+
+        public void UpdateArticulo()
+        {
+
+        }
     }
 }
