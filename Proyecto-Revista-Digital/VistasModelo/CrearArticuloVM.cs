@@ -126,23 +126,15 @@ namespace Proyecto_Revista_Digital.VistasModelo
         private void CargarAutores()
         {
             ListaAutores = new ObservableCollection<Autor>();
-            NombreAutores = new ObservableCollection<string>();
             ListaAutores = servicioAutor.GetAutores();
-            foreach (Autor item in ListaAutores)
-            {
-                NombreAutores.Add(item.Nombre);
-            }
+            
         }
 
         private void CargarSecciones()
         {
             ListaSecciones = new ObservableCollection<Seccion>();
-            NombreSecciones = new ObservableCollection<string>();
             ListaSecciones = servicioSeccion.GetSecciones();
-            foreach (Seccion item in ListaSecciones)
-            {
-                NombreSecciones.Add(item.NombreSeccion);
-            }
+            
         }
 
         public void SeleccionImagen()
@@ -163,8 +155,8 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             //Autor autor = BuscarAutor();
             //Seccion seccion = BuscarSeccion();
-            BuscarAutor();
-            BuscarSeccion();
+            //BuscarAutor();
+            //BuscarSeccion();
 
             if (AutorArticulo != null && SeccionArticulo != null)
             {
@@ -182,7 +174,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             }
         }
 
-        private void BuscarAutor()
+        /*private void BuscarAutor()
         {
             foreach (var item in ListaAutores.Where(item => item.Nombre.Equals(AutorArticulo.Nombre)))
             {
@@ -200,7 +192,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             }
 
             //SeccionArticulo = null;
-        }
+        }*/
 
         private bool ControlarArticulosTitulo()
         {
