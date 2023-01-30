@@ -39,6 +39,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             CargarArticulosCommand = new RelayCommand(CargarArticulos);
 
             servicioArticulo = new ServicioArticulo();
+            CargarArticulos();
 		}
 
         public void CargarArticulos()
