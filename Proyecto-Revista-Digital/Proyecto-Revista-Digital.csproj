@@ -209,6 +209,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Convertidores\TerminosConverter.cs" />
+    <Compile Include="Mensajes\EnviarListaMessage.cs" />
     <Compile Include="Mensajes\EnviarAutorMessage.cs" />
     <Compile Include="Mensajes\EnviarSeccionMessage.cs" />
     <Compile Include="Modelos\Articulo.cs" />
@@ -358,6 +359,8 @@
     <Resource Include="Assets\aplicar.png" />
     <Resource Include="Assets\delete.png" />
     <Resource Include="Assets\edit.png" />
+    <Resource Include="Assets\nombreLista.png" />
+    <Resource Include="Assets\descripcionLista.png" />
     <Content Include="RevistaOnline\img\logoRevista.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

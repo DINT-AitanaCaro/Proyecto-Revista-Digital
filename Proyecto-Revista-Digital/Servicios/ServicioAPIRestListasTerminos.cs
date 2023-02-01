@@ -27,7 +27,7 @@ namespace Proyecto_Revista_Digital.Servicios
 
         public ObservableCollection<string> GetTerminos(int idLista)
         {
-            RestClient client = new RestClient($"https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists/{listId}/terms?language=spa");
+            RestClient client = new RestClient($"https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists/{idLista}/terms?language=spa");
             RestRequest request = new RestRequest(Method.GET);
             request.AddHeader("Ocp-Apim-Subscription-Key", "3db2c831f29248f883bf33d925347349");
             IRestResponse response = client.Execute(request);
@@ -47,20 +47,20 @@ namespace Proyecto_Revista_Digital.Servicios
             return terminos;
         }
 
-        public bool AñadirTermino(int listId, string term)
+        public bool AñadirTermino(int idLista, string term)
         {
-            RestClient client = new RestClient($"https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists/{listId}/terms/{term}?language=spa");
+            RestClient client = new RestClient($"https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists/{idLista}/terms/{term}?language=spa");
             RestRequest request = new RestRequest(Method.POST);
             request.AddHeader("Ocp-Apim-Subscription-Key", "3db2c831f29248f883bf33d925347349");
             Thread.Sleep(WAIT_TIME);
             var response = client.Execute(request);
-            RefrechSearchIndex(listId);
+            RefrechSearchIndex(idLista);
             return response.IsSuccessful;
         }
 
-        public void RefrechSearchIndex(int listId)
+        public void RefrechSearchIndex(int idLista)
         {
-            RestClient client = new RestClient($"https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists/{listId}/RefreshIndex?language=spa");
+            RestClient client = new RestClient($"https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists/{idLista}/RefreshIndex?language=spa");
             RestRequest request = new RestRequest(Method.POST);
             request.AddHeader("Ocp-Apim-Subscription-Key", "3db2c831f29248f883bf33d925347349");
             IRestResponse response = client.Execute(request);
