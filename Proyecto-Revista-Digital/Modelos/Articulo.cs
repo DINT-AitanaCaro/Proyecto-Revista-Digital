@@ -59,6 +59,13 @@ namespace Proyecto_Revista_Digital.Modelos
             set { SetProperty(ref publicado, value); }
         }
 
+        private string urlPdf;
+        public string UrlPdf
+        {
+            get { return urlPdf; }
+            set { SetProperty(ref urlPdf, value); }
+        }
+
         public Articulo()
         {
         }
@@ -73,9 +80,10 @@ namespace Proyecto_Revista_Digital.Modelos
             Publicado = publicado;
         }
 
-        public Articulo(int id, Autor autor, int idSeccion, string titulo, string imagen, string contenido, bool publicado) : this(autor, idSeccion, titulo, imagen, contenido, publicado)
+        public Articulo(int id, Autor autor, int idSeccion, string titulo, string imagen, string contenido, bool publicado, string urlPdf) : this(autor, idSeccion, titulo, imagen, contenido, publicado)
         {
             Id = id;
+            UrlPdf = urlPdf;
         }
     }
 }

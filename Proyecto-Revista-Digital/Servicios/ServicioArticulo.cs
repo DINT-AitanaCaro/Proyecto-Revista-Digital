@@ -17,13 +17,14 @@ namespace Proyecto_Revista_Digital.Servicios
         {
             conexion.Open();
             SqliteCommand comando = conexion.CreateCommand();
-            comando.CommandText = "INSERT INTO articulos VALUES(null,@idAutor,@idSeccion,@titulo,@imagen,@contenido,@publicado)";
+            comando.CommandText = "INSERT INTO articulos VALUES(null,@idAutor,@idSeccion,@titulo,@imagen,@contenido,@publicado,@urlPdf)";
             comando.Parameters.Add("@idAutor", SqliteType.Integer);
             comando.Parameters.Add("@idSeccion", SqliteType.Text);
             comando.Parameters.Add("@titulo", SqliteType.Text);
             comando.Parameters.Add("@imagen", SqliteType.Text);
             comando.Parameters.Add("@contenido", SqliteType.Text);
             comando.Parameters.Add("@publicado", SqliteType.Integer);
+            comando.Parameters.Add("@urlPdf", SqliteType.Text);
 
             comando.Parameters["@idAutor"].Value = articulo.AutorArticulo.Id;
             comando.Parameters["@idSeccion"].Value = articulo.IdSeccion;
@@ -31,6 +32,7 @@ namespace Proyecto_Revista_Digital.Servicios
             comando.Parameters["@imagen"].Value = articulo.Imagen;
             comando.Parameters["@contenido"].Value = articulo.Contenido;
             comando.Parameters["@publicado"].Value = articulo.Publicado;
+            comando.Parameters["@urlPdf"].Value = string.IsNullOrEmpty(articulo.UrlPdf) ? string.Empty : articulo.UrlPdf;
 
             comando.ExecuteNonQuery();
             conexion.Close();
@@ -62,7 +64,7 @@ namespace Proyecto_Revista_Digital.Servicios
             {
                 while (lector.Read())
                 {
-                    articulos.Add(new Articulo(Convert.ToInt32(lector["id"]), sa.GetAutor(Convert.ToInt32(lector["idAutor"])), Convert.ToInt32(lector["idSeccion"]), (string)lector["titulo"], (string)lector["imagen"], (string)lector["contenido"], Convert.ToInt32(lector["publicado"])==1));
+                    articulos.Add(new Articulo(Convert.ToInt32(lector["id"]), sa.GetAutor(Convert.ToInt32(lector["idAutor"])), Convert.ToInt32(lector["idSeccion"]), (string)lector["titulo"], (string)lector["imagen"], (string)lector["contenido"], Convert.ToInt32(lector["publicado"])==1, (string)lector["urlPdf"]));
                 }
             }
             lector.Close();
@@ -87,7 +89,7 @@ namespace Proyecto_Revista_Digital.Servicios
             {
                 while (lector.Read())
                 {
-                    articulos.Add(new Articulo(Convert.ToInt32(lector["id"]), sa.GetAutor(Convert.ToInt32(lector["idAutor"])), Convert.ToInt32(lector["idSeccion"]), (string)lector["titulo"], (string)lector["imagen"], (string)lector["contenido"], Convert.ToInt32(lector["publicado"]) == 1));
+                    articulos.Add(new Articulo(Convert.ToInt32(lector["id"]), sa.GetAutor(Convert.ToInt32(lector["idAutor"])), Convert.ToInt32(lector["idSeccion"]), (string)lector["titulo"], (string)lector["imagen"], (string)lector["contenido"], Convert.ToInt32(lector["publicado"]) == 1, (string)lector["urlPdf"]));
                 }
             }
             lector.Close();
@@ -103,6 +105,21 @@ namespace Proyecto_Revista_Digital.Servicios
 
             comando.Parameters.Add("@id", SqliteType.Integer);
             comando.Parameters["@id"].Value = idArticulo;
+
+            comando.ExecuteNonQuery();
+            conexion.Close();
+        }
+
+        public void UpdateUrlPdf(int idArticulo, string urlPdf)
+        {
+            conexion.Open();
+            SqliteCommand comando = conexion.CreateCommand();
+            comando.CommandText = "UPDATE articulos SET urlPdf = @urlPdf WHERE id = @id";
+
+            comando.Parameters.Add("@id", SqliteType.Integer);
+            comando.Parameters.Add("@urlPdf", SqliteType.Text);
+            comando.Parameters["@id"].Value = idArticulo;
+            comando.Parameters["@urlPdf"].Value = urlPdf;
 
             comando.ExecuteNonQuery();
             conexion.Close();
