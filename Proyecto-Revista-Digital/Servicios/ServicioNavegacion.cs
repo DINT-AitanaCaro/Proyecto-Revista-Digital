@@ -1,4 +1,5 @@
 ﻿using Proyecto_Revista_Digital.Vistas;
+using Proyecto_Revista_Digital.VistasModelo;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -37,6 +38,12 @@ namespace Proyecto_Revista_Digital.Servicios
         {
             CrearSeccion windowCrearSeccion = new CrearSeccion();
             return windowCrearSeccion.ShowDialog();
+        }
+
+        public bool? CargarNuevoEditarListaTerminos()
+        {
+            WindowCrearEditarListaTerminos windowCrearEditarListaTerminos = new WindowCrearEditarListaTerminos();
+            return windowCrearEditarListaTerminos.ShowDialog();
         }
     }
 }

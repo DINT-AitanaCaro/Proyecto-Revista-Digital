@@ -361,6 +361,7 @@
     <Resource Include="Assets\edit.png" />
     <Resource Include="Assets\nombreLista.png" />
     <Resource Include="Assets\descripcionLista.png" />
+    <Resource Include="Assets\deleteOne.png" />
     <Content Include="RevistaOnline\img\logoRevista.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

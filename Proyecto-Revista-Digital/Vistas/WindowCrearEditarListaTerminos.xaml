@@ -6,7 +6,7 @@
         xmlns:inputLayout="clr-namespace:Syncfusion.UI.Xaml.TextInputLayout;assembly=Syncfusion.SfTextInputLayout.WPF"
         xmlns:local="clr-namespace:Proyecto_Revista_Digital.VistasModelo"
         mc:Ignorable="d"
-        Title="WindowCrearEditarListaTerminos" Height="460" Width="480">
+        Title="WindowCrearEditarListaTerminos" Height="360" Width="480">
     <Window.Resources>
         <Style TargetType="{x:Type Button}">
             <Setter Property="Margin" Value="7"/>
@@ -59,10 +59,32 @@
                 <Image Source="../assets/descripcionLista.png"/>
             </inputLayout:SfTextInputLayout.LeadingView>
         </inputLayout:SfTextInputLayout>
-        <ListBox>
+        <GroupBox BorderBrush="#158FD6">
+            <GroupBox.Header>
+                <TextBlock Text="Terminos" Foreground="#158FD6" FontWeight="DemiBold"/>
+            </GroupBox.Header>
+            <DockPanel>
+                <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Right" Orientation="Horizontal">
+                    <Button Background="Transparent" BorderBrush="Transparent" Margin="0">
+                        <Image Source="../Assets/add.png" ToolTip="Añadir lista" Width="22"/>
+                    </Button>
+                    <Button  Background="Transparent" BorderBrush="Transparent" Margin="0">
+                        <Image Source="../Assets/edit.png" ToolTip="Editar lista" Width="20"/>
+                    </Button>
+                    <Button  Background="Transparent" BorderBrush="Transparent" Margin="0">
+                        <Image Source="../Assets/delete.png" ToolTip="Eliminar lista" Width="20"/>
+                    </Button>
+                    <Button  Background="Transparent" BorderBrush="Transparent" Margin="0">
+                        <Image Source="../Assets/deleteOne.png" ToolTip="Eliminar lista" Width="20"/>
+                    </Button>
+                </StackPanel>
+                <ListBox ItemsSource="{Binding Path=ListaActual.Terminos, UpdateSourceTrigger=PropertyChanged}">
+
+                </ListBox>
+            </DockPanel>
             
-        </ListBox>
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+        </GroupBox>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
             <Button x:Name="aceptarButton" Content="{Binding Path=Modo}" Background="#a4e4d9" Click="AceptarButton_Click" IsDefault="True"/>
             <Button Content="Cancelar" Background="Transparent" IsCancel="True"/>
         </StackPanel>
