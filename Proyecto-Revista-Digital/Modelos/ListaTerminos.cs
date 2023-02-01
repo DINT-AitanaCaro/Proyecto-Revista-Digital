@@ -39,15 +39,18 @@ namespace Proyecto_Revista_Digital.Modelos
             set { SetProperty(ref _terms, value); }
         }
 
+        private bool aplicada;
+
+        public bool Aplicada
+        {
+            get { return aplicada; }
+            set { SetProperty(ref aplicada, value); }
+        }
+
         public ListaTerminos(string name, string description)
         {
             Name = name;
             Description = description;
-        }
-
-        public override string ToString()
-        {
-            return $"Id: {Id}. Name: {Name}, Description: {Description}.";
         }
     }
 }

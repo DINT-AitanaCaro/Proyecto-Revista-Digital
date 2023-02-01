@@ -3,10 +3,72 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Proyecto_Revista_Digital.Vistas"
+             xmlns:local="clr-namespace:Proyecto_Revista_Digital.Vistas" xmlns:local1="clr-namespace:Proyecto_Revista_Digital.Convertidores"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-            
-    </Grid>
+    <UserControl.Resources>
+        <Style TargetType="{x:Type Run}" x:Key="listaAplicada">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Aplicada}" Value="True">
+                    <Setter Property="Text" Value="Aplicada ·"/>
+                    <Setter Property="Foreground" Value="DodgerBlue"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+        <local1:TerminosConverter x:Key="ConvertidorTerminos"/>
+        <DataTemplate x:Key="plantillaListas">
+            <Border Padding="7" BorderThickness="1" Background="White" CornerRadius="5">
+                <StackPanel>
+                    <DockPanel LastChildFill="False">
+                        <TextBlock DockPanel.Dock="Left"  FontWeight="Bold" FontSize="15" Margin="0,0,5,0">
+                                <Run Style="{StaticResource listaAplicada}" />
+                                <Run Text="{Binding Path=Name}"/>
+                                <Run Text="·"/>
+                        </TextBlock>
+                        <TextBlock DockPanel.Dock="Left"  Text="{Binding Path=Description}"  Foreground="Gray" Margin="0,0,5,0" VerticalAlignment="Center"/>
+
+                        <!--
+                        <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent">
+                            <Image Source="add.png" ToolTip="Add Term" Width="20"/>
+                        </Button>
+                        -->
+                    </DockPanel>
+                    <TextBlock Text="{Binding Path=Terms, Converter={StaticResource ConvertidorTerminos}}" Margin="5,0,0,0" TextWrapping="Wrap"/>
+                </StackPanel>
+                <Border.Effect>
+                    <DropShadowEffect ShadowDepth="0.5" BlurRadius="5"/>
+                </Border.Effect>
+            </Border>
+        </DataTemplate>
+    </UserControl.Resources>
+    <DockPanel Margin="0,20,0,0">
+        <DockPanel  DockPanel.Dock="Top" LastChildFill="False">
+            <TextBlock DockPanel.Dock="Left" Text="Listas de palabras prohibidas." FontSize="25" FontWeight="Bold" Margin="10,0,0,0"/>
+            <Border DockPanel.Dock="Right" BorderBrush="DeepSkyBlue" BorderThickness="1.5" CornerRadius="5"  Padding="5" Margin="0,0,23,0" Background="AliceBlue">
+                <StackPanel Orientation="Horizontal">
+                    <Button Background="Transparent" BorderBrush="Transparent" Command="{Binding Path=MarcarComoAplicadaCommnad}">
+                        <Image Source="../Assets/aplicar.png" ToolTip="Aplicar como lista de filtrado" Width="20"/>
+                    </Button>
+                </StackPanel>
+            </Border>
+            <Border DockPanel.Dock="Right" BorderBrush="DeepSkyBlue" BorderThickness="1.5" CornerRadius="5"  Padding="5" Margin="0,0,10,0" Background="AliceBlue">
+                <StackPanel Orientation="Horizontal" >
+                    <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="../Assets/add.png" ToolTip="Añadir lista" Width="22"/>
+                    </Button>
+                    <Button  Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="../Assets/edit.png" ToolTip="Editar lista" Width="20"/>
+                    </Button>
+                    <Button  Background="Transparent" BorderBrush="Transparent">
+                        <Image Source="../Assets/delete.png" ToolTip="Eliminar lista" Width="20"/>
+                    </Button>
+                </StackPanel>
+            </Border>
+        </DockPanel>
+        <Border BorderBrush="DeepSkyBlue" BorderThickness="2.5"></Border>
+        <ListBox SelectedItem="{Binding Path=ListaSeleccionada}" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" BorderBrush="Transparent" ItemsSource="{Binding Path=Terminos, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource plantillaListas}">
+
+        </ListBox>
+
+    </DockPanel>
 </UserControl>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Proyecto_Revista_Digital.VistasModelo;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,11 @@ namespace Proyecto_Revista_Digital.Vistas
     /// </summary>
     public partial class UserControlGestionPalabrasProhibidas : UserControl
     {
+        UserControlGestionListasTerminosVM vm = new UserControlGestionListasTerminosVM();
         public UserControlGestionPalabrasProhibidas()
         {
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }
