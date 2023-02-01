@@ -14,7 +14,6 @@ namespace Proyecto_Revista_Digital.VistasModelo
     class WindowCrearEditarListaTerminosVM : ObservableObject
     {
         private ListaTerminos _lista;
-
         public ListaTerminos ListaActual
         {
             get { return _lista; }

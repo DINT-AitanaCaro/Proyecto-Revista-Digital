@@ -32,11 +32,11 @@ namespace Proyecto_Revista_Digital.Modelos
             set { SetProperty(ref description, value); }
         }
 
-        private ObservableCollection<string> _terms;
-        public ObservableCollection<string> Terms
+        private ObservableCollection<string> _terminos;
+        public ObservableCollection<string> Terminos
         {
-            get { return _terms; }
-            set { SetProperty(ref _terms, value); }
+            get { return _terminos; }
+            set { SetProperty(ref _terminos, value); }
         }
 
         private bool aplicada;

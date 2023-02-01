@@ -70,5 +70,14 @@ namespace Proyecto_Revista_Digital.Properties {
                 return ((string)(this["SQLiteLocation"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("3db2c831f29248f883bf33d925347349")]
+        public string ClaveAzureListas {
+            get {
+                return ((string)(this["ClaveAzureListas"]));
+            }
+        }
     }
 }

@@ -59,7 +59,9 @@
                 <Image Source="../assets/descripcionLista.png"/>
             </inputLayout:SfTextInputLayout.LeadingView>
         </inputLayout:SfTextInputLayout>
-       
+        <ListBox>
+            
+        </ListBox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
             <Button x:Name="aceptarButton" Content="{Binding Path=Modo}" Background="#a4e4d9" Click="AceptarButton_Click" IsDefault="True"/>
             <Button Content="Cancelar" Background="Transparent" IsCancel="True"/>

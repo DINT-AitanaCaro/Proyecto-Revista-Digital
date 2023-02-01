@@ -19,17 +19,28 @@ namespace Proyecto_Revista_Digital.Servicios
         {
             RestClient client = new RestClient("https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists");
             RestRequest request = new RestRequest(Method.GET);
-            request.AddHeader("Ocp-Apim-Subscription-Key", "3db2c831f29248f883bf33d925347349");
+            request.AddHeader("Ocp-Apim-Subscription-Key", Properties.Settings.Default.ClaveAzureListas);
             IRestResponse response = client.Execute(request);
             Thread.Sleep(WAIT_TIME);
             return JsonConvert.DeserializeObject<ObservableCollection<ListaTerminos>>(response.Content);
+        }
+
+        public void PostTermList(ListaTerminos listaTerminos)
+        {
+            var client = new RestClient("https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists?language=spa");
+            var request = new RestRequest(Method.POST);
+            string data = JsonConvert.SerializeObject(listaTerminos);
+            request.AddParameter("application/json", data, ParameterType.RequestBody);
+            request.AddHeader("Ocp-Apim-Subscription-Key", Properties.Settings.Default.ClaveAzureListas);
+            var response = client.Execute(request);
+            Thread.Sleep(WAIT_TIME);
         }
 
         public ObservableCollection<string> GetTerminos(int idLista)
         {
             RestClient client = new RestClient($"https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists/{idLista}/terms?language=spa");
             RestRequest request = new RestRequest(Method.GET);
-            request.AddHeader("Ocp-Apim-Subscription-Key", "3db2c831f29248f883bf33d925347349");
+            request.AddHeader("Ocp-Apim-Subscription-Key", Properties.Settings.Default.ClaveAzureListas);
             IRestResponse response = client.Execute(request);
             Thread.Sleep(WAIT_TIME);
             ObservableCollection<string> terminos = new ObservableCollection<string>();
@@ -51,7 +62,7 @@ namespace Proyecto_Revista_Digital.Servicios
         {
             RestClient client = new RestClient($"https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists/{idLista}/terms/{term}?language=spa");
             RestRequest request = new RestRequest(Method.POST);
-            request.AddHeader("Ocp-Apim-Subscription-Key", "3db2c831f29248f883bf33d925347349");
+            request.AddHeader("Ocp-Apim-Subscription-Key", Properties.Settings.Default.ClaveAzureListas);
             Thread.Sleep(WAIT_TIME);
             var response = client.Execute(request);
             RefrechSearchIndex(idLista);
@@ -62,7 +73,7 @@ namespace Proyecto_Revista_Digital.Servicios
         {
             RestClient client = new RestClient($"https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists/{idLista}/RefreshIndex?language=spa");
             RestRequest request = new RestRequest(Method.POST);
-            request.AddHeader("Ocp-Apim-Subscription-Key", "3db2c831f29248f883bf33d925347349");
+            request.AddHeader("Ocp-Apim-Subscription-Key", Properties.Settings.Default.ClaveAzureListas);
             IRestResponse response = client.Execute(request);
             Thread.Sleep(WAIT_TIME);
         }

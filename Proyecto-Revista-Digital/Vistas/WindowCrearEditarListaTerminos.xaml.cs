@@ -19,9 +19,17 @@ namespace Proyecto_Revista_Digital.VistasModelo
     /// </summary>
     public partial class WindowCrearEditarListaTerminos : Window
     {
+        WindowCrearEditarListaTerminosVM vm = new WindowCrearEditarListaTerminosVM();
         public WindowCrearEditarListaTerminos()
         {
             InitializeComponent();
+            DataContext = vm;
+        }
+
+        private void AceptarButton_Click(object sender, RoutedEventArgs e)
+        {
+            vm.GuardarLista();
+            DialogResult = true;
         }
     }
 }
