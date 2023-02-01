@@ -226,6 +226,7 @@
     <Compile Include="VistasModelo\GestorArticulosVM.cs" />
     <Compile Include="VistasModelo\GestorAutoresVM.cs" />
     <Compile Include="VistasModelo\MainWindowVM.cs" />
+    <Compile Include="VistasModelo\UserControlGestionListasTerminosVM.cs" />
     <Compile Include="VistasModelo\WindowCrearEditarAutorVM.cs" />
     <Compile Include="Vistas\CrearArticulo.xaml.cs">
       <DependentUpon>CrearArticulo.xaml</DependentUpon>
@@ -239,8 +240,8 @@
     <Compile Include="Vistas\GestionAutores.xaml.cs">
       <DependentUpon>GestionAutores.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Vistas\UserControlGestionPalabrasProhibidas.xaml.cs">
-      <DependentUpon>UserControlGestionPalabrasProhibidas.xaml</DependentUpon>
+    <Compile Include="Vistas\UserControlGestionListasTerminos.xaml.cs">
+      <DependentUpon>UserControlGestionListasTerminos.xaml</DependentUpon>
     </Compile>
     <Compile Include="Vistas\WindowCrearEditarAutor.xaml.cs">
       <DependentUpon>WindowCrearEditarAutor.xaml</DependentUpon>
@@ -273,7 +274,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Vistas\UserControlGestionPalabrasProhibidas.xaml">
+    <Page Include="Vistas\UserControlGestionListasTerminos.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
