@@ -230,6 +230,10 @@
     <Compile Include="VistasModelo\MainWindowVM.cs" />
     <Compile Include="VistasModelo\UserControlGestionListasTerminosVM.cs" />
     <Compile Include="VistasModelo\WindowCrearEditarAutorVM.cs" />
+    <Compile Include="VistasModelo\WindowCrearEditarListaTerminosVM.cs" />
+    <Compile Include="Vistas\WindowCrearEditarListaTerminos.xaml.cs">
+      <DependentUpon>WindowCrearEditarListaTerminos.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Vistas\CrearArticulo.xaml.cs">
       <DependentUpon>CrearArticulo.xaml</DependentUpon>
     </Compile>
@@ -260,6 +264,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Vistas\WindowCrearEditarListaTerminos.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Vistas\CrearArticulo.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

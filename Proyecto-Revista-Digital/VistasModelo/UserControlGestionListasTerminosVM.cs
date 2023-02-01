@@ -37,7 +37,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void MarcarListaComoAplicada()
         {
-            Terminos.ToList().ForEach(list => { if (list.Aplicada) list.Aplicada = false; });
+            Terminos.ToList().ForEach(list => { if (list.Aplicada) { list.Aplicada = false; } });
             ListaSeleccionada.Aplicada = true;
         }
     }
