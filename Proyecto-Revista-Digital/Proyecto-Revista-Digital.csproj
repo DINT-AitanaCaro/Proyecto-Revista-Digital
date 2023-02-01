@@ -214,6 +214,7 @@
     <Compile Include="Modelos\Autor.cs" />
     <Compile Include="Modelos\ListaTerminos.cs" />
     <Compile Include="Modelos\Seccion.cs" />
+    <Compile Include="Servicios\ServicioAPIRestListasTerminos.cs" />
     <Compile Include="Servicios\ServicioArticulo.cs" />
     <Compile Include="Servicios\ServicioAutor.cs" />
     <Compile Include="Servicios\ServicioAzure.cs" />
