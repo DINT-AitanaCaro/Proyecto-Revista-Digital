@@ -212,6 +212,7 @@
     <Compile Include="Mensajes\EnviarSeccionMessage.cs" />
     <Compile Include="Modelos\Articulo.cs" />
     <Compile Include="Modelos\Autor.cs" />
+    <Compile Include="Modelos\ListaTerminos.cs" />
     <Compile Include="Modelos\Seccion.cs" />
     <Compile Include="Servicios\ServicioArticulo.cs" />
     <Compile Include="Servicios\ServicioAutor.cs" />
