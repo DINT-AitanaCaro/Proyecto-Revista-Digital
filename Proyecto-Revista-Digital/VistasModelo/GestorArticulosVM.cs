@@ -19,6 +19,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 {
     class GestorArticulosVM : ObservableObject
     {
+        private ServicioAzure servicioAzure;
         private ServicioArticulo servicioArticulo;
 		private ObservableCollection<Articulo> articulos;
 
@@ -49,6 +50,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             PublicarCommand = new RelayCommand(PublicarArticulo);
             EliminarCommand = new RelayCommand(EliminarArticulo);
 
+            servicioAzure = new ServicioAzure();
             servicioArticulo = new ServicioArticulo();
             CargarArticulos();
 		}
@@ -67,8 +69,8 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void PublicarArticulo()
         {
+            ArticuloSeleccionado.UrlPdf = servicioAzure.AlmacenarPDFEnLaNube(GenerarPDF());
             servicioArticulo.PublicarArticulo(ArticuloSeleccionado.Id);
-            string pdf = GenerarPDF();
             CargarArticulos();
         }
 
