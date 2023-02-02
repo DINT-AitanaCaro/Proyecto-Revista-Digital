@@ -33,7 +33,7 @@ namespace Proyecto_Revista_Digital.Servicios
                     imagen varchar(100),                      
                     contenido varchar(50), 
                     publicado INTEGER,
-                    urlPdf varchar(100),
+                    urlPdf varchar(250),
                     FOREIGN KEY (idAutor) REFERENCES autores(id)
                     FOREIGN KEY (idSeccion) REFERENCES secciones(id)
                                     )";

@@ -86,10 +86,10 @@ namespace Proyecto_Revista_Digital.VistasModelo
                 sectionHTML += "<summary>~ " + s.NombreSeccion + " ~</summary>";
                 foreach (Articulo a in servicioArticulo.GetArticulosPorSeccion(s.IdSeccion))
                 {
-                    sectionHTML += "<div class=\"articulo\">";
+                    sectionHTML += "<a href=\"" + a.UrlPdf + "\"><div class=\"articulo\">";
                     sectionHTML += "<h1>" + a.Titulo + "</h1>";
                     sectionHTML += "<img src=\"" + a.Imagen + "\">";
-                    sectionHTML += "</div>";
+                    sectionHTML += "</div></a>";
                 }
                 sectionHTML += "</details>";
             }

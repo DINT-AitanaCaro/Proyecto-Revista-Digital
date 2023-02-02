@@ -52,6 +52,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
             servicioAzure = new ServicioAzure();
             servicioArticulo = new ServicioArticulo();
+
             CargarArticulos();
 		}
 
