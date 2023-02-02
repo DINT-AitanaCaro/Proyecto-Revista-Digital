@@ -34,6 +34,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public RelayCommand GestionarArticulosCommand { get; }
         public RelayCommand PublicarPaginaCommand { get; }
         public RelayCommand NuevoArticuloCommand { get; }
+        public RelayCommand GestionarListasCommand { get; }
 
         private bool refrescar;
 
@@ -55,6 +56,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             GestionarArticulosCommand = new RelayCommand(GestionarArticulos);
             PublicarPaginaCommand = new RelayCommand(PublicarPagina);
             NuevoArticuloCommand = new RelayCommand(NuevoArticulo);
+            GestionarListasCommand = new RelayCommand(GestionarListas);
 
             this.serviciosVentanas = new ServicioNavegacion();
         }
@@ -67,6 +69,10 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public void GestionarArticulos()
         {
             ContenidoVentana = this.serviciosVentanas.CargarGestionArticulos();
+        }
+        public void GestionarListas()
+        {
+            ContenidoVentana = this.serviciosVentanas.CargarGestionarListas();
         }
 
         public void PublicarPagina()

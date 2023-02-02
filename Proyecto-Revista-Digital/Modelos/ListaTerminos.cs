@@ -52,5 +52,9 @@ namespace Proyecto_Revista_Digital.Modelos
             Name = name;
             Description = description;
         }
+
+        public ListaTerminos()
+        {
+        }
     }
 }

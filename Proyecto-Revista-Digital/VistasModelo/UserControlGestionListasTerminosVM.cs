@@ -1,26 +1,32 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
+using Proyecto_Revista_Digital.Mensajes;
 using Proyecto_Revista_Digital.Modelos;
+using Proyecto_Revista_Digital.Servicios;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace Proyecto_Revista_Digital.VistasModelo
 {
     class UserControlGestionListasTerminosVM : ObservableObject
     {
         public RelayCommand MarcarComoAplicadaCommnad { get; }
-        public RelayCommand AddListaCommand { get; }
+        public RelayCommand AñadirListaCommand { get; }
+        public RelayCommand EliminarListaCommand { get; }
+        public RelayCommand EditarListaCommand { get; }
 
-        private ObservableCollection<ListaTerminos> terminos;
+        private ObservableCollection<ListaTerminos> listasTerminos;
 
-        public ObservableCollection<ListaTerminos> Terminos
+        public ObservableCollection<ListaTerminos> ListasTerminos
         {
-            get { return terminos; }
-            set { SetProperty(ref terminos, value); }
+            get { return listasTerminos; }
+            set { SetProperty(ref listasTerminos, value); }
         }
 
         private ListaTerminos listaSeleccionada;
@@ -30,15 +36,69 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref listaSeleccionada, value); }
         }
 
+        private ServicioNavegacion servicioNavegacion;
+        private ServicioAPIRestListasTerminos servicioListas;
         public UserControlGestionListasTerminosVM()
         {
+            ListasTerminos = new ObservableCollection<ListaTerminos>();
+            //servicios
+            servicioNavegacion = new ServicioNavegacion();
+            servicioListas = new ServicioAPIRestListasTerminos();
+            //traer listas
+            Refrescar(true);
+            //comandos
             MarcarComoAplicadaCommnad = new RelayCommand(MarcarListaComoAplicada);
+            AñadirListaCommand = new RelayCommand(AñadirLista);
+            EliminarListaCommand = new RelayCommand(AñadirLista);
+            EditarListaCommand = new RelayCommand(EditarLista);
+            
+            //envío mensaje
+            WeakReferenceMessenger.Default.Register<UserControlGestionListasTerminosVM, EnviarListaMessage>(this, (r, m) =>
+            {
+                if (!m.HasReceivedResponse)
+                {
+                    m.Reply(r.ListaSeleccionada);
+                }
+            });
         }
 
         public void MarcarListaComoAplicada()
         {
-            Terminos.ToList().ForEach(list => { if (list.Aplicada) { list.Aplicada = false; } });
+            ListasTerminos.ToList().ForEach(list => { if (list.Aplicada) { list.Aplicada = false; } });
             ListaSeleccionada.Aplicada = true;
+        }
+
+        public void AñadirLista()
+        {
+            ListaSeleccionada = new ListaTerminos();
+            bool? resultado = servicioNavegacion.CargarNuevoEditarListaTerminos();
+            Refrescar((bool)resultado);
+        }
+
+        public void EditarLista()
+        {
+            bool? resultado = servicioNavegacion.CargarNuevoEditarListaTerminos();
+            Refrescar((bool)resultado);
+        }
+        public void EliminarLista()
+        {
+            if(!servicioListas.EliminarLista(ListaSeleccionada.Id))
+            {
+                MessageBox.Show("No se ha podido eliminar la lista.", "Error en eliminación de la lista", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+        }
+
+        public void Refrescar(bool refrescar)
+        {
+            if(refrescar)
+            {
+                //ListasTerminos = new ObservableCollection<ListaTerminos>();
+                ListasTerminos = servicioListas.GetListas();
+                foreach (ListaTerminos lista in ListasTerminos)
+                {
+                    lista.Terminos = servicioListas.GetTerminos(lista.Id);
+                }
+            }
         }
     }
 }

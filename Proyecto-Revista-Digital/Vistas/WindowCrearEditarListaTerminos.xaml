@@ -6,7 +6,7 @@
         xmlns:inputLayout="clr-namespace:Syncfusion.UI.Xaml.TextInputLayout;assembly=Syncfusion.SfTextInputLayout.WPF"
         xmlns:local="clr-namespace:Proyecto_Revista_Digital.VistasModelo"
         mc:Ignorable="d"
-        Title="{Binding Path=Modo}" Height="500" Width="480">
+        Title="{Binding Path=Modo}" ShowInTaskbar="False" ResizeMode="NoResize"  SizeToContent="WidthAndHeight">
     <Window.Resources>
         <Style TargetType="{x:Type Button}" x:Key="botonesDialogo">
             <Setter Property="Margin" Value="7"/>
@@ -21,6 +21,14 @@
         </Style>
         <Style TargetType="{x:Type inputLayout:SfTextInputLayout}" x:Key="textInputLayout">
             <Setter Property="Margin" Value="8"/>
+        </Style>
+        <Style TargetType="{x:Type GroupBox}">
+            <Setter Property="Visibility" Value="Visible"/>
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=Existe}" Value="False">
+                    <Setter Property="Visibility" Value="Collapsed"/>
+                </DataTrigger>
+            </Style.Triggers>
         </Style>
        
         
@@ -54,7 +62,7 @@
     </Window.Resources>
     <StackPanel Margin="15">
         <inputLayout:SfTextInputLayout Hint="Nombre" HelperText="Nombre de la lista" Style="{StaticResource textInputLayout}">
-            <TextBox Text="{Binding Path=ListaActual.Nombre, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+            <TextBox Text="{Binding Path=ListaActual.Name, UpdateSourceTrigger=PropertyChanged}"></TextBox>
             <inputLayout:SfTextInputLayout.LeadingView>
                 <Image Source="../assets/nombreLista.png"/>
             </inputLayout:SfTextInputLayout.LeadingView>
@@ -79,8 +87,8 @@
                     </Button>
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
-                    <TextBox  BorderBrush="#158FD6" MinWidth="100" Text="{Binding Path=NuevoTermino, UpdateSourceTrigger=PropertyChanged}" Height="25" Margin="5"/>
-                    <Button Content="Añadir Termino" BorderBrush="#158FD6" Background="AliceBlue" Height="25" Padding="3"/>
+                    <TextBox  BorderBrush="#158FD6" MinWidth="100" Text="{Binding Path=NuevoTermino, UpdateSourceTrigger=PropertyChanged}" Height="25" Margin="5" />
+                    <Button Content="Añadir Termino" BorderBrush="#158FD6" Background="AliceBlue" Height="25" Padding="3" Command="{Binding Path=AñadirTerminoCommand}"/>
                 </StackPanel>
                 <ListBox ItemsSource="{Binding Path=ListaActual.Terminos, UpdateSourceTrigger=PropertyChanged}">
 

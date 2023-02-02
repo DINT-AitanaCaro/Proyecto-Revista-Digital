@@ -61,7 +61,7 @@
                 <syncfusion:NavigationItem.Icon>
                     <Image Source="./Assets/censor.png" Width="32" Height="32"></Image>
                 </syncfusion:NavigationItem.Icon>
-                <syncfusion:NavigationItem Header="Gestionar lista de palabras">
+                <syncfusion:NavigationItem Header="Gestionar lista de palabras" Command="{Binding Path=GestionarListasCommand}">
                     <!--<syncfusion:NavigationItem.Icon>
                     <Path Data="M9.5189972,7.3780194C8.3389893,... "/>
                 </syncfusion:NavigationItem.Icon>-->

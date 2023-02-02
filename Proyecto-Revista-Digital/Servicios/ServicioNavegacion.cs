@@ -33,6 +33,11 @@ namespace Proyecto_Revista_Digital.Servicios
         {
             return new CrearArticulo();
         }
+        
+        public UserControl CargarGestionarListas()
+        {
+            return new UserControlGestionPalabrasProhibidas();
+        }
 
         public bool? CargarCrearSeccion()
         {
