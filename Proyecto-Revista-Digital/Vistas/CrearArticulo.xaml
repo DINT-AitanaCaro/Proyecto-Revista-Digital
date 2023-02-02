@@ -10,7 +10,7 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <ControlTemplate x:Key="ButtonControlTemplate" TargetType="{x:Type Button}">
-            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="5">
+            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="5" >
                 <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
             </Border>
             <ControlTemplate.Triggers>
@@ -36,7 +36,23 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-        
+        <ControlTemplate x:Key="TextBoxControlTemplate" TargetType="{x:Type TextBox}" >
+            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="7"  Padding="2">
+                <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+
     </UserControl.Resources>
     <DockPanel >
         <inputLayout:SfTextInputLayout Margin="10,5" Hint="Titulo"  HintFloatMode="Float" DockPanel.Dock="Top">
@@ -46,7 +62,7 @@
             </inputLayout:SfTextInputLayout.LeadingView>
         </inputLayout:SfTextInputLayout>
         <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="10,0">
-            
+
             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
                 <inputLayout:SfTextInputLayout Hint="Seccion" Margin="5,0" Width="150" VerticalAlignment="Center">
                     <ComboBox Width="50"  ItemsSource="{Binding Path=ListaSecciones, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="NombreSeccion" SelectedItem="{Binding Path=SeccionArticulo, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
@@ -63,9 +79,9 @@
             </inputLayout:SfTextInputLayout>
 
             <Button Content="Crear Articulo" Width="100" Height="30" DockPanel.Dock="Right" Padding="5" Command="{Binding Path=NuevoArticuloCommand}"/>
-            
+
         </DockPanel>
-        
+
         <DockPanel DockPanel.Dock="Bottom" Margin="10,0">
             <Button DockPanel.Dock="Right" Width="50" Height="50" Background="#a4e4d9" Margin="5" Command="{Binding Path=NuevaImagenArticuloCommand}" Template="{DynamicResource ButtonControlTemplate}" VerticalAlignment="Top">
                 <Button.Content>
@@ -75,17 +91,11 @@
             <inputLayout:SfTextInputLayout Hint="Imagen" HintFloatMode="Float" DockPanel.Dock="Left" >
                 <TextBox Text="{Binding Path=ArticuloNuevo.Imagen}" IsReadOnly="True"/>
             </inputLayout:SfTextInputLayout>
-            
+
         </DockPanel>
 
 
-        <syncfusion:EditControl x:Name="editControl1" BorderBrush="Black" BorderThickness="1" Background="White" Foreground="Black" HorizontalAlignment="Center"  Margin="10" Width="500" ShowDefaultContextMenu="True" ShowLineNumber="False" IsReadOnly="False" Cursor="IBeam" Text="{Binding Path=ArticuloNuevo.Contenido, UpdateSourceTrigger=PropertyChanged}"> 
-            <syncfusion:EditControl.StatusBarSettings >
-                <syncfusion:StatusBarSettings Visibility="Visible" ShowFilePath="Visible" ShowLineNumber="Visible" ShowColumnNumber="Visible" ShowEncoding="Collapsed"/>
-            </syncfusion:EditControl.StatusBarSettings>
-            
-        </syncfusion:EditControl>
-
+        <TextBox Text="{Binding Path=ArticuloNuevo.Contenido, UpdateSourceTrigger=PropertyChanged}" Margin="15" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Template="{DynamicResource TextBoxControlTemplate}"/>
 
     </DockPanel>
 </UserControl>
