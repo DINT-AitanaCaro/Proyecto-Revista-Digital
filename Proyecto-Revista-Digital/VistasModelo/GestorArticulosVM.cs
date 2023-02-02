@@ -2,18 +2,24 @@
 using CommunityToolkit.Mvvm.Input;
 using Proyecto_Revista_Digital.Modelos;
 using Proyecto_Revista_Digital.Servicios;
+using QuestPDF.Fluent;
+using QuestPDF.Infrastructure;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Xml.Linq;
 
 namespace Proyecto_Revista_Digital.VistasModelo
 {
     class GestorArticulosVM : ObservableObject
     {
+        private ServicioAzure servicioAzure;
         private ServicioArticulo servicioArticulo;
 		private ObservableCollection<Articulo> articulos;
 
@@ -44,6 +50,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             PublicarCommand = new RelayCommand(PublicarArticulo);
             EliminarCommand = new RelayCommand(EliminarArticulo);
 
+            servicioAzure = new ServicioAzure();
             servicioArticulo = new ServicioArticulo();
             CargarArticulos();
 		}
@@ -62,8 +69,8 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void PublicarArticulo()
         {
+            ArticuloSeleccionado.UrlPdf = servicioAzure.AlmacenarPDFEnLaNube(GenerarPDF());
             servicioArticulo.PublicarArticulo(ArticuloSeleccionado.Id);
-            GenerarPDF();
             CargarArticulos();
         }
 
@@ -78,9 +85,63 @@ namespace Proyecto_Revista_Digital.VistasModelo
             }
         }
 
-        public void GenerarPDF()
+        public string GenerarPDF()
         {
+            String ruta = "./Basura";
 
+            if (!File.Exists(ruta))
+            {
+                Directory.CreateDirectory(ruta);
+            }
+
+            ruta += "/imagen" + ArticuloSeleccionado.Titulo + ".jpg";
+
+            
+
+            Document
+                .Create(document =>
+                {
+                    document.Page(page =>
+                    {
+                        page.Margin(1, Unit.Inch);
+
+                        page.Header()
+                            .AlignCenter()
+                            .Text(ArticuloSeleccionado.Titulo)
+                            .FontSize(48)
+                            .SemiBold();
+
+                        page.Content()
+                            .Column(column =>
+                            {
+                                column.Spacing(0.5f, Unit.Inch);
+
+                                using (WebClient client = new WebClient())
+                                {
+                                    client.DownloadFile(new Uri(ArticuloSeleccionado.Imagen), ruta);
+                                }
+
+                                column.Item()
+                                    .Image(ruta);
+
+                                column.Item()
+                                    .Text(ArticuloSeleccionado.Contenido)
+                                    .FontSize(18);
+                            });
+                        page.Footer()
+                            .AlignCenter()
+                            .Text(text =>
+                            {
+                                text.DefaultTextStyle(x => x.FontSize(18));
+
+                                text.CurrentPageNumber();
+                                text.Span(" / ");
+                                text.TotalPages();
+                            });
+                    });
+                }).GeneratePdf("./Basura/" + ArticuloSeleccionado.Titulo + ".pdf");
+
+            return "./Basura/" + ArticuloSeleccionado.Titulo +".pdf";
         }
 	}
 }

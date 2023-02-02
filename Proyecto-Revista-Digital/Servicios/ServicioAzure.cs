@@ -36,5 +36,21 @@ namespace Proyecto_Revista_Digital.Servicios
             else return "";
 
         }
+
+        public string AlmacenarPDFEnLaNube(string rutaPDF)
+        {
+            var clienteBlobService = new BlobServiceClient(claveConexion);
+            var clienteContenedor = clienteBlobService.GetBlobContainerClient(nombreContenedorArticulosAzure);
+
+            Stream pdfArticulo = File.OpenRead(rutaPDF);
+            string nombrePDF = Path.GetFileName(rutaPDF);
+
+            if (!clienteContenedor.GetBlobClient(nombrePDF).Exists())
+                clienteContenedor.UploadBlob(nombrePDF, pdfArticulo);
+
+            var clienteBlobPDF = clienteContenedor.GetBlobClient(nombrePDF);
+
+            return clienteBlobPDF.Uri.AbsoluteUri;
+        }
     }
 }
