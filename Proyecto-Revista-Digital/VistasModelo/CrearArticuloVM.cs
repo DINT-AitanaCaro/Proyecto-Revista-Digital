@@ -114,13 +114,10 @@ namespace Proyecto_Revista_Digital.VistasModelo
             AutorArticulo = new Autor();
             
 
-            /*WeakReferenceMessenger.Default.Register<CrearArticuloVM, EnviarSeccionMessage>(this, (r, m) =>
+            WeakReferenceMessenger.Default.Register<CrearArticuloVM, EnviarSeccionMessage>(this, (r, m) =>
             {
-                if (!m.HasReceivedResponse)
-                {
-                    m.Reply(r.NuevaSeccion);
-                }
-            });*/
+                CargarSecciones();
+            });
         }
 
         private void CargarAutores()
@@ -147,23 +144,20 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             NuevaSeccion = new Seccion();
             bool? resultado = servicioNavegacion.CargarCrearSeccion();
-            CargarSecciones();
-            //RefrescarLista((bool)resultado);
+            //CargarSecciones();
+            
         }
 
         public void AñadirArticulo()
         {
-            //Autor autor = BuscarAutor();
-            //Seccion seccion = BuscarSeccion();
-            //BuscarAutor();
-            //BuscarSeccion();
+            
 
             if (AutorArticulo != null && SeccionArticulo != null)
             {
                 ArticuloNuevo.AutorArticulo = AutorArticulo;
                 ArticuloNuevo.IdSeccion = SeccionArticulo.IdSeccion;
                 ArticuloNuevo.Publicado = false;
-                ArticuloNuevo.Contenido = "";
+                ArticuloNuevo.UrlPdf = "";
                 
                 if (!ControlarArticulosTitulo())
                 {
@@ -174,25 +168,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             }
         }
 
-        /*private void BuscarAutor()
-        {
-            foreach (var item in ListaAutores.Where(item => item.Nombre.Equals(AutorArticulo.Nombre)))
-            {
-                AutorArticulo = item;
-            }
-
-            //AutorArticulo = null;
-        }
-
-        private void BuscarSeccion()
-        {
-            foreach (var item in ListaSecciones.Where(item => item.NombreSeccion.Equals(SeccionArticulo.NombreSeccion)))
-            {
-                SeccionArticulo = item;
-            }
-
-            //SeccionArticulo = null;
-        }*/
+       
 
         private bool ControlarArticulosTitulo()
         {
@@ -207,9 +183,6 @@ namespace Proyecto_Revista_Digital.VistasModelo
             return iguales;
         }
 
-        /*public void RefrescarLista(bool refrescar)
-        {
-            WeakReferenceMessenger.Default.Send(new RefrescarVentanaMessage(refrescar));
-        }*/
+        
     }
 }
