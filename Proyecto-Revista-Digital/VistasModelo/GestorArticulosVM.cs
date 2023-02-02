@@ -63,6 +63,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public void PublicarArticulo()
         {
             servicioArticulo.PublicarArticulo(ArticuloSeleccionado.Id);
+            GenerarPDF();
             CargarArticulos();
         }
 
@@ -75,6 +76,11 @@ namespace Proyecto_Revista_Digital.VistasModelo
                 servicioArticulo.DeleteArticulo(ArticuloSeleccionado.Id);
                 CargarArticulos();
             }
+        }
+
+        public void GenerarPDF()
+        {
+
         }
 	}
 }
