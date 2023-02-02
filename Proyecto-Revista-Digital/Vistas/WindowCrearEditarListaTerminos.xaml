@@ -6,18 +6,24 @@
         xmlns:inputLayout="clr-namespace:Syncfusion.UI.Xaml.TextInputLayout;assembly=Syncfusion.SfTextInputLayout.WPF"
         xmlns:local="clr-namespace:Proyecto_Revista_Digital.VistasModelo"
         mc:Ignorable="d"
-        Title="WindowCrearEditarListaTerminos" Height="360" Width="480">
+        Title="{Binding Path=Modo}" Height="500" Width="480">
     <Window.Resources>
-        <Style TargetType="{x:Type Button}">
+        <Style TargetType="{x:Type Button}" x:Key="botonesDialogo">
             <Setter Property="Margin" Value="7"/>
             <Setter Property="Padding" Value="4"/>
             <Setter Property="BorderBrush" Value="#a4e4d9"/>
             <Setter Property="BorderThickness" Value="2"/>
             <Setter Property="Template" Value="{DynamicResource ButtonControlTemplate}"/>
         </Style>
+        <Style TargetType="{x:Type Button}" x:Key="botonesEliminar">
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="Background" Value="Transparent"/>
+        </Style>
         <Style TargetType="{x:Type inputLayout:SfTextInputLayout}" x:Key="textInputLayout">
             <Setter Property="Margin" Value="8"/>
         </Style>
+       
+        
         <ControlTemplate x:Key="ButtonControlTemplate" TargetType="{x:Type Button}">
             <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="5">
                 <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
@@ -65,18 +71,16 @@
             </GroupBox.Header>
             <DockPanel>
                 <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Right" Orientation="Horizontal">
-                    <Button Background="Transparent" BorderBrush="Transparent" Margin="0">
-                        <Image Source="../Assets/add.png" ToolTip="Añadir lista" Width="22"/>
+                    <Button Command="{Binding Path=EliminarTodosTerminoCommand}" Style="{StaticResource botonesEliminar}">
+                        <Image Source="../Assets/delete.png" ToolTip="Eliminar termino" Width="20"/>
                     </Button>
-                    <Button  Background="Transparent" BorderBrush="Transparent" Margin="0">
-                        <Image Source="../Assets/edit.png" ToolTip="Editar lista" Width="20"/>
+                    <Button Command="{Binding Path=EliminarTerminoCommand}" Style="{StaticResource botonesEliminar}">
+                        <Image Source="../Assets/deleteOne.png" ToolTip="Eliminar un término" Width="20"/>
                     </Button>
-                    <Button  Background="Transparent" BorderBrush="Transparent" Margin="0">
-                        <Image Source="../Assets/delete.png" ToolTip="Eliminar lista" Width="20"/>
-                    </Button>
-                    <Button  Background="Transparent" BorderBrush="Transparent" Margin="0">
-                        <Image Source="../Assets/deleteOne.png" ToolTip="Eliminar lista" Width="20"/>
-                    </Button>
+                </StackPanel>
+                <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
+                    <TextBox  BorderBrush="#158FD6" MinWidth="100" Text="{Binding Path=NuevoTermino, UpdateSourceTrigger=PropertyChanged}" Height="25" Margin="5"/>
+                    <Button Content="Añadir Termino" BorderBrush="#158FD6" Background="AliceBlue" Height="25" Padding="3"/>
                 </StackPanel>
                 <ListBox ItemsSource="{Binding Path=ListaActual.Terminos, UpdateSourceTrigger=PropertyChanged}">
 
@@ -85,8 +89,8 @@
             
         </GroupBox>
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
-            <Button x:Name="aceptarButton" Content="{Binding Path=Modo}" Background="#a4e4d9" Click="AceptarButton_Click" IsDefault="True"/>
-            <Button Content="Cancelar" Background="Transparent" IsCancel="True"/>
+            <Button x:Name="aceptarButton" Content="{Binding Path=Modo}" Background="#a4e4d9" Click="AceptarButton_Click" IsDefault="True" Style="{StaticResource botonesDialogo}"/>
+            <Button Content="Cancelar" Background="Transparent" IsCancel="True" Style="{StaticResource botonesDialogo}"/>
         </StackPanel>
     </StackPanel>
 </Window>
