@@ -21,6 +21,5 @@ namespace Proyecto_Revista_Digital.Servicios
         {
             MessageBox.Show(mensaje, titulo, button, image);
         }
-
     }
 }

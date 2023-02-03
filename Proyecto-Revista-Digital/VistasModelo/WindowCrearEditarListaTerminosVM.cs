@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Proyecto_Revista_Digital.Mensajes;
 using Proyecto_Revista_Digital.Modelos;
 using Proyecto_Revista_Digital.Servicios;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -57,8 +58,10 @@ namespace Proyecto_Revista_Digital.VistasModelo
         }
 
         private ServicioAPIRestListasTerminos servicioListas;
+        private ServicioDialogo servicioDialogo;
         public WindowCrearEditarListaTerminosVM()
         {
+            servicioDialogo = new ServicioDialogo();
             servicioListas = new ServicioAPIRestListasTerminos();
             ListaActual = WeakReferenceMessenger.Default.Send<EnviarListaMessage>();
             Modo = (Existe = ListaActual.Id != 0) ? "Editar Lista" : "Crear Lista";
@@ -83,23 +86,35 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             if(Existe)
             {
-                if(!servicioListas.EditarLista(ListaActual.Id, ListaActual.Name, ListaActual.Description))
+                IRestResponse response = servicioListas.EditarLista(ListaActual.Id, ListaActual.Name, ListaActual.Description);
+                if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
-                    MessageBox.Show("No se ha podido editar la lista.", "Error en edición de la lista", MessageBoxButton.OK, MessageBoxImage.Error);
+                    servicioDialogo.MostrarMensaje(response.ErrorException.Message, "Error en edición de la lista", MessageBoxButton.OK, MessageBoxImage.Error);
+                    //response.ErrorException.Message
                 }
+
             } 
             else
             {
-                if(servicioListas.CrearLista(ListaActual))
+                IRestResponse response = servicioListas.CrearLista(ListaActual);
+                if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     Existe = true;
                 } else
                 {
-                    MessageBox.Show("No se ha podido crear la lista.", "Error en creación de la lista", MessageBoxButton.OK, MessageBoxImage.Error);
+                    servicioDialogo.MostrarMensaje(response.ErrorException.Message, "Error en creación de la lista", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 
             }
         }
+
+        public void RefrescaLista()
+        {
+            //ListaActual = servicioListas.Get
+            Terminos = servicioListas.GetTerminos(ListaActual.Id);
+        }
+
+        
 
     }
 }
