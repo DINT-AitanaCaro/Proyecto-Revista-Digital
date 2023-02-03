@@ -55,12 +55,17 @@
 
     </UserControl.Resources>
     <DockPanel >
-        <inputLayout:SfTextInputLayout Margin="10,5" Hint="Titulo"  HintFloatMode="Float" DockPanel.Dock="Top">
-            <TextBox Text="{Binding Path=ArticuloNuevo.Titulo}"/>
-            <inputLayout:SfTextInputLayout.LeadingView>
-                <Image Source="/Assets/TituloArticulo.ico"/>
-            </inputLayout:SfTextInputLayout.LeadingView>
-        </inputLayout:SfTextInputLayout>
+        <DockPanel DockPanel.Dock="Top" Margin="5,10">
+            <Button DockPanel.Dock="Left" Width="50" Height="50"  Margin="5" Command="{Binding Path=NuevaImagenArticuloCommand}" Template="{DynamicResource ButtonControlTemplate}" VerticalAlignment="Top">
+                <Button.Content>
+                    <Image Source="../assets/file-explorer.png" Width="24"/>
+                </Button.Content>
+            </Button>
+            <inputLayout:SfTextInputLayout Margin="5,0" Hint="Titulo"  HintFloatMode="Float" >
+                <TextBox Text="{Binding Path=ArticuloNuevo.Titulo}"/>
+            </inputLayout:SfTextInputLayout>
+        </DockPanel>
+        
         <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="10,0">
 
             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
