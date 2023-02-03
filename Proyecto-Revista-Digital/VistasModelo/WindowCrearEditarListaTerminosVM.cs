@@ -102,7 +102,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
                     Existe = true;
                 } else
                 {
-                    MessageBox.Show(response.ErrorException.Message, "Error en creación de la lista", MessageBoxButton.OK, MessageBoxImage.Error);
+                    servicioDialogo.MostrarMensaje(response.ErrorException.Message, "Error en creación de la lista", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 
             }

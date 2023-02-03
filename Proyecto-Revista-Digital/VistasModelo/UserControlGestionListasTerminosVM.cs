@@ -4,6 +4,7 @@ using CommunityToolkit.Mvvm.Messaging;
 using Proyecto_Revista_Digital.Mensajes;
 using Proyecto_Revista_Digital.Modelos;
 using Proyecto_Revista_Digital.Servicios;
+using RestSharp;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -20,9 +21,9 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public RelayCommand AñadirListaCommand { get; }
         public RelayCommand EliminarListaCommand { get; }
         public RelayCommand EditarListaCommand { get; }
-
+        private ServicioDialogo servicioDialogo;
         private ObservableCollection<ListaTerminos> listasTerminos;
-
+        
         public ObservableCollection<ListaTerminos> ListasTerminos
         {
             get { return listasTerminos; }
@@ -82,9 +83,10 @@ namespace Proyecto_Revista_Digital.VistasModelo
         }
         public void EliminarLista()
         {
-            if(!servicioListas.EliminarLista(ListaSeleccionada.Id))
+            IRestResponse response = servicioListas.EliminarLista(ListaSeleccionada.Id);
+            if (servicioListas.EliminarLista(ListaSeleccionada.Id).StatusCode == System.Net.HttpStatusCode.OK)
             {
-                MessageBox.Show("No se ha podido eliminar la lista.", "Error en eliminación de la lista", MessageBoxButton.OK, MessageBoxImage.Error);
+                servicioDialogo.MostrarMensaje(response.ErrorException.Message, "Error al eliminar la lista", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
