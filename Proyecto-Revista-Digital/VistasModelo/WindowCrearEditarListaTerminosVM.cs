@@ -58,8 +58,10 @@ namespace Proyecto_Revista_Digital.VistasModelo
         }
 
         private ServicioAPIRestListasTerminos servicioListas;
+        private ServicioDialogo servicioDialogo;
         public WindowCrearEditarListaTerminosVM()
         {
+            servicioDialogo = new ServicioDialogo();
             servicioListas = new ServicioAPIRestListasTerminos();
             ListaActual = WeakReferenceMessenger.Default.Send<EnviarListaMessage>();
             Modo = (Existe = ListaActual.Id != 0) ? "Editar Lista" : "Crear Lista";
@@ -87,8 +89,8 @@ namespace Proyecto_Revista_Digital.VistasModelo
                 IRestResponse response = servicioListas.EditarLista(ListaActual.Id, ListaActual.Name, ListaActual.Description);
                 if (response.StatusCode != System.Net.HttpStatusCode.OK)
                 {
+                    servicioDialogo.MostrarMensaje(response.ErrorException.Message, "Error en edición de la lista", MessageBoxButton.OK, MessageBoxImage.Error);
                     //response.ErrorException.Message
-                    MessageBox.Show(response.ErrorException.Message, "Error en edición de la lista", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
             } 

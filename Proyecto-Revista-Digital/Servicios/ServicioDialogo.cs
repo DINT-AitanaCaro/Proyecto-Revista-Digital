@@ -21,11 +21,5 @@ namespace Proyecto_Revista_Digital.Servicios
         {
             MessageBox.Show(mensaje, titulo, button, image);
         }
-        
-        public void MostrarMensaje(string mensaje, string titulo, MessageBoxButton button, MessageBoxImage image)
-        {
-            MessageBox.Show(mensaje, titulo, button, image);
-        }
-
     }
 }
