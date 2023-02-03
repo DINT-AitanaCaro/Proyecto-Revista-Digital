@@ -14,7 +14,7 @@ namespace Proyecto_Revista_Digital.Servicios
 {
     class ServicioAPIRestListasTerminos
     {
-        private const int WAIT_TIME = 2500;
+        private const int WAIT_TIME = 2000;
         public ObservableCollection<ListaTerminos> GetListas()
         {
             RestClient client = new RestClient("https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists");
@@ -55,7 +55,7 @@ namespace Proyecto_Revista_Digital.Servicios
             request.AddParameter("Name", name, ParameterType.RequestBody);
             request.AddParameter("Description", descripcion, ParameterType.RequestBody);
             var response = client.Execute(request);
-            
+            RefreshSearchIndex(listId);
             Thread.Sleep(WAIT_TIME);
             return response;
         }
