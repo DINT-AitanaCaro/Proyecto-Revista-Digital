@@ -41,7 +41,7 @@ namespace Proyecto_Revista_Digital.Servicios
         {
             var client = new RestClient($"https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists/{listId}");
             var request = new RestRequest(Method.DELETE);
-            request.AddHeader("Ocp-Apim-Subscription-Key", "Properties.Settings.Default.ClaveAzureListas");
+            request.AddHeader("Ocp-Apim-Subscription-Key", Properties.Settings.Default.ClaveAzureListas);
             var response = client.Execute(request);
             Thread.Sleep(WAIT_TIME);
             return response;
@@ -51,7 +51,7 @@ namespace Proyecto_Revista_Digital.Servicios
         {
             var client = new RestClient($"https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists/{listId}");
             var request = new RestRequest(Method.PUT);
-            request.AddHeader("Ocp-Apim-Subscription-Key", "Properties.Settings.Default.ClaveAzureListas");
+            request.AddHeader("Ocp-Apim-Subscription-Key", Properties.Settings.Default.ClaveAzureListas);
             request.AddParameter("Name", name, ParameterType.RequestBody);
             request.AddParameter("Description", descripcion, ParameterType.RequestBody);
             var response = client.Execute(request);

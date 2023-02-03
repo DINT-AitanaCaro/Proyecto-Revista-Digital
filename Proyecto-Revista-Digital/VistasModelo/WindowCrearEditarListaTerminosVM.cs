@@ -87,10 +87,9 @@ namespace Proyecto_Revista_Digital.VistasModelo
             if(Existe)
             {
                 IRestResponse response = servicioListas.EditarLista(ListaActual.Id, ListaActual.Name, ListaActual.Description);
-                if (response.StatusCode != System.Net.HttpStatusCode.OK)
+                if (response.StatusCode != System.Net.HttpStatusCode.UnsupportedMediaType)
                 {
                     servicioDialogo.MostrarMensaje(response.ErrorException.Message, "Error en edición de la lista", MessageBoxButton.OK, MessageBoxImage.Error);
-                    //response.ErrorException.Message
                 }
 
             } 
