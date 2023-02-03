@@ -71,6 +71,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public void PublicarArticulo()
         {
             ArticuloSeleccionado.UrlPdf = servicioAzure.AlmacenarPDFEnLaNube(GenerarPDF());
+            servicioArticulo.UpdateUrlPdf(ArticuloSeleccionado.Id, ArticuloSeleccionado.UrlPdf);
             servicioArticulo.PublicarArticulo(ArticuloSeleccionado.Id);
             CargarArticulos();
         }
