@@ -56,7 +56,7 @@
     </UserControl.Resources>
     <DockPanel >
         <DockPanel DockPanel.Dock="Top" Margin="5,10">
-            <Button DockPanel.Dock="Left" Width="50" Height="50"  Margin="5" Command="{Binding Path=NuevaImagenArticuloCommand}" Template="{DynamicResource ButtonControlTemplate}" VerticalAlignment="Top">
+            <Button DockPanel.Dock="Left" Width="50" Height="50"  Margin="5" Template="{DynamicResource ButtonControlTemplate}" VerticalAlignment="Top">
                 <Button.Content>
                     <Image Source="../assets/file-explorer.png" Width="24"/>
                 </Button.Content>
