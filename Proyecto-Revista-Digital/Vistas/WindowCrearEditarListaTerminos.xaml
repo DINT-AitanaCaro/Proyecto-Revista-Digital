@@ -6,7 +6,7 @@
         xmlns:inputLayout="clr-namespace:Syncfusion.UI.Xaml.TextInputLayout;assembly=Syncfusion.SfTextInputLayout.WPF"
         xmlns:local="clr-namespace:Proyecto_Revista_Digital.VistasModelo"
         mc:Ignorable="d"
-        Title="{Binding Path=Modo}" ShowInTaskbar="False" ResizeMode="NoResize"  SizeToContent="WidthAndHeight">
+        Title="{Binding Path=Modo}" ShowInTaskbar="False" ResizeMode="NoResize"  SizeToContent="Height" Width="500">
     <Window.Resources>
         <Style TargetType="{x:Type Button}" x:Key="botonesDialogo">
             <Setter Property="Margin" Value="7"/>
