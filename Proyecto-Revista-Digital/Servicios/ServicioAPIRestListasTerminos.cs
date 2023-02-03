@@ -25,7 +25,7 @@ namespace Proyecto_Revista_Digital.Servicios
             return JsonConvert.DeserializeObject<ObservableCollection<ListaTerminos>>(response.Content);
         }
 
-        public bool CrearLista(ListaTerminos listaTerminos)
+        public IRestResponse CrearLista(ListaTerminos listaTerminos)
         {
             var client = new RestClient("https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists?language=spa");
             var request = new RestRequest(Method.POST);
@@ -34,7 +34,7 @@ namespace Proyecto_Revista_Digital.Servicios
             request.AddHeader("Ocp-Apim-Subscription-Key", Properties.Settings.Default.ClaveAzureListas);
             var response = client.Execute(request);
             Thread.Sleep(WAIT_TIME);
-            return response.IsSuccessful;
+            return response;
         }
 
         public bool EliminarLista(int listId)
@@ -47,7 +47,7 @@ namespace Proyecto_Revista_Digital.Servicios
             return response.IsSuccessful;
         }
         
-        public bool EditarLista(int listId, string name, string descripcion)
+        public IRestResponse EditarLista(int listId, string name, string descripcion)
         {
             var client = new RestClient($"https://ModeradorArticulos.cognitiveservices.azure.com/contentmoderator/lists/v1.0/termlists/{listId}");
             var request = new RestRequest(Method.PUT);
@@ -55,8 +55,9 @@ namespace Proyecto_Revista_Digital.Servicios
             request.AddParameter("Name", name, ParameterType.RequestBody);
             request.AddParameter("Description", descripcion, ParameterType.RequestBody);
             var response = client.Execute(request);
+            
             Thread.Sleep(WAIT_TIME);
-            return response.IsSuccessful;
+            return response;
         }
 
         public ObservableCollection<string> GetTerminos(int idLista)
