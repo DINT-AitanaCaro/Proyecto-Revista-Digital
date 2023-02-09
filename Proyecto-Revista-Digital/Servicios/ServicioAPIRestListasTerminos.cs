@@ -55,8 +55,8 @@ namespace Proyecto_Revista_Digital.Servicios
             request.AddParameter("Name", name, ParameterType.RequestBody);
             request.AddParameter("Description", descripcion, ParameterType.RequestBody);
             var response = client.Execute(request);
-            RefreshSearchIndex(listId);
             Thread.Sleep(WAIT_TIME);
+            RefreshSearchIndex(listId);
             return response;
         }
 

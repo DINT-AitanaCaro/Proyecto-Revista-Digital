@@ -220,6 +220,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Convertidores\ControlaNumeroListasConverter.cs" />
     <Compile Include="Convertidores\TerminosConverter.cs" />
     <Compile Include="Mensajes\EnviarListaMessage.cs" />
     <Compile Include="Mensajes\EnviarAutorMessage.cs" />
