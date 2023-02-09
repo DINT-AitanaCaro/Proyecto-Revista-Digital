@@ -17,9 +17,9 @@ namespace Proyecto_Revista_Digital.VistasModelo
 {
     class WindowCrearEditarListaTerminosVM : ObservableObject
     {
-        public RelayCommand AñadirTerminoCommand { get;  }
-        public RelayCommand EliminarTerminoCommand { get;  }
-        public RelayCommand EliminarTodosTerminoCommand { get;  }
+        public RelayCommand AñadirTerminoCommand { get; }
+        public RelayCommand EliminarTerminoCommand { get; }
+        public RelayCommand EliminarTodosTerminoCommand { get; }
         private ListaTerminos _lista;
         public ListaTerminos ListaActual
         {
@@ -31,6 +31,13 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             get { return nuevoTermino; }
             set { SetProperty(ref nuevoTermino, value); }
+        }
+
+        private string terminoSeleccionado;
+        public string TerminoSeleccionado
+        {
+            get { return terminoSeleccionado; }
+            set { SetProperty(ref terminoSeleccionado, value); }
         }
 
         private ObservableCollection<string> terminos;
@@ -47,7 +54,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             get { return _modo; }
             set { SetProperty(ref _modo, value); }
         }
-       
+
 
         private bool existe;
 
@@ -64,27 +71,42 @@ namespace Proyecto_Revista_Digital.VistasModelo
             servicioDialogo = new ServicioDialogo();
             servicioListas = new ServicioAPIRestListasTerminos();
             ListaActual = WeakReferenceMessenger.Default.Send<EnviarListaMessage>();
+            WeakReferenceMessenger.Default.Send(new ListaCreadaEditadaMessage(ListaActual));
+
             Modo = (Existe = ListaActual.Id != 0) ? "Editar Lista" : "Crear Lista";
             AñadirTerminoCommand = new RelayCommand(CrearTermino);
             EliminarTerminoCommand = new RelayCommand(EliminarTermino);
             EliminarTodosTerminoCommand = new RelayCommand(EliminarTodosTermino);
         }
-        
+
         public void CrearTermino()
         {
-            servicioListas.AñadirTermino(ListaActual.Id, NuevoTermino);
+            IRestResponse response = servicioListas.AñadirTermino(ListaActual.Id, NuevoTermino);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                ListaActual.Terminos.Add(NuevoTermino);
+            }
         }
         public void EliminarTermino()
         {
-            servicioListas.EliminarTermino(ListaActual.Id, NuevoTermino);
+            IRestResponse response = servicioListas.EliminarTermino(ListaActual.Id, NuevoTermino);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                ListaActual.Terminos.Remove(TerminoSeleccionado);
+            }
         }
         public void EliminarTodosTermino()
         {
-            servicioListas.EliminarTodosTerminos(ListaActual.Id);
+            IRestResponse response = servicioListas.EliminarTodosTerminos(ListaActual.Id);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                ListaActual.Terminos = new ObservableCollection<string>();
+            }
         }
+
         public void GuardarLista()
         {
-            if(Existe)
+            if (Existe)
             {
                 IRestResponse response = servicioListas.EditarLista(ListaActual.Id, ListaActual.Name, ListaActual.Description);
                 if (response.StatusCode != System.Net.HttpStatusCode.UnsupportedMediaType)
@@ -92,18 +114,20 @@ namespace Proyecto_Revista_Digital.VistasModelo
                     servicioDialogo.MostrarMensaje(response.ErrorException.Message, "Error en edición de la lista", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
 
-            } 
+            }
             else
             {
                 IRestResponse response = servicioListas.CrearLista(ListaActual);
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
+                    _ = response.Content;
                     Existe = true;
-                } else
+                }
+                else
                 {
                     servicioDialogo.MostrarMensaje(response.ErrorException.Message, "Error en creación de la lista", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
-                
+
             }
         }
 
@@ -113,7 +137,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             Terminos = servicioListas.GetTerminos(ListaActual.Id);
         }
 
-        
+
 
     }
 }

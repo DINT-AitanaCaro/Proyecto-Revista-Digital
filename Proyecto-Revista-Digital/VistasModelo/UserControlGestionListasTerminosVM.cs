@@ -23,7 +23,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public RelayCommand EditarListaCommand { get; }
         private ServicioDialogo servicioDialogo;
         private ObservableCollection<ListaTerminos> listasTerminos;
-        
+
         public ObservableCollection<ListaTerminos> ListasTerminos
         {
             get { return listasTerminos; }
@@ -45,14 +45,15 @@ namespace Proyecto_Revista_Digital.VistasModelo
             //servicios
             servicioNavegacion = new ServicioNavegacion();
             servicioListas = new ServicioAPIRestListasTerminos();
-            //traer listas
-            Refrescar(true);
+            servicioDialogo = new ServicioDialogo();
+            //Cargar listas
+            CargarListas();
             //comandos
             MarcarComoAplicadaCommnad = new RelayCommand(MarcarListaComoAplicada);
             AñadirListaCommand = new RelayCommand(AñadirLista);
             EliminarListaCommand = new RelayCommand(AñadirLista);
             EditarListaCommand = new RelayCommand(EditarLista);
-            
+
             //envío mensaje
             WeakReferenceMessenger.Default.Register<UserControlGestionListasTerminosVM, EnviarListaMessage>(this, (r, m) =>
             {
@@ -61,45 +62,59 @@ namespace Proyecto_Revista_Digital.VistasModelo
                     m.Reply(r.ListaSeleccionada);
                 }
             });
+
+            WeakReferenceMessenger.Default.Register<ListaCreadaEditadaMessage>(this, (r, m) =>
+            {
+                ListaTerminos editada = m.Value;
+                if (ListaSeleccionada.Id == 0)
+                {
+                    ListasTerminos.Add(editada);
+                } else
+                {
+                    ListaTerminos lista = ListasTerminos.First( l => l.Id == editada.Id);
+                    lista.Name = editada.Name;
+                    lista.Description = editada.Description;
+                    lista.Terminos = editada.Terminos;
+                }
+            });
         }
 
         public void MarcarListaComoAplicada()
         {
             ListasTerminos.ToList().ForEach(list => { if (list.Aplicada) { list.Aplicada = false; } });
             ListaSeleccionada.Aplicada = true;
+            Properties.Settings.Default.IdListaAplicada = ListaSeleccionada.Id;
         }
 
         public void AñadirLista()
         {
             ListaSeleccionada = new ListaTerminos();
             bool? resultado = servicioNavegacion.CargarNuevoEditarListaTerminos();
-            Refrescar((bool)resultado);
+            //Refrescar((bool)resultado);
         }
 
         public void EditarLista()
         {
             bool? resultado = servicioNavegacion.CargarNuevoEditarListaTerminos();
-            Refrescar((bool)resultado);
+            //Refrescar((bool)resultado);
         }
         public void EliminarLista()
         {
             IRestResponse response = servicioListas.EliminarLista(ListaSeleccionada.Id);
             if (servicioListas.EliminarLista(ListaSeleccionada.Id).StatusCode == System.Net.HttpStatusCode.OK)
             {
+                ListasTerminos.Remove(ListaSeleccionada);
                 servicioDialogo.MostrarMensaje(response.ErrorException.Message, "Error al eliminar la lista", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
-        public void Refrescar(bool refrescar)
+        public void CargarListas()
         {
-            if(refrescar)
+            //ListasTerminos = new ObservableCollection<ListaTerminos>();
+            ListasTerminos = servicioListas.GetListas();
+            foreach (ListaTerminos lista in ListasTerminos)
             {
-                //ListasTerminos = new ObservableCollection<ListaTerminos>();
-                ListasTerminos = servicioListas.GetListas();
-                foreach (ListaTerminos lista in ListasTerminos)
-                {
-                    lista.Terminos = servicioListas.GetTerminos(lista.Id);
-                }
+                lista.Terminos = servicioListas.GetTerminos(lista.Id);
             }
         }
     }

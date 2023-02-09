@@ -225,6 +225,7 @@
     <Compile Include="Mensajes\EnviarListaMessage.cs" />
     <Compile Include="Mensajes\EnviarAutorMessage.cs" />
     <Compile Include="Mensajes\EnviarSeccionMessage.cs" />
+    <Compile Include="Mensajes\ListaCreadaEditadaMessage.cs" />
     <Compile Include="Modelos\Articulo.cs" />
     <Compile Include="Modelos\Autor.cs" />
     <Compile Include="Modelos\ListaTerminos.cs" />

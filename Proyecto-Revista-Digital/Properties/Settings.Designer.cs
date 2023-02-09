@@ -12,7 +12,7 @@ namespace Proyecto_Revista_Digital.Properties {
     
     
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.10.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Microsoft.VisualStudio.Editors.SettingsDesigner.SettingsSingleFileGenerator", "16.8.1.0")]
     internal sealed partial class Settings : global::System.Configuration.ApplicationSettingsBase {
         
         private static Settings defaultInstance = ((Settings)(global::System.Configuration.ApplicationSettingsBase.Synchronized(new Settings())));
@@ -77,6 +77,17 @@ namespace Proyecto_Revista_Digital.Properties {
         public string ClaveAzureListas {
             get {
                 return ((string)(this["ClaveAzureListas"]));
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        public int IdListaAplicada {
+            get {
+                return ((int)(this["IdListaAplicada"]));
+            }
+            set {
+                this["IdListaAplicada"] = value;
             }
         }
     }

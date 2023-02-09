@@ -90,8 +90,12 @@
                     <TextBox  BorderBrush="#158FD6" MinWidth="100" Text="{Binding Path=NuevoTermino, UpdateSourceTrigger=PropertyChanged}" Height="25" Margin="5" />
                     <Button Content="Añadir Termino" BorderBrush="#158FD6" Background="AliceBlue" Height="25" Padding="3" Command="{Binding Path=AñadirTerminoCommand}"/>
                 </StackPanel>
-                <ListBox ItemsSource="{Binding Path=ListaActual.Terminos, UpdateSourceTrigger=PropertyChanged}">
-
+                <ListBox ItemsSource="{Binding Path=ListaActual.Terminos, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=TerminoSeleccionado, UpdateSourceTrigger=PropertyChanged}">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel></WrapPanel>
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
                 </ListBox>
             </DockPanel>
             

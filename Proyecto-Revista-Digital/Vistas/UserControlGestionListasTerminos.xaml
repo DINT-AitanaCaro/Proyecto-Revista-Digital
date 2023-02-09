@@ -10,7 +10,7 @@
         <local1:ControlaNumeroListasConverter x:Key="ConvertidorCtrlNumListas"/>
         <local1:TerminosConverter x:Key="ConvertidorTerminos"/>
 
-            <Style TargetType="{x:Type Button}" x:Key="añadirListaEstilo">
+        <Style TargetType="{x:Type Button}" x:Key="añadirListaEstilo">
             
         </Style>
         <Style TargetType="{x:Type Run}" x:Key="listaAplicada">
@@ -58,7 +58,7 @@
             </Border>
             <Border DockPanel.Dock="Right" BorderBrush="DeepSkyBlue" BorderThickness="1.5" CornerRadius="5"  Padding="5" Margin="0,0,10,0" Background="AliceBlue">
                 <StackPanel Orientation="Horizontal" >
-                    <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" Command="{Binding Path=AñadirListaCommand}" IsEnabled="{Binding Path=ListasTerminos.Count, Converter=ConvertidorCtrlNumListas, UpdateSourceTrigger=PropertyChanged}">
+                    <Button DockPanel.Dock="Right" Background="Transparent" BorderBrush="Transparent" Command="{Binding Path=AñadirListaCommand}" IsEnabled="{Binding Path=ListasTerminos.Count, Converter={StaticResource ConvertidorCtrlNumListas}, UpdateSourceTrigger=PropertyChanged}">
                         <Image Source="../Assets/add.png" ToolTip="Añadir lista" Width="22"/>
                     </Button>
                     <Button  Background="Transparent" BorderBrush="Transparent" Command="{Binding Path=EditarListaCommand}">
