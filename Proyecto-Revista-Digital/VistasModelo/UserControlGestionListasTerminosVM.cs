@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Input;
 
 namespace Proyecto_Revista_Digital.VistasModelo
 {
@@ -109,12 +110,14 @@ namespace Proyecto_Revista_Digital.VistasModelo
         }
         public void EliminarLista()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
             IRestResponse response = servicioListas.EliminarLista(ListaSeleccionada.Id);
             if (servicioListas.EliminarLista(ListaSeleccionada.Id).StatusCode == System.Net.HttpStatusCode.OK)
             {
                 ListasTerminos.Remove(ListaSeleccionada);
                 //servicioDialogo.MostrarMensaje(response.ErrorException.Message, "Error al eliminar la lista", MessageBoxButton.OK, MessageBoxImage.Error);
             }
+            Mouse.OverrideCursor = Cursors.Arrow;
         }
 
         public void CargarListas()
@@ -129,7 +132,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             {
                 lista.Terminos = servicioListas.GetTerminos(lista.Id);
             }
-            ShowInfo = false;
+            Mouse.OverrideCursor = Cursors.Arrow;
         }
     }
 }

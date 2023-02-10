@@ -12,6 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Proyecto_Revista_Digital.VistasModelo
 {
@@ -72,6 +73,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         }
         public void GestionarListas()
         {
+            Mouse.OverrideCursor = Cursors.Wait;
             ContenidoVentana = this.serviciosVentanas.CargarGestionarListas();
         }
 
