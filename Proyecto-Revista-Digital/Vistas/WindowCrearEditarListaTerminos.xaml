@@ -59,6 +59,11 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
+        <DataTemplate x:Key="terminosTemplate" >
+            <Border BorderBrush="#158FD6" BorderThickness="1.5" Padding="2" CornerRadius="2" Background="#d0e9f7">
+                <TextBlock Text="{Binding}" />
+            </Border>
+        </DataTemplate>
     </Window.Resources>
     <StackPanel Margin="15">
         <inputLayout:SfTextInputLayout Hint="Nombre" HelperText="Nombre de la lista" Style="{StaticResource textInputLayout}">
@@ -87,10 +92,10 @@
                     </Button>
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
-                    <TextBox  BorderBrush="#158FD6" MinWidth="100" Text="{Binding Path=NuevoTermino, UpdateSourceTrigger=PropertyChanged}" Height="25" Margin="5" />
+                    <TextBox  BorderBrush="#158FD6" MinWidth="100" Text="{Binding Path=NuevoTermino, UpdateSourceTrigger=PropertyChanged}" Height="25" Margin="5" Padding="3"/>
                     <Button Content="Añadir Termino" BorderBrush="#158FD6" Background="AliceBlue" Height="25" Padding="3" Command="{Binding Path=AñadirTerminoCommand}"/>
                 </StackPanel>
-                <ListBox ItemsSource="{Binding Path=ListaActual.Terminos, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=TerminoSeleccionado, UpdateSourceTrigger=PropertyChanged}">
+                <ListBox BorderBrush="#158FD6" ItemsSource="{Binding Path=ListaActual.Terminos, UpdateSourceTrigger=PropertyChanged}" SelectedItem="{Binding Path=TerminoSeleccionado, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource terminosTemplate}">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
                             <WrapPanel></WrapPanel>

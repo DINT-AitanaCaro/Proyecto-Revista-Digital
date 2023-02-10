@@ -22,6 +22,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public RelayCommand EliminarListaCommand { get; }
         public RelayCommand EditarListaCommand { get; }
         private ServicioDialogo servicioDialogo;
+
         private ObservableCollection<ListaTerminos> listasTerminos;
 
         public ObservableCollection<ListaTerminos> ListasTerminos
@@ -37,10 +38,17 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref listaSeleccionada, value); }
         }
 
+        private bool showInfo;
+        public bool ShowInfo
+        {
+            get { return showInfo; }
+            set { SetProperty(ref showInfo, value); }
+        }
         private ServicioNavegacion servicioNavegacion;
         private ServicioAPIRestListasTerminos servicioListas;
         public UserControlGestionListasTerminosVM()
         {
+            ShowInfo = true;
             ListasTerminos = new ObservableCollection<ListaTerminos>();
             //servicios
             servicioNavegacion = new ServicioNavegacion();
@@ -51,7 +59,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             //comandos
             MarcarComoAplicadaCommnad = new RelayCommand(MarcarListaComoAplicada);
             AñadirListaCommand = new RelayCommand(AñadirLista);
-            EliminarListaCommand = new RelayCommand(AñadirLista);
+            EliminarListaCommand = new RelayCommand(EliminarLista);
             EditarListaCommand = new RelayCommand(EditarLista);
 
             //envío mensaje
@@ -65,16 +73,17 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
             WeakReferenceMessenger.Default.Register<ListaCreadaEditadaMessage>(this, (r, m) =>
             {
-                ListaTerminos editada = m.Value;
-                if (ListaSeleccionada.Id == 0)
+                ListaTerminos listaRecibida = m.Value;
+                int indice = ListasTerminos.IndexOf(listaRecibida);
+                if ( indice != -1)
                 {
-                    ListasTerminos.Add(editada);
+                    ListaTerminos lista = ListasTerminos[indice];
+                    lista.Name = listaRecibida.Name;
+                    lista.Description = listaRecibida.Description;
+                    lista.Terminos = listaRecibida.Terminos;
                 } else
                 {
-                    ListaTerminos lista = ListasTerminos.First( l => l.Id == editada.Id);
-                    lista.Name = editada.Name;
-                    lista.Description = editada.Description;
-                    lista.Terminos = editada.Terminos;
+                    ListasTerminos.Add(listaRecibida);
                 }
             });
         }
@@ -104,18 +113,23 @@ namespace Proyecto_Revista_Digital.VistasModelo
             if (servicioListas.EliminarLista(ListaSeleccionada.Id).StatusCode == System.Net.HttpStatusCode.OK)
             {
                 ListasTerminos.Remove(ListaSeleccionada);
-                servicioDialogo.MostrarMensaje(response.ErrorException.Message, "Error al eliminar la lista", MessageBoxButton.OK, MessageBoxImage.Error);
+                //servicioDialogo.MostrarMensaje(response.ErrorException.Message, "Error al eliminar la lista", MessageBoxButton.OK, MessageBoxImage.Error);
             }
         }
 
         public void CargarListas()
         {
+            /*
+            InfoUsuario = "Cargando listas";
+            Time = false;
+            */
             //ListasTerminos = new ObservableCollection<ListaTerminos>();
             ListasTerminos = servicioListas.GetListas();
             foreach (ListaTerminos lista in ListasTerminos)
             {
                 lista.Terminos = servicioListas.GetTerminos(lista.Id);
             }
+            ShowInfo = false;
         }
     }
 }

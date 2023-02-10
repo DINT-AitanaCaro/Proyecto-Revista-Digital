@@ -1,6 +1,8 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using CommunityToolkit.Mvvm.Messaging;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using Proyecto_Revista_Digital.Mensajes;
 using Proyecto_Revista_Digital.Modelos;
 using Proyecto_Revista_Digital.Servicios;
@@ -71,7 +73,6 @@ namespace Proyecto_Revista_Digital.VistasModelo
             servicioDialogo = new ServicioDialogo();
             servicioListas = new ServicioAPIRestListasTerminos();
             ListaActual = WeakReferenceMessenger.Default.Send<EnviarListaMessage>();
-            WeakReferenceMessenger.Default.Send(new ListaCreadaEditadaMessage(ListaActual));
 
             Modo = (Existe = ListaActual.Id != 0) ? "Editar Lista" : "Crear Lista";
             AñadirTerminoCommand = new RelayCommand(CrearTermino);
@@ -82,7 +83,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public void CrearTermino()
         {
             IRestResponse response = servicioListas.AñadirTermino(ListaActual.Id, NuevoTermino);
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            if (response.StatusCode == System.Net.HttpStatusCode.Created)
             {
                 ListaActual.Terminos.Add(NuevoTermino);
             }
@@ -90,7 +91,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public void EliminarTermino()
         {
             IRestResponse response = servicioListas.EliminarTermino(ListaActual.Id, NuevoTermino);
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
             {
                 ListaActual.Terminos.Remove(TerminoSeleccionado);
             }
@@ -98,7 +99,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public void EliminarTodosTermino()
         {
             IRestResponse response = servicioListas.EliminarTodosTerminos(ListaActual.Id);
-            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
             {
                 ListaActual.Terminos = new ObservableCollection<string>();
             }
@@ -121,6 +122,9 @@ namespace Proyecto_Revista_Digital.VistasModelo
                 if (response.StatusCode == System.Net.HttpStatusCode.OK)
                 {
                     _ = response.Content;
+                    JObject content = JsonConvert.DeserializeObject<JObject>(response.Content);
+                    int id = content["Id"].Value<int>();
+                    ListaActual.Id = id;
                     Existe = true;
                 }
                 else
@@ -129,15 +133,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
                 }
 
             }
+            WeakReferenceMessenger.Default.Send(new ListaCreadaEditadaMessage(ListaActual));
         }
-
-        public void RefrescaLista()
-        {
-            //ListaActual = servicioListas.Get
-            Terminos = servicioListas.GetTerminos(ListaActual.Id);
-        }
-
-
-
     }
 }

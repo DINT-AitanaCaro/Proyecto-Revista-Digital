@@ -3,13 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
+             xmlns:Notification="clr-namespace:Syncfusion.Windows.Controls.Notification;assembly=Syncfusion.SfBusyIndicator.WPF"
              xmlns:local="clr-namespace:Proyecto_Revista_Digital.Vistas" xmlns:local1="clr-namespace:Proyecto_Revista_Digital.Convertidores"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <local1:ControlaNumeroListasConverter x:Key="ConvertidorCtrlNumListas"/>
         <local1:TerminosConverter x:Key="ConvertidorTerminos"/>
-
+        <local1:MostrarCargandoConvertidor x:Key="ConvertidorCargando"/>
         <Style TargetType="{x:Type Button}" x:Key="añadirListaEstilo">
             
         </Style>
@@ -70,10 +72,17 @@
                 </StackPanel>
             </Border>
         </DockPanel>
-        <Border BorderBrush="DeepSkyBlue" BorderThickness="2.5"></Border>
-        <ListBox SelectedItem="{Binding Path=ListaSeleccionada}" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" BorderBrush="Transparent" ItemsSource="{Binding Path=ListasTerminos, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource plantillaListas}">
-
-        </ListBox>
-
+        <Border BorderBrush="DeepSkyBlue" BorderThickness="2.5" DockPanel.Dock="Left"></Border>
+        <Grid>
+            <ListBox SelectedItem="{Binding Path=ListaSeleccionada}" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" BorderBrush="Transparent" ItemsSource="{Binding Path=ListasTerminos, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource plantillaListas}">
+        
+            </ListBox>
+            <!--
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Visibility="{Binding Path=ShowInfo, Converter={StaticResource ConvertidorCargando}, UpdateSourceTrigger=PropertyChanged}">
+                <TextBlock x:Name="infoTextBlock" Text="Cargando Listas" FontSize="25" FontWeight="Bold" VerticalAlignment="Bottom" Margin="0,0,10,0"/>
+                <syncfusion:SfBusyIndicator AnimationType="Pen"/>
+            </StackPanel>
+            -->
+        </Grid>
     </DockPanel>
 </UserControl>

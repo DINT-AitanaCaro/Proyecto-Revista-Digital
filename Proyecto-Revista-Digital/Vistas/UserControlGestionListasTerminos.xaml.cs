@@ -21,10 +21,11 @@ namespace Proyecto_Revista_Digital.Vistas
     /// </summary>
     public partial class UserControlGestionPalabrasProhibidas : UserControl
     {
-        UserControlGestionListasTerminosVM vm = new UserControlGestionListasTerminosVM();
+        UserControlGestionListasTerminosVM vm;
         public UserControlGestionPalabrasProhibidas()
         {
             InitializeComponent();
+            vm = new UserControlGestionListasTerminosVM();
             DataContext = vm;
         }
     }
