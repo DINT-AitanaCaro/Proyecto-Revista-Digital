@@ -126,6 +126,15 @@ namespace Proyecto_Revista_Digital.VistasModelo
                                 column.Item()
                                     .Image(ruta);
 
+                                column.Item().AlignRight().Row(y =>
+                                {
+                                    y.ConstantItem(20)
+                                        .Image("../../assets/twitter.png");
+
+                                    y.RelativeItem()
+                                       .Text(ArticuloSeleccionado.AutorArticulo);
+                                });
+
                                 column.Item()
                                     .Text(ArticuloSeleccionado.Contenido)
                                     .FontSize(18);
