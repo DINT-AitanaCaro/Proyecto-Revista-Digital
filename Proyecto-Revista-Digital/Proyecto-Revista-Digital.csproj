@@ -384,15 +384,15 @@
     <Resource Include="Assets\nombreLista.png" />
     <Resource Include="Assets\descripcionLista.png" />
     <Resource Include="Assets\deleteOne.png" />
-    <Resource Include="Assets\facebook.ico">
+    <None Include="Assets\facebook.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\instagram.ico">
+    </None>
+    <None Include="Assets\instagram.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
-    <Resource Include="Assets\twitter.ico">
+    </None>
+    <None Include="Assets\twitter.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Resource>
+    </None>
     <Content Include="RevistaOnline\img\logoRevista.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>

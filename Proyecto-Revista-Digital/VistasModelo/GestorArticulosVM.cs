@@ -128,8 +128,16 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
                                 column.Item().AlignRight().Row(y =>
                                 {
+                                    string redSocial = "";
+                                    if (ArticuloSeleccionado.AutorArticulo.Social.Equals("Twitter")) {
+                                        redSocial = "../../assets/twitter.png";
+                                    } else if (ArticuloSeleccionado.AutorArticulo.Social.Equals("Instagram")) {
+                                        redSocial = "../../assets/twitter.png";
+                                    } else {
+                                        redSocial = "../../assets/twitter.png";
+                                    }
                                     y.ConstantItem(20)
-                                        .Image("../../assets/twitter.png");
+                                        .Image(redSocial);
 
                                     y.RelativeItem()
                                        .Text(ArticuloSeleccionado.AutorArticulo);
