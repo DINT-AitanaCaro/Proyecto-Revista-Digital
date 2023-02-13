@@ -60,12 +60,14 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public RelayCommand NuevaSeccionCommand { get; }
         public RelayCommand NuevoArticuloCommand { get; }
         public RelayCommand NuevaImagenArticuloCommand { get; }
+        public RelayCommand ComprobarTituloCommand { get; }
         private ServicioArticulo servicoArticulo;
         private readonly ServicioAutor servicioAutor;
         private readonly ServicioSeccion servicioSeccion;
         private readonly ServicioDialogo servicioDialogo;
         private readonly ServicioAzure servicioAzure;
         private readonly ServicioNavegacion servicioNavegacion;
+        private ServicioModeracionContenido servicioModeracionContenido;
 
         private Seccion seccionArticulo;
 
@@ -181,6 +183,26 @@ namespace Proyecto_Revista_Digital.VistasModelo
             }
 
             return iguales;
+        }
+
+        private void ComprobarTitulo()
+        {
+
+        }
+
+        private void ComprobarTextoTitulo()
+        {
+            ObservableCollection<string> palabrasIncorrectas = servicioModeracionContenido.AnalizarTexto(ArticuloNuevo.Titulo);
+            StringBuilder sb = new StringBuilder();
+            if(palabrasIncorrectas.Count > 0)
+            {
+                foreach (string item in palabrasIncorrectas)
+                {
+                    sb.Append("- ").Append(item).Append("\n");
+                }
+
+                 
+            }
         }
 
         
