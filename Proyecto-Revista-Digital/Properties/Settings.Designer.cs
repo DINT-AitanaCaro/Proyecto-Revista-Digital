@@ -82,12 +82,22 @@ namespace Proyecto_Revista_Digital.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("75")]
         public int IdListaAplicada {
             get {
                 return ((int)(this["IdListaAplicada"]));
             }
             set {
                 this["IdListaAplicada"] = value;
+            }
+        }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://moderadorarticulos.cognitiveservices.azure.com/")]
+        public string EndPoint {
+            get {
+                return ((string)(this["EndPoint"]));
             }
         }
     }

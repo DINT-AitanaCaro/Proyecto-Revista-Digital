@@ -58,7 +58,7 @@
         <DockPanel DockPanel.Dock="Top" Margin="5,10">
             <Button DockPanel.Dock="Left" Width="50" Height="50"  Margin="5" Template="{DynamicResource ButtonControlTemplate}" VerticalAlignment="Top">
                 <Button.Content>
-                    <Image Source="../assets/file-explorer.png" Width="24"/>
+                    <Image Source="../assets/TituloArticulo.ico" Width="24"/>
                 </Button.Content>
             </Button>
             <inputLayout:SfTextInputLayout Margin="5,0" Hint="Titulo"  HintFloatMode="Float" >
@@ -100,7 +100,7 @@
         </DockPanel>
 
 
-        <TextBox Text="{Binding Path=ArticuloNuevo.Contenido, UpdateSourceTrigger=PropertyChanged}" Margin="15" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Template="{DynamicResource TextBoxControlTemplate}"/>
+        <TextBox Text="{Binding Path=ArticuloNuevo.Contenido, UpdateSourceTrigger=PropertyChanged}" Margin="15" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Template="{DynamicResource TextBoxControlTemplate}" FontSize="15" />
 
     </DockPanel>
 </UserControl>
