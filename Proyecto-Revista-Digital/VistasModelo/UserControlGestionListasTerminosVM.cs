@@ -94,6 +94,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             ListasTerminos.ToList().ForEach(list => { if (list.Aplicada) { list.Aplicada = false; } });
             ListaSeleccionada.Aplicada = true;
             Properties.Settings.Default.IdListaAplicada = ListaSeleccionada.Id;
+            Properties.Settings.Default.Save();
         }
 
         public void AñadirLista()
