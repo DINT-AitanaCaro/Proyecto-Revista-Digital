@@ -9,16 +9,33 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
-        <ControlTemplate x:Key="ButtonControlTemplate" TargetType="{x:Type Button}">
-            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="5" >
-                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" Content="{TemplateBinding Content}" ContentStringFormat="{TemplateBinding ContentStringFormat}" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+        
+        <ControlTemplate x:Key="TextBoxControlTemplate" TargetType="{x:Type TextBox}" >
+            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="7"  Padding="2">
+                <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
             </Border>
             <ControlTemplate.Triggers>
-                <Trigger Property="IsDefaulted" Value="True">
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Opacity" TargetName="border" Value="0.56"/>
+                </Trigger>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
+                </Trigger>
+                <Trigger Property="IsKeyboardFocused" Value="True">
+                    <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+        <ControlTemplate x:Key="ButtonTemplate" TargetType="{x:Type ButtonBase}">
+            <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="#98B8CA" BorderThickness="2" SnapsToDevicePixels="true" CornerRadius="5" Padding="4">
+                <ContentPresenter x:Name="contentPresenter" Focusable="False" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" Margin="{TemplateBinding Padding}" RecognizesAccessKey="True" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="Button.IsDefaulted" Value="True">
                     <Setter Property="BorderBrush" TargetName="border" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}"/>
                 </Trigger>
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" TargetName="border" Value="#FFBEE6FD"/>
+                    <Setter Property="Background" TargetName="border" Value="#98B8CA"/>
                     <Setter Property="BorderBrush" TargetName="border" Value="#FF3C7FB1"/>
                 </Trigger>
                 <Trigger Property="IsPressed" Value="True">
@@ -36,32 +53,22 @@
                 </Trigger>
             </ControlTemplate.Triggers>
         </ControlTemplate>
-        <ControlTemplate x:Key="TextBoxControlTemplate" TargetType="{x:Type TextBox}" >
-            <Border x:Name="border" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="2" Background="{TemplateBinding Background}" SnapsToDevicePixels="True" CornerRadius="7"  Padding="2">
-                <ScrollViewer x:Name="PART_ContentHost" Focusable="False" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden"/>
-            </Border>
-            <ControlTemplate.Triggers>
-                <Trigger Property="IsEnabled" Value="False">
-                    <Setter Property="Opacity" TargetName="border" Value="0.56"/>
-                </Trigger>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="BorderBrush" TargetName="border" Value="#FF7EB4EA"/>
-                </Trigger>
-                <Trigger Property="IsKeyboardFocused" Value="True">
-                    <Setter Property="BorderBrush" TargetName="border" Value="#FF569DE5"/>
-                </Trigger>
-            </ControlTemplate.Triggers>
-        </ControlTemplate>
-
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Background" Value="#a4e4d9"/>
+            <Setter Property="Width" Value="130"/>
+        </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="Width" Value="120"/>
+        </Style>
     </UserControl.Resources>
     <DockPanel >
         <DockPanel DockPanel.Dock="Top" Margin="5,10">
-            <Button DockPanel.Dock="Left" Width="50" Height="50"  Margin="5" Template="{DynamicResource ButtonControlTemplate}" VerticalAlignment="Top">
+            <Button DockPanel.Dock="Left" Width="50" Height="50"  Margin="5" Template="{DynamicResource ButtonTemplate}" VerticalAlignment="Top" Command="{Binding Path=ComprobarTituloCommand}">
                 <Button.Content>
-                    <Image Source="../assets/TituloArticulo.ico" Width="24"/>
+                    <Image Source="../assets/TituloArticulo.ico" Width="26"/>
                 </Button.Content>
             </Button>
-            <inputLayout:SfTextInputLayout Margin="5,0" Hint="Titulo"  HintFloatMode="Float" >
+            <inputLayout:SfTextInputLayout Margin="5,0" Hint="Titulo"  HintFloatMode="Float" Foreground="Black">
                 <TextBox Text="{Binding Path=ArticuloNuevo.Titulo}"/>
             </inputLayout:SfTextInputLayout>
         </DockPanel>
@@ -69,26 +76,26 @@
         <DockPanel DockPanel.Dock="Bottom" LastChildFill="False" Margin="10,0">
 
             <StackPanel DockPanel.Dock="Left" Orientation="Horizontal">
-                <inputLayout:SfTextInputLayout Hint="Seccion" Margin="5,0" Width="150" VerticalAlignment="Center">
-                    <ComboBox Width="50"  ItemsSource="{Binding Path=ListaSecciones, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="NombreSeccion" SelectedItem="{Binding Path=SeccionArticulo, UpdateSourceTrigger=PropertyChanged}" Foreground="Black"/>
+                <inputLayout:SfTextInputLayout Hint="Seccion" Margin="5,0" Width="170" VerticalAlignment="Center" Foreground="Black">
+                    <ComboBox  ItemsSource="{Binding Path=ListaSecciones, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="NombreSeccion" SelectedItem="{Binding Path=SeccionArticulo, UpdateSourceTrigger=PropertyChanged}"/>
                 </inputLayout:SfTextInputLayout>
                 <!-- <Button x:Name="añadirSeccionButton" Content="+" Height="32" Width="32" Margin="5,0" VerticalAlignment="Center" Command="{Binding Path=NuevaSeccionCommand}"/>-->
-                <Button DockPanel.Dock="Left" Width="35" Height="35" Margin="5" Command="{Binding Path=NuevaSeccionCommand}" Template="{DynamicResource ButtonControlTemplate}" VerticalAlignment="Center">
+                <Button DockPanel.Dock="Left" Width="35" Height="35" Margin="5" Command="{Binding Path=NuevaSeccionCommand}" Template="{DynamicResource ButtonTemplate}" VerticalAlignment="Center">
                     <Button.Content>
                         <Image Source="../assets/AddSeccion.ico" Width="18"/>
                     </Button.Content>
                 </Button>
             </StackPanel>
-            <inputLayout:SfTextInputLayout Hint="Autor" Margin="15,5" Width="150" VerticalAlignment="Center" DockPanel.Dock="Left">
-                <ComboBox Width="50" Foreground="Black" ItemsSource="{Binding Path=ListaAutores}" SelectedItem="{Binding Path=AutorArticulo}" DisplayMemberPath="Nombre"/>
+            <inputLayout:SfTextInputLayout Hint="Autor" Margin="15,5" Width="170" VerticalAlignment="Center" DockPanel.Dock="Left" Foreground="Black">
+                <ComboBox ItemsSource="{Binding Path=ListaAutores}" SelectedItem="{Binding Path=AutorArticulo}" DisplayMemberPath="Nombre"/>
             </inputLayout:SfTextInputLayout>
 
-            <Button Content="Crear Articulo" Width="100" Height="30" DockPanel.Dock="Right" Padding="5" Command="{Binding Path=NuevoArticuloCommand}"/>
+            <Button Content="Crear Articulo" Width="110" Height="40" DockPanel.Dock="Right" Command="{Binding Path=NuevoArticuloCommand}" Template="{DynamicResource ButtonTemplate}"/>
 
         </DockPanel>
 
         <DockPanel DockPanel.Dock="Bottom" Margin="10,0">
-            <Button DockPanel.Dock="Right" Width="50" Height="50" Background="#a4e4d9" Margin="5" Command="{Binding Path=NuevaImagenArticuloCommand}" Template="{DynamicResource ButtonControlTemplate}" VerticalAlignment="Top">
+            <Button DockPanel.Dock="Right" Width="50" Height="50" Background="#a4e4d9" Margin="5" Command="{Binding Path=NuevaImagenArticuloCommand}" Template="{DynamicResource ButtonTemplate}" VerticalAlignment="Top">
                 <Button.Content>
                     <Image Source="../assets/file-explorer.png" Width="24"/>
                 </Button.Content>
@@ -100,7 +107,7 @@
         </DockPanel>
 
 
-        <TextBox Text="{Binding Path=ArticuloNuevo.Contenido, UpdateSourceTrigger=PropertyChanged}" Margin="15" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Template="{DynamicResource TextBoxControlTemplate}" FontSize="15" />
+        <TextBox Text="{Binding Path=ArticuloNuevo.Contenido, UpdateSourceTrigger=PropertyChanged}" Margin="12" AcceptsReturn="True" TextWrapping="Wrap" ScrollViewer.VerticalScrollBarVisibility="Auto" Template="{DynamicResource TextBoxControlTemplate}" FontSize="14" />
 
     </DockPanel>
 </UserControl>

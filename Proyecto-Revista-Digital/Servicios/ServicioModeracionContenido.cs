@@ -23,19 +23,21 @@ namespace Proyecto_Revista_Digital.Servicios
             request.AddParameter("listId", Properties.Settings.Default.IdListaAplicada, ParameterType.QueryString);
             request.AddParameter("text/plain", texto, ParameterType.RequestBody);
             var response = client.Execute(request);
+
             Root resultado = JsonConvert.DeserializeObject<Root>(response.Content);
             List<Termino> listaTerminos = resultado.Terms;
             ObservableCollection<string> palabrasMalas = new ObservableCollection<string>();
-
-            foreach (var item in listaTerminos)
+            if(listaTerminos != null)
             {
-                palabrasMalas.Add(item.Term);
+                foreach (var item in listaTerminos)
+                {
+                    palabrasMalas.Add(item.Term);
+                }
             }
+            
 
             return palabrasMalas;
         }
-
-
 
         public class Root
         {
