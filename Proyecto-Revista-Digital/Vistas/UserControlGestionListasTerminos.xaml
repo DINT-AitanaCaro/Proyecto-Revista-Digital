@@ -74,7 +74,7 @@
         </DockPanel>
         <Border BorderBrush="DeepSkyBlue" BorderThickness="2.5" DockPanel.Dock="Left"></Border>
         <Grid>
-            <ListBox SelectedItem="{Binding Path=ListaSeleccionada}" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" BorderBrush="Transparent" ItemsSource="{Binding Path=ListasTerminos, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource plantillaListas}">
+            <ListBox SelectedItem="{Binding Path=ListaSeleccionada, UpdateSourceTrigger=PropertyChanged}" HorizontalContentAlignment="Stretch" ScrollViewer.VerticalScrollBarVisibility="Visible" BorderBrush="Transparent" ItemsSource="{Binding Path=ListasTerminos, UpdateSourceTrigger=PropertyChanged}" ItemTemplate="{StaticResource plantillaListas}">
         
             </ListBox>
             <!--

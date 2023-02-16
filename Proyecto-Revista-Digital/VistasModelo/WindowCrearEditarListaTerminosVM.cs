@@ -72,7 +72,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             servicioDialogo = new ServicioDialogo();
             servicioListas = new ServicioAPIRestListasTerminos();
-            ListaActual = WeakReferenceMessenger.Default.Send<EnviarListaMessage>();
+            ListaActual = new ListaTerminos(WeakReferenceMessenger.Default.Send<EnviarListaMessage>());
 
             Modo = (Existe = ListaActual.Id != 0) ? "Editar Lista" : "Crear Lista";
             AñadirTerminoCommand = new RelayCommand(CrearTermino);
@@ -82,27 +82,27 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void CrearTermino()
         {
-            IRestResponse response = servicioListas.AñadirTermino(ListaActual.Id, NuevoTermino);
-            if (response.StatusCode == System.Net.HttpStatusCode.Created)
-            {
+            //IRestResponse response = servicioListas.AñadirTermino(ListaActual.Id, NuevoTermino);
+           // if (response.StatusCode == System.Net.HttpStatusCode.Created)
+           // {
                 ListaActual.Terminos.Add(NuevoTermino);
-            }
+          //  }
         }
         public void EliminarTermino()
         {
-            IRestResponse response = servicioListas.EliminarTermino(ListaActual.Id, NuevoTermino);
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-            {
+         //   IRestResponse response = servicioListas.EliminarTermino(ListaActual.Id, NuevoTermino);
+          //  if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+          //  {
                 ListaActual.Terminos.Remove(TerminoSeleccionado);
-            }
+          //  }
         }
         public void EliminarTodosTermino()
         {
-            IRestResponse response = servicioListas.EliminarTodosTerminos(ListaActual.Id);
-            if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-            {
+           // IRestResponse response = servicioListas.EliminarTodosTerminos(ListaActual.Id);
+          //  if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
+          //  {
                 ListaActual.Terminos = new ObservableCollection<string>();
-            }
+           // }
         }
 
         public void GuardarLista()

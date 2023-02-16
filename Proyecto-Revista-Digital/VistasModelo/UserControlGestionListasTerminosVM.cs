@@ -75,17 +75,18 @@ namespace Proyecto_Revista_Digital.VistasModelo
             WeakReferenceMessenger.Default.Register<ListaCreadaEditadaMessage>(this, (r, m) =>
             {
                 ListaTerminos listaRecibida = m.Value;
-                int indice = ListasTerminos.IndexOf(listaRecibida);
-                if ( indice != -1)
-                {
-                    ListaTerminos lista = ListasTerminos[indice];
-                    lista.Name = listaRecibida.Name;
-                    lista.Description = listaRecibida.Description;
-                    lista.Terminos = listaRecibida.Terminos;
-                } else
+                ListaTerminos lista = ListasTerminos.DefaultIfEmpty(null).FirstOrDefault(l => l.Id == listaRecibida.Id);
+                if ( lista == null)
                 {
                     ListasTerminos.Add(listaRecibida);
+                } else
+                {
+                    lista.UpdateLista(listaRecibida.Name, listaRecibida.Description, listaRecibida.Terminos);
+                    //servicioListas.EliminarTodosTerminos
                 }
+                ObservableCollection<ListaTerminos> a = ListasTerminos;
+                ListasTerminos = null;
+                ListasTerminos = a;
             });
         }
 
