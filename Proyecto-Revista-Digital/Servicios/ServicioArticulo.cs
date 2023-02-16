@@ -9,10 +9,20 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Revista_Digital.Servicios
 {
+    /// <summary>
+    ///     Servicio para gestionar y realizar operaciones con los artículos de la base de datos.
+    /// </summary>
     class ServicioArticulo
     {
+        /// <summary>
+        ///     Conexión con la base de datos.
+        /// </summary>
         private SqliteConnection conexion = new SqliteConnection(Properties.Settings.Default.SQLiteLocation);
       
+        /// <summary>
+        ///     Método para añadir un artículo a la base de datos.
+        /// </summary>
+        /// <param name="articulo">Artículo que se desea añadir a la base de datos.</param>
         public void AddArticulo(Articulo articulo)
         {
             conexion.Open();
@@ -38,6 +48,10 @@ namespace Proyecto_Revista_Digital.Servicios
             conexion.Close();
         }
 
+        /// <summary>
+        ///     Método para eliminar un artñiculo de la base de datos.
+        /// </summary>
+        /// <param name="Idarticulo">Id del artículo que se quiere eliminar.</param>
         public void DeleteArticulo(int Idarticulo)
         {
             conexion.Open();
@@ -52,6 +66,10 @@ namespace Proyecto_Revista_Digital.Servicios
             conexion.Close();
         }
         
+        /// <summary>
+        ///     Método para obtener todos los artículos de la base de datos.
+        /// </summary>
+        /// <returns>ObservableCollection de articulos.</returns>
         public ObservableCollection<Articulo> GetArticulos()
         {
             conexion.Open();
@@ -72,6 +90,11 @@ namespace Proyecto_Revista_Digital.Servicios
             return articulos;
         }
 
+        /// <summary>
+        ///     Método para obrener los artículos de una sección.
+        /// </summary>
+        /// <param name="IdSeccion">Id de la seccion de la que se desea obtener los artículos.</param>
+        /// <returns>ObservableCollection de artículos.</returns>
         public ObservableCollection<Articulo> GetArticulosPorSeccion(int IdSeccion)
         {
             conexion.Open();
@@ -97,6 +120,10 @@ namespace Proyecto_Revista_Digital.Servicios
             return articulos;
         }
 
+        /// <summary>
+        ///     Método para marcar un artículo como publicaodo.
+        /// </summary>
+        /// <param name="idArticulo">Id del artículo a marcar como publicado.</param>
         public void PublicarArticulo(int idArticulo)
         {
             conexion.Open();
@@ -110,6 +137,11 @@ namespace Proyecto_Revista_Digital.Servicios
             conexion.Close();
         }
 
+        /// <summary>
+        ///     Método para actualizar la url del pdf correspondiente a un artículo.
+        /// </summary>
+        /// <param name="idArticulo">Id del artículo a actualizar.</param>
+        /// <param name="urlPdf">URL del pdf.</param>
         public void UpdateUrlPdf(int idArticulo, string urlPdf)
         {
             conexion.Open();

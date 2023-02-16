@@ -22,7 +22,7 @@ namespace Proyecto_Revista_Digital.Servicios
         /// <summary>
         ///     Método para añadir una sección nueva a la base de datos.
         /// </summary>
-        /// <param name="seccion">Seccion a añadir a la bd</param>
+        /// <param name="seccion">Seccion a añadir a la base de datos.</param>
         public void AddSeccion(Seccion seccion)
         {
             conexion.Open();
@@ -39,7 +39,7 @@ namespace Proyecto_Revista_Digital.Servicios
         /// <summary>
         ///     Método para obtener todas las secciones almacenadas en la base de datos.
         /// </summary>
-        /// <returns>ObservableCollection de secciones</returns>
+        /// <returns>ObservableCollection de secciones.</returns>
         public ObservableCollection<Seccion> GetSecciones()
         {
             conexion.Open();

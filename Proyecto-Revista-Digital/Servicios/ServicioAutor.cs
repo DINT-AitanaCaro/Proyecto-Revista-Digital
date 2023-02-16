@@ -9,9 +9,19 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Revista_Digital.Servicios
 {
+    /// <summary>
+    ///     Servicio para realizar operaciones con los autores en la base de datos.
+    /// </summary>
     class ServicioAutor
     {
+        /// <summary>
+        ///     Conexión con la base de datos.
+        /// </summary>
         private SqliteConnection conexion = new SqliteConnection(Properties.Settings.Default.SQLiteLocation);
+        /// <summary>
+        ///     Método para añadir un autor a la base de datos.
+        /// </summary>
+        /// <param name="autor">Autor que se desea añadir a la base de datos.</param>
         public void AddAutor(Autor autor)
         {
             conexion.Open();
@@ -31,6 +41,10 @@ namespace Proyecto_Revista_Digital.Servicios
             conexion.Close();
         }
 
+        /// <summary>
+        ///     Método para editar un autor en la base de datos.
+        /// </summary>
+        /// <param name="autor">Autor a editar en la base de datos.</param>
         public void EditAutor(Autor autor)
         {
             conexion.Open();
@@ -53,6 +67,10 @@ namespace Proyecto_Revista_Digital.Servicios
             conexion.Close();
         }
 
+        /// <summary>
+        ///     Método para eliminar un autor de la base de datos.
+        /// </summary>
+        /// <param name="autorId">Id del autor a eliminar.</param>
         public void DeleteAutor(int autorId)
         {
             conexion.Open();
@@ -67,6 +85,10 @@ namespace Proyecto_Revista_Digital.Servicios
             conexion.Close();
         }
 
+        /// <summary>
+        ///     Método para obtener todos los autores en la base de datos.
+        /// </summary>
+        /// <returns>ObservableCollection de autores.</returns>
         public ObservableCollection<Autor> GetAutores()
         {
             conexion.Open();
@@ -86,6 +108,11 @@ namespace Proyecto_Revista_Digital.Servicios
             return autores;
         }
 
+        /// <summary>
+        ///     Método para obtener un autor de la base de datos.
+        /// </summary>
+        /// <param name="id">Id del autor que se desea obtener.</param>
+        /// <returns>Autor de la base de datos con el mismo id que el recibido.</returns>
         public Autor GetAutor(int id)
         {
             conexion.Open();

@@ -39,7 +39,7 @@ namespace Proyecto_Revista_Digital.Servicios
         }
 
         /// <summary>
-        ///     Método para crear una nueva instancia del User Contro gestionar articulos.
+        ///     Método para crear una nueva instancia del User Contro gestionar artículos.
         /// </summary>
         /// <returns>UserControl de gestión de articulos.</returns>
         public UserControl CargarGestionArticulos()
@@ -50,14 +50,14 @@ namespace Proyecto_Revista_Digital.Servicios
         /// <summary>
         ///     Método para crear una nueva instancia del UserControl para la creación de un nuevo artículo.
         /// </summary>
-        /// <returns>UserControl de crear articulo.</returns>
+        /// <returns>UserControl de crear artículo.</returns>
         public UserControl CargarNuevoArticulo()
         {
             return new CrearArticulo();
         }
 
         /// <summary>
-        ///     Método para crear una nueva instancia de UserControl para la gestión de listas de terminos.
+        ///     Método para crear una nueva instancia de UserControl para la gestión de listas de términos.
         /// </summary>
         /// <returns>UserControl de gestionar listas.</returns>
         public UserControl CargarGestionarListas()
@@ -76,7 +76,7 @@ namespace Proyecto_Revista_Digital.Servicios
         }
 
         /// <summary>
-        ///     Método para crear una nueva instancia tipo Window de crear/editar una lista de terminos.
+        ///     Método para crear una nueva instancia tipo Window de crear/editar una lista de términos.
         /// </summary>
         /// <returns>bool con la respuesta de la ventana dialogo.</returns>
         public bool? CargarNuevoEditarListaTerminos()
