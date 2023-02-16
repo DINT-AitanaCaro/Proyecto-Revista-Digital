@@ -7,7 +7,7 @@
         xmlns:syncfusion="http://schemas.syncfusion.com/wpf"
         mc:Ignorable="d"
         Icon="./Assets/dIcon.ico"
-        Title="DAM's Space" Height="450" Width="800">
+        Title="DAM's Space" Height="650" Width="1000" MinHeight="500" MinWidth="900">
     <Window.Resources>
         <Style TargetType="{x:Type syncfusion:NavigationItem}">
             
