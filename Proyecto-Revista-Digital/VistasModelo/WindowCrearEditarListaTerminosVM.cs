@@ -82,27 +82,19 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void CrearTermino()
         {
-            //IRestResponse response = servicioListas.AñadirTermino(ListaActual.Id, NuevoTermino);
-           // if (response.StatusCode == System.Net.HttpStatusCode.Created)
-           // {
-                ListaActual.Terminos.Add(NuevoTermino);
-          //  }
+            ListaActual.Terminos.Add(NuevoTermino);
+            NuevoTermino = "";
         }
         public void EliminarTermino()
         {
-         //   IRestResponse response = servicioListas.EliminarTermino(ListaActual.Id, NuevoTermino);
-          //  if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-          //  {
-                ListaActual.Terminos.Remove(TerminoSeleccionado);
-          //  }
+            ListaActual.Terminos.Remove(TerminoSeleccionado);
         }
         public void EliminarTodosTermino()
         {
-           // IRestResponse response = servicioListas.EliminarTodosTerminos(ListaActual.Id);
-          //  if (response.StatusCode == System.Net.HttpStatusCode.NoContent)
-          //  {
+            if(MessageBox.Show("¿Eliminar TODOS los términos?", "Advertencia", MessageBoxButton.YesNo, MessageBoxImage.Warning) == MessageBoxResult.Yes)
+            {
                 ListaActual.Terminos = new ObservableCollection<string>();
-           // }
+            }
         }
 
         public void GuardarLista()

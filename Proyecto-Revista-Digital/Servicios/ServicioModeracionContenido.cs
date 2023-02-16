@@ -10,8 +10,16 @@ using System.Threading.Tasks;
 
 namespace Proyecto_Revista_Digital.Servicios
 {
+    /// <summary>
+    ///     Servicio para la moderación de contenido de los artículos.
+    /// </summary>
     class ServicioModeracionContenido : ObservableObject
     {
+        /// <summary>
+        ///     Método para moderar textos.
+        /// </summary>
+        /// <param name="texto">string que contiene el texto que se desea moderar.</param>
+        /// <returns>ObservableCollection de string con las palabras que no han pasado la moderación.</returns>
         public ObservableCollection<string> AnalizarTexto(string texto)
         {
             string clave = Properties.Settings.Default.ClaveAzureListas;
@@ -34,11 +42,12 @@ namespace Proyecto_Revista_Digital.Servicios
                     palabrasMalas.Add(item.Term);
                 }
             }
-            
-
             return palabrasMalas;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class Root
         {
             public string OriginalText { get; set; }
@@ -50,6 +59,9 @@ namespace Proyecto_Revista_Digital.Servicios
             public string TrackingId { get; set; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class Status
         {
             public int Code { get; set; }
@@ -57,6 +69,9 @@ namespace Proyecto_Revista_Digital.Servicios
             public object Exception { get; set; }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         public class Termino
         {
             public int Index { get; set; }

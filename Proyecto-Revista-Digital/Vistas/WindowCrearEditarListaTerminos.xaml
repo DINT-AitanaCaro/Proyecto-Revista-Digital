@@ -85,10 +85,10 @@
             <DockPanel>
                 <StackPanel DockPanel.Dock="Top" HorizontalAlignment="Right" Orientation="Horizontal">
                     <Button Command="{Binding Path=EliminarTodosTerminoCommand}" Style="{StaticResource botonesEliminar}">
-                        <Image Source="../Assets/delete.png" ToolTip="Eliminar termino" Width="20"/>
+                        <Image Source="../Assets/delete.png" ToolTip="Eliminar todos los términos." Width="20"/>
                     </Button>
                     <Button Command="{Binding Path=EliminarTerminoCommand}" Style="{StaticResource botonesEliminar}">
-                        <Image Source="../Assets/deleteOne.png" ToolTip="Eliminar un término" Width="20"/>
+                        <Image Source="../Assets/deleteOne.png" ToolTip="Eliminar un término." Width="20"/>
                     </Button>
                 </StackPanel>
                 <StackPanel DockPanel.Dock="Bottom" HorizontalAlignment="Left" Orientation="Horizontal">
