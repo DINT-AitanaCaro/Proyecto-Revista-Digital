@@ -53,12 +53,16 @@ namespace Proyecto_Revista_Digital.Modelos
             Description = description;
         }
         
-        public ListaTerminos(ListaTerminos lista) : base()
+        public ListaTerminos(ListaTerminos lista)
         {
             Id = lista.Id;
             Name = lista.Name;
             Description = lista.Description;
-            Terminos = lista.Terminos;
+            Terminos = new ObservableCollection<string>();
+            foreach (string termino in lista.Terminos)
+            {
+                Terminos.Add(termino);
+            }
             Aplicada = lista.Aplicada;
         }
 

@@ -81,12 +81,30 @@ namespace Proyecto_Revista_Digital.VistasModelo
                     ListasTerminos.Add(listaRecibida);
                 } else
                 {
+                    servicioListas.EditarLista(lista.Id, listaRecibida.Name, listaRecibida.Description);
+                    List<string> diferentes;
+                    if (lista.Terminos.Count > listaRecibida.Terminos.Count)
+                    {
+                        diferentes = lista.Terminos.Except(listaRecibida.Terminos).ToList();
+                    } else
+                    {
+                        diferentes = listaRecibida.Terminos.Except(lista.Terminos).ToList();
+                    }
+                    foreach (string termino in diferentes)
+                    {
+                        if(listaRecibida.Terminos.Contains(termino))
+                        {
+                            servicioListas.AñadirTermino(lista.Id, termino);
+                        } else
+                        {
+                            servicioListas.EliminarTermino(lista.Id, termino);
+                        }
+                    }
                     lista.UpdateLista(listaRecibida.Name, listaRecibida.Description, listaRecibida.Terminos);
-                    //servicioListas.EliminarTodosTerminos
                 }
-                ObservableCollection<ListaTerminos> a = ListasTerminos;
+                ObservableCollection<ListaTerminos> listas = ListasTerminos;
                 ListasTerminos = null;
-                ListasTerminos = a;
+                ListasTerminos = listas;
             });
         }
 

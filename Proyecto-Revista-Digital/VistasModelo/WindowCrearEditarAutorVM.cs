@@ -45,7 +45,12 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public RelayCommand CommandSeleccionImagen { get; }
         public WindowCrearEditarAutorVM()
         {
+
             AutorActual = WeakReferenceMessenger.Default.Send<EnviarAutorMessage>();
+            if(AutorActual == null)
+            {
+                AutorActual = new Autor();
+            }
             RedesSociales = new ObservableCollection<string>() { "Instagram", "Twitter", "Facebook" };
 
             Modo = AutorActual.Id == 0 ? "Crear Autor" : "Editar Autor";

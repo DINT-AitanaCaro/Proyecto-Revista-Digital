@@ -66,7 +66,7 @@ namespace Proyecto_Revista_Digital.Servicios
             RestRequest request = new RestRequest(Method.GET);
             request.AddHeader("Ocp-Apim-Subscription-Key", Properties.Settings.Default.ClaveAzureListas);
             IRestResponse response = client.Execute(request);
-            Thread.Sleep(WAIT_TIME);
+            
             ObservableCollection<string> terminos = new ObservableCollection<string>();
             if (response.Content != null)
             {
@@ -79,6 +79,7 @@ namespace Proyecto_Revista_Digital.Servicios
                     terminos.Add(term);
                 }
             }
+            Thread.Sleep(WAIT_TIME);
             return terminos;
         }
 
@@ -100,6 +101,7 @@ namespace Proyecto_Revista_Digital.Servicios
             request.AddHeader("Ocp-Apim-Subscription-Key", Properties.Settings.Default.ClaveAzureListas);
             var response = client.Execute(request);
             Thread.Sleep(WAIT_TIME);
+            RefreshSearchIndex(idLista);
             return response;
         }
 
@@ -110,6 +112,7 @@ namespace Proyecto_Revista_Digital.Servicios
             request.AddHeader("Ocp-Apim-Subscription-Key", "3db2c831f29248f883bf33d925347349");
             var response = client.Execute(request);
             Thread.Sleep(WAIT_TIME);
+            RefreshSearchIndex(idLista);
             return response;
         }
 
