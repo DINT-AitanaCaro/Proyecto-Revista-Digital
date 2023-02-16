@@ -14,6 +14,7 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows.Input;
 
+
 namespace Proyecto_Revista_Digital.VistasModelo
 {
     class MainWindowVM : ObservableObject
@@ -36,6 +37,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public RelayCommand PublicarPaginaCommand { get; }
         public RelayCommand NuevoArticuloCommand { get; }
         public RelayCommand GestionarListasCommand { get; }
+        public RelayCommand AbrirAyudaUsuarioCommand { get; }
 
         private bool refrescar;
 
@@ -223,6 +225,12 @@ namespace Proyecto_Revista_Digital.VistasModelo
         public void NuevoArticulo()
         {
             ContenidoVentana = serviciosVentanas.CargarNuevoArticulo();
+        }
+
+        public void AbrirAyudaUsuario()
+        {
+            //System.Windows.Forms.Help.ShowHelp(MainWindowVM, "file://c:\\charmap.chm");
+            
         }
     }
 }

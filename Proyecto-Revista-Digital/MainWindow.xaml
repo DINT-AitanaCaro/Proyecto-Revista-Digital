@@ -68,6 +68,14 @@
                 </syncfusion:NavigationItem>
             </syncfusion:NavigationItem>
             <syncfusion:NavigationItem ItemType="Separator"/>
+            <syncfusion:NavigationItem Header="Documentacion de la aplicacion"
+                                       IsExpanded="True"
+                                       IsSelected="True"
+                                       >
+                <syncfusion:NavigationItem.Icon>
+                    <Image Source="./Assets/User_Manual.png" Width="32" Height="32"></Image>
+                </syncfusion:NavigationItem.Icon>
+            </syncfusion:NavigationItem>
             <syncfusion:SfNavigationDrawer.ContentView>
                 <Border>
                     <ContentControl Content="{Binding Path=ContenidoVentana}"></ContentControl>

@@ -46,7 +46,7 @@ namespace Proyecto_Revista_Digital.Servicios
         }
 
         /// <summary>
-        /// 
+        /// Clase que utilizamos a la hora deserializar el json que nos devuelve la peticion, donde contiene los terminos.
         /// </summary>
         public class Root
         {
@@ -60,7 +60,7 @@ namespace Proyecto_Revista_Digital.Servicios
         }
 
         /// <summary>
-        /// 
+        /// Clase para saber el status de la peticion
         /// </summary>
         public class Status
         {
@@ -70,7 +70,7 @@ namespace Proyecto_Revista_Digital.Servicios
         }
 
         /// <summary>
-        /// 
+        ///  Clase que nos devuelve el termino, o mejor dicho, la palabra malsonante. 
         /// </summary>
         public class Termino
         {

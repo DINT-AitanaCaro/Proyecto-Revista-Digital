@@ -8,6 +8,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
 using System.Windows.Documents;
+using System.Windows.Forms;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
@@ -27,6 +28,13 @@ namespace Proyecto_Revista_Digital
             InitializeComponent();
             vm = new MainWindowVM();
             this.DataContext = vm;
+           
         }
+        /*private void Button1_Click(System.Object sender, System.EventArgs e)
+        {
+
+            Help.ShowHelp(sender, "file://c:\\charmap.chm");
+        }*/
+
     }
 }

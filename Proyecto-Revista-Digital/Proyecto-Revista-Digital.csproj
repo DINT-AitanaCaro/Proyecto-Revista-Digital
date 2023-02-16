@@ -207,6 +207,7 @@
       <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
     </Reference>
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -394,6 +395,7 @@
     <None Include="Assets\twitter.ico">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+    <Resource Include="Assets\User_Manual.png" />
     <Content Include="RevistaOnline\img\logoRevista.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
