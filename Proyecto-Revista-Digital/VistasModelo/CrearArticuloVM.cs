@@ -215,7 +215,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
                 PalabrasMalsonantes = servicioModeracionContenido.AnalizarTexto(texto.Replace(",", " ").Replace(".", " ").Replace("|", " ").Replace("-", " ").Replace("_", " ").Replace(";", " ").Replace(":", " ").Replace("'", " "));
             }
             
-            return PalabrasMalsonantes != null;
+            return PalabrasMalsonantes.Count > 0;
         }
 
         private void MostrarPalabrasMalsonantes()
