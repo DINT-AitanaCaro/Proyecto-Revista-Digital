@@ -17,7 +17,7 @@ namespace Proyecto_Revista_Digital.Servicios
             string clave = Properties.Settings.Default.ClaveAzureListas;
             string endpoint = Properties.Settings.Default.EndPoint;
             var client = new RestClient(endpoint);
-            var request = new RestRequest("/contentmoderator/moderate/v1.0/ProcessText/Screen", Method.POST);
+            var request = new RestRequest("/contentmoderator/moderate/v1.0/ProcessText/Screen?language=spa", Method.POST);
             request.AddHeader("Ocp-Apim-Subscription-Key", clave);
             request.AddHeader("Content-Type", "text/plain");
             request.AddParameter("listId", Properties.Settings.Default.IdListaAplicada, ParameterType.QueryString);
