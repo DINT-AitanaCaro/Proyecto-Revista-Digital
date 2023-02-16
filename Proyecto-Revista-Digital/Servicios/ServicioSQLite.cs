@@ -10,16 +10,16 @@ using System.Threading.Tasks;
 namespace Proyecto_Revista_Digital.Servicios
 {
     /// <summary>
-    /// Este servicio sirve para crear la base de datos SQLite
+    ///     Servicio para crear la base de datos SQLite de la revista
     /// </summary>
     class ServicioSQLite
     {
         /// <summary>
-        /// Variable de tipo SqliteConncetion para la conexión
+        ///     Variable de tipo SqliteConncetion para la conexión
         /// </summary>
         private SqliteConnection conexion = new SqliteConnection(Properties.Settings.Default.SQLiteLocation);
         /// <summary>
-        /// En este método se crea la base de datos, es llamado desde:
+        ///     En este método se crea la base de datos, es llamado desde:
         /// <see cref="MainWindowVM">MainWindowVM</see>
         /// </summary>
         public void CrearBD()

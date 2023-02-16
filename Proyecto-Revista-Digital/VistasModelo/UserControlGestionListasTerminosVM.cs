@@ -142,11 +142,6 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void CargarListas()
         {
-            /*
-            InfoUsuario = "Cargando listas";
-            Time = false;
-            */
-            //ListasTerminos = new ObservableCollection<ListaTerminos>();
             ListasTerminos = servicioListas.GetListas();
             foreach (ListaTerminos lista in ListasTerminos)
             {
