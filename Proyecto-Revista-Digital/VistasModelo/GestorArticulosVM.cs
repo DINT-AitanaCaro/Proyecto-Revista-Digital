@@ -19,6 +19,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
 {
     class GestorArticulosVM : ObservableObject
     {
+        private ServicioModeracionContenido servicioModeracion;
         private ServicioAzure servicioAzure;
         private ServicioArticulo servicioArticulo;
 		private ObservableCollection<Articulo> articulos;
@@ -50,6 +51,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             PublicarCommand = new RelayCommand(PublicarArticulo);
             EliminarCommand = new RelayCommand(EliminarArticulo);
 
+            servicioModeracion = new ServicioModeracionContenido();
             servicioAzure = new ServicioAzure();
             servicioArticulo = new ServicioArticulo();
 
@@ -70,12 +72,33 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void PublicarArticulo()
         {
+            if (ArticuloSeleccionado != null)
+            {
+                if (ComprobarArticulo())
+                {
+                    ArticuloSeleccionado.UrlPdf = servicioAzure.AlmacenarPDFEnLaNube(GenerarPDF());
+                    servicioArticulo.UpdateUrlPdf(ArticuloSeleccionado.Id, ArticuloSeleccionado.UrlPdf);
+                    servicioArticulo.PublicarArticulo(ArticuloSeleccionado.Id);
+                    CargarArticulos();
+                }
+            }
 
+        }
 
-            ArticuloSeleccionado.UrlPdf = servicioAzure.AlmacenarPDFEnLaNube(GenerarPDF());
-            servicioArticulo.UpdateUrlPdf(ArticuloSeleccionado.Id, ArticuloSeleccionado.UrlPdf);
-            servicioArticulo.PublicarArticulo(ArticuloSeleccionado.Id);
-            CargarArticulos();
+        public bool ComprobarArticulo()
+        {
+            int num = 0;
+            ObservableCollection<string> palabrasMalsonantes = servicioModeracion.AnalizarTexto(ArticuloSeleccionado.Titulo);
+            num = palabrasMalsonantes.Count();
+
+            palabrasMalsonantes = servicioModeracion.AnalizarTexto(ArticuloSeleccionado.Contenido);
+            num = palabrasMalsonantes.Count();
+
+            if (num > 0)
+            {
+                return false;
+            }
+            return true;
         }
 
         public void EliminarArticulo()
