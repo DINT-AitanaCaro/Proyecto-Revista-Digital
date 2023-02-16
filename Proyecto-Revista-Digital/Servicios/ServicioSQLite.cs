@@ -27,6 +27,7 @@ namespace Proyecto_Revista_Digital.Servicios
             //Abrimos conexión
             conexion.Open();
             SqliteCommand comando = conexion.CreateCommand();
+            //comando.CommandText = @"DROP TABLE IF EXISTS autores;";
             comando.CommandText = @"CREATE TABLE IF NOT EXISTS autores (
                     id INTEGER primary key,
                     nombre varchar(100) NOT NULL,                      
@@ -36,6 +37,7 @@ namespace Proyecto_Revista_Digital.Servicios
                                     )";
             comando.ExecuteNonQuery();
 
+            //comando.CommandText = @"DROP TABLE IF EXISTS articulos;";
             comando.CommandText = @"CREATE TABLE IF NOT EXISTS articulos (
                     id INTEGER primary key,
                     idAutor INTEGER,
@@ -51,9 +53,11 @@ namespace Proyecto_Revista_Digital.Servicios
 
             comando.ExecuteNonQuery();
 
+            //comando.CommandText = @"DROP TABLE IF EXISTS secciones;";
+
             comando.CommandText = @"CREATE TABLE IF NOT EXISTS secciones (
                     id INTEGER primary key,
-                    nombre varchar(100) NOT NULL UNIQUE
+                     nombre varchar(100) NOT NULL UNIQUE
                                     )";
 
             comando.ExecuteNonQuery();
