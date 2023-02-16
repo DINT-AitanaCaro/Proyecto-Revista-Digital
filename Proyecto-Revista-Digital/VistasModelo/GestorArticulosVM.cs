@@ -155,17 +155,17 @@ namespace Proyecto_Revista_Digital.VistasModelo
                                 {
                                     string redSocial = "";
                                     if (ArticuloSeleccionado.AutorArticulo.Social.Equals("Twitter")) {
-                                        redSocial = "../../assets/twitter.png";
+                                        redSocial = "./assets/twitter.ico";
                                     } else if (ArticuloSeleccionado.AutorArticulo.Social.Equals("Instagram")) {
-                                        redSocial = "../../assets/twitter.png";
+                                        redSocial = "./assets/instagram.ico";
                                     } else {
-                                        redSocial = "../../assets/twitter.png";
+                                        redSocial = "./assets/facebook.ico";
                                     }
                                     y.ConstantItem(20)
                                         .Image(redSocial);
 
                                     y.RelativeItem()
-                                       .Text(ArticuloSeleccionado.AutorArticulo);
+                                       .Text("@" + ArticuloSeleccionado.AutorArticulo.Nickname);
                                 });
 
                                 column.Item()
