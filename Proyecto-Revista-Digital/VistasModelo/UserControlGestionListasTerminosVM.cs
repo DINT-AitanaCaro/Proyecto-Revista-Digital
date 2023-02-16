@@ -131,6 +131,10 @@ namespace Proyecto_Revista_Digital.VistasModelo
             ListasTerminos = servicioListas.GetListas();
             foreach (ListaTerminos lista in ListasTerminos)
             {
+                if(lista.Id == Properties.Settings.Default.IdListaAplicada)
+                {
+                    lista.Aplicada = true;
+                }
                 lista.Terminos = servicioListas.GetTerminos(lista.Id);
             }
             Mouse.OverrideCursor = Cursors.Arrow;

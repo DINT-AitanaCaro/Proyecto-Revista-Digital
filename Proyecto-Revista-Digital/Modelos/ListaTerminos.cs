@@ -47,7 +47,7 @@ namespace Proyecto_Revista_Digital.Modelos
             set { SetProperty(ref aplicada, value); }
         }
 
-        public ListaTerminos(string name, string description)
+        public ListaTerminos(string name, string description) : base()
         {
             Name = name;
             Description = description;
@@ -55,6 +55,7 @@ namespace Proyecto_Revista_Digital.Modelos
 
         public ListaTerminos()
         {
+            Terminos = new ObservableCollection<string>();
         }
     }
 }
