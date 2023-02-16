@@ -96,9 +96,11 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void EliminarAutor()
         {
-
-            servicioAutor.DeleteAutor(AutorSeleccionado.Id);
-            Refrescar(true);
+            if (AutorSeleccionado != null)
+            {
+                servicioAutor.DeleteAutor(AutorSeleccionado.Id);
+                Refrescar(true);
+            }
         }
 
         public void Refrescar(bool refrescar)
