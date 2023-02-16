@@ -41,31 +41,25 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref listaAutores, value); }
         }
 
-        private ObservableCollection<string> nombreAutores;
+        private ObservableCollection<string> palabrasMalsonantes;
 
-        public ObservableCollection<string> NombreAutores
+        public ObservableCollection<string> PalabrasMalsonantes
         {
-            get { return nombreAutores; }
-            set { SetProperty(ref nombreAutores, value); }
-        }
-
-        private ObservableCollection<string> nombreSecciones;
-
-        public ObservableCollection<string> NombreSecciones
-        {
-            get { return nombreSecciones; }
-            set { SetProperty(ref nombreSecciones, value); }
+            get { return palabrasMalsonantes; }
+            set { SetProperty(ref palabrasMalsonantes, value); }
         }
 
         public RelayCommand NuevaSeccionCommand { get; }
         public RelayCommand NuevoArticuloCommand { get; }
         public RelayCommand NuevaImagenArticuloCommand { get; }
-        private ServicioArticulo servicoArticulo;
+        public RelayCommand ComprobarTituloCommand { get; }
+        private readonly ServicioArticulo servicoArticulo;
         private readonly ServicioAutor servicioAutor;
         private readonly ServicioSeccion servicioSeccion;
         private readonly ServicioDialogo servicioDialogo;
         private readonly ServicioAzure servicioAzure;
         private readonly ServicioNavegacion servicioNavegacion;
+        private readonly ServicioModeracionContenido servicioModeracionContenido;
 
         private Seccion seccionArticulo;
 
@@ -91,28 +85,26 @@ namespace Proyecto_Revista_Digital.VistasModelo
             set { SetProperty(ref nuevaSeccion, value); }
         }
 
-
         public CrearArticuloVM()
         {
-            
+            PalabrasMalsonantes = new ObservableCollection<string>();
             ArticuloNuevo = new Articulo();
-            //ListaSecciones = new ObservableCollection<Seccion>();
-            //ListaAutores = new ObservableCollection<Autor>();
             servicioAutor = new ServicioAutor();
             servicioAzure = new ServicioAzure();
             servicioDialogo = new ServicioDialogo();
             servicioSeccion = new ServicioSeccion();
             servicoArticulo = new ServicioArticulo();
             servicioNavegacion = new ServicioNavegacion();
+            servicioModeracionContenido = new ServicioModeracionContenido();
             NuevaImagenArticuloCommand = new RelayCommand(SeleccionImagen);
             NuevaSeccionCommand = new RelayCommand(AñadirNuevaSeccion);
             NuevoArticuloCommand = new RelayCommand(AñadirArticulo);
-
+            ComprobarTituloCommand = new RelayCommand(ComprobarTitulo);
             CargarAutores();
             CargarSecciones();
             SeccionArticulo = new Seccion();
             AutorArticulo = new Autor();
-            
+
 
             WeakReferenceMessenger.Default.Register<CrearArticuloVM, EnviarSeccionMessage>(this, (r, m) =>
             {
@@ -124,14 +116,14 @@ namespace Proyecto_Revista_Digital.VistasModelo
         {
             ListaAutores = new ObservableCollection<Autor>();
             ListaAutores = servicioAutor.GetAutores();
-            
+
         }
 
         private void CargarSecciones()
         {
             ListaSecciones = new ObservableCollection<Seccion>();
             ListaSecciones = servicioSeccion.GetSecciones();
-            
+
         }
 
         public void SeleccionImagen()
@@ -145,32 +137,46 @@ namespace Proyecto_Revista_Digital.VistasModelo
             NuevaSeccion = new Seccion();
             bool? resultado = servicioNavegacion.CargarCrearSeccion();
             //CargarSecciones();
-            
+
         }
 
         public void AñadirArticulo()
         {
-            
-
             if (AutorArticulo != null && SeccionArticulo != null)
             {
                 ArticuloNuevo.AutorArticulo = AutorArticulo;
                 ArticuloNuevo.IdSeccion = SeccionArticulo.IdSeccion;
                 ArticuloNuevo.Publicado = false;
                 ArticuloNuevo.UrlPdf = "";
-                
-                if (!ControlarArticulosTitulo())
+
+                if (!ComprobarTitulosRepetidos())
                 {
-                    servicoArticulo.AddArticulo(ArticuloNuevo);
-                    MessageBox.Show("Agregado");
+                    if (ComprobarTexto(ArticuloNuevo.Titulo))
+                    {
+                        MostrarPalabrasMalsonantes();
+                    }
+                    else if (ComprobarTexto(ArticuloNuevo.Contenido))
+                    {
+                        MostrarPalabrasMalsonantes();
+                    }
+                    else
+                    {
+                        servicoArticulo.AddArticulo(ArticuloNuevo);
+                        servicioDialogo.MostrarMensaje("Articulo agregdo con exito", "Agregado", MessageBoxButton.OK, MessageBoxImage.Information);
+                        ArticuloNuevo = new Articulo();
+                    }
                 }
-                
+                else
+                {
+                    servicioDialogo.MostrarMensaje("El titulo esta repetido con otro articulo que ya existe", "Titulo repetido", MessageBoxButton.OK, MessageBoxImage.Warning);
+                }
+
             }
         }
 
-       
 
-        private bool ControlarArticulosTitulo()
+
+        private bool ComprobarTitulosRepetidos()
         {
             bool iguales = false;
             ObservableCollection<Articulo> articulos = new ObservableCollection<Articulo>();
@@ -183,6 +189,46 @@ namespace Proyecto_Revista_Digital.VistasModelo
             return iguales;
         }
 
-        
+        private void ComprobarTitulo()
+        {
+            if (!ComprobarTitulosRepetidos())
+            {
+                if (ComprobarTexto(ArticuloNuevo.Titulo))
+                {
+                    MostrarPalabrasMalsonantes();
+                }
+                else
+                {
+                    servicioDialogo.MostrarMensaje("El titulo no esta repetido y no hay ninguna palabra malsonante", "Todo correcto", MessageBoxButton.OK, MessageBoxImage.Information);
+                }
+            }
+            else
+            {
+                servicioDialogo.MostrarMensaje("El titulo esta repetido con otro articulo que ya existe", "Titulo repetido", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+        }
+
+        private bool ComprobarTexto(string texto)
+        {
+            if (texto!= null)
+            {
+                PalabrasMalsonantes = servicioModeracionContenido.AnalizarTexto(texto.Replace(",", " ").Replace(".", " ").Replace("|", " ").Replace("-", " ").Replace("_", " ").Replace(";", " ").Replace(":", " ").Replace("'", " "));
+            }
+            
+            return PalabrasMalsonantes.Count > 0;
+        }
+
+        private void MostrarPalabrasMalsonantes()
+        {
+            StringBuilder sb = new StringBuilder();
+            sb.Append("Palabras malsonantes: \n");
+            foreach (string item in PalabrasMalsonantes)
+            {
+                sb.Append("- ").Append(item).Append("\n");
+            }
+            servicioDialogo.MostrarMensaje(sb.ToString(), "CIUDADO", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
+
+
     }
 }
