@@ -63,7 +63,7 @@
     </UserControl.Resources>
     <DockPanel >
         <DockPanel DockPanel.Dock="Top" Margin="5,10">
-            <Button DockPanel.Dock="Left" Width="50" Height="50"  Margin="5" Template="{DynamicResource ButtonTemplate}" VerticalAlignment="Top" Command="{Binding Path=ComprobarTituloCommand}">
+            <Button DockPanel.Dock="Left" Width="50" Height="50"  Margin="5" Template="{DynamicResource ButtonTemplate}" VerticalAlignment="Top" Command="{Binding Path=ComprobarTituloCommand}" ToolTip="Comprobar titulo">
                 <Button.Content>
                     <Image Source="../assets/TituloArticulo.ico" Width="26"/>
                 </Button.Content>
@@ -80,7 +80,7 @@
                     <ComboBox  ItemsSource="{Binding Path=ListaSecciones, UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="NombreSeccion" SelectedItem="{Binding Path=SeccionArticulo, UpdateSourceTrigger=PropertyChanged}"/>
                 </inputLayout:SfTextInputLayout>
                 <!-- <Button x:Name="añadirSeccionButton" Content="+" Height="32" Width="32" Margin="5,0" VerticalAlignment="Center" Command="{Binding Path=NuevaSeccionCommand}"/>-->
-                <Button DockPanel.Dock="Left" Width="35" Height="35" Margin="5" Command="{Binding Path=NuevaSeccionCommand}" Template="{DynamicResource ButtonTemplate}" VerticalAlignment="Center">
+                <Button DockPanel.Dock="Left" Width="35" Height="35" Margin="5" Command="{Binding Path=NuevaSeccionCommand}" Template="{DynamicResource ButtonTemplate}" VerticalAlignment="Center" ToolTip="Agregar seccion">
                     <Button.Content>
                         <Image Source="../assets/AddSeccion.ico" Width="18"/>
                     </Button.Content>
