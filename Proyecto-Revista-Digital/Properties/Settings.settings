@@ -15,7 +15,7 @@
       <Value Profile="(Default)">articulos</Value>
     </Setting>
     <Setting Name="SQLiteLocation" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">Data Source=../../DataBase/revista.db</Value>
+      <Value Profile="(Default)">Data Source=./revista.db</Value>
     </Setting>
     <Setting Name="ClaveAzureListas" Type="System.String" Scope="Application">
       <Value Profile="(Default)">3db2c831f29248f883bf33d925347349</Value>
