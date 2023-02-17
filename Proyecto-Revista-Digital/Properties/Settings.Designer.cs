@@ -64,7 +64,7 @@ namespace Proyecto_Revista_Digital.Properties {
         
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=./revista.db")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=revista.db")]
         public string SQLiteLocation {
             get {
                 return ((string)(this["SQLiteLocation"]));
