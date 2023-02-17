@@ -135,6 +135,7 @@ div.articulo {
 
 .articulo {
     text-align: center;
+    width: 35vw;
 }
 
     .articulo > img {

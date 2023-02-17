@@ -333,6 +333,10 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Resource Include="Assets\Ban.png" />
+    <Content Include="Ayuda\Documentacion.chm">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
     <None Include="cleanTrash.bat">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

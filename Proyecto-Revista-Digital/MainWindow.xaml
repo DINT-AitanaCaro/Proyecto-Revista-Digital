@@ -62,16 +62,16 @@
                     <Image Source="./Assets/censor.png" Width="32" Height="32"></Image>
                 </syncfusion:NavigationItem.Icon>
                 <syncfusion:NavigationItem Header="Gestionar lista de palabras" Command="{Binding Path=GestionarListasCommand}">
-                    <!--<syncfusion:NavigationItem.Icon>
-                    <Path Data="M9.5189972,7.3780194C8.3389893,... "/>
-                </syncfusion:NavigationItem.Icon>-->
+                    <syncfusion:NavigationItem.Icon>
+                        <Image Source="./Assets/Ban.png"/>
+                    </syncfusion:NavigationItem.Icon>
                 </syncfusion:NavigationItem>
             </syncfusion:NavigationItem>
             <syncfusion:NavigationItem ItemType="Separator"/>
-            <syncfusion:NavigationItem Header="Documentacion de la aplicacion"
+            <syncfusion:NavigationItem Header="Informacion"
                                        IsExpanded="True"
                                        IsSelected="True"
-                                       >
+                                       Command="{Binding Path=AbrirAyudaUsuarioCommand}">
                 <syncfusion:NavigationItem.Icon>
                     <Image Source="./Assets/User_Manual.png" Width="32" Height="32"></Image>
                 </syncfusion:NavigationItem.Icon>

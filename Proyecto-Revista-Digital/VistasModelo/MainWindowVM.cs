@@ -60,6 +60,7 @@ namespace Proyecto_Revista_Digital.VistasModelo
             PublicarPaginaCommand = new RelayCommand(PublicarPagina);
             NuevoArticuloCommand = new RelayCommand(NuevoArticulo);
             GestionarListasCommand = new RelayCommand(GestionarListas);
+            AbrirAyudaUsuarioCommand = new RelayCommand(AbrirAyudaUsuario);
 
             this.serviciosVentanas = new ServicioNavegacion();
         }
@@ -229,8 +230,9 @@ namespace Proyecto_Revista_Digital.VistasModelo
 
         public void AbrirAyudaUsuario()
         {
-            //System.Windows.Forms.Help.ShowHelp(MainWindowVM, "file://c:\\charmap.chm");
             
+            string rutaAyuda = System.IO.Directory.GetCurrentDirectory() + "\\Ayuda\\Documentacion.chm";
+            System.Diagnostics.Process.Start(rutaAyuda);
         }
     }
 }
